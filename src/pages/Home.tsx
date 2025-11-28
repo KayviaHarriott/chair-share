@@ -4,9 +4,9 @@ import { HighlyRatedSection } from "../components/HighlyRatedSection";
 
 export const Home = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-purple-900 to-purple-50">
-      {/* Hero Section */}
-      <header className="relative overflow-hidden">
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero Section with Purple Background */}
+      <header className="relative overflow-hidden bg-gradient-to-b from-slate-900 via-purple-900 to-purple-800">
         {/* Decorative Elements */}
         <div className="absolute inset-0 bg-gradient-to-b from-yellow-500/10 to-transparent pointer-events-none"></div>
         <div className="absolute top-20 right-10 w-72 h-72 bg-yellow-500/20 rounded-full blur-3xl"></div>
@@ -16,7 +16,7 @@ export const Home = () => {
         <NavBar />
 
         {/* Hero Content */}
-        <div className="relative z-10 container mx-auto px-4 pt-32 pb-16 md:pt-40 md:pb-24">
+        <div className="relative z-10 container mx-auto px-4 pt-32 pb-32 md:pt-40 md:pb-40">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-block mb-6">
               <span className="px-4 py-2 bg-yellow-500/10 border border-yellow-500/30 rounded-full text-yellow-400 text-sm font-medium backdrop-blur-sm">
@@ -56,7 +56,7 @@ export const Home = () => {
             </div>
 
             {/* Quick Categories */}
-            <div className="flex flex-wrap justify-center gap-3 pb-24">
+            <div className="flex flex-wrap justify-center gap-3">
               <button className="px-6 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-yellow-500/20 hover:border-yellow-500/50 transition-all">
                 💇 Haircuts
               </button>

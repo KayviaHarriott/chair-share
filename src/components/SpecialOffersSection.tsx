@@ -45,7 +45,7 @@ export const SpecialOffersSection = ({ children }: SpecialOffersSectionProps) =>
 
   return (
     <section 
-      className="relative -mt-20 -mb-20 z-20 px-4 md:px-8"
+      className="relative -mt-20 -mb-20 z-20"
       style={{
         transform: `translateY(-${Math.min(parallaxOffset, 80)}px)`,
         transition: 'transform 0.1s ease-out',
