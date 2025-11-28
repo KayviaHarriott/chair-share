@@ -16,72 +16,72 @@ interface Stylist {
 const stylists: Stylist[] = [
   {
     id: 1,
-    name: 'Sarah Johnson',
+    name: 'Keisha Morgan',
     specialty: 'Master Stylist',
     rating: 4.9,
     reviewCount: 234,
-    image: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&q=80',
-    location: 'Downtown, NYC',
+    image: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400&q=80',
+    location: 'Kingston, Jamaica',
     services: ['Haircuts', 'Coloring', 'Extensions'],
     categories: ['haircuts', 'coloring'],
     price: '$$$',
   },
   {
     id: 2,
-    name: 'Marcus Rodriguez',
+    name: 'Jamal Williams',
     specialty: 'Expert Barber',
     rating: 5.0,
     reviewCount: 189,
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
-    location: 'Brooklyn, NYC',
+    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80',
+    location: 'Montego Bay, Jamaica',
     services: ['Haircuts', 'Beard Trim', 'Hot Towel Shave'],
     categories: ['haircuts', 'beards'],
     price: '$$',
   },
   {
     id: 3,
-    name: 'Emily Chen',
+    name: 'Shanae Brown',
     specialty: 'Nail Artist',
     rating: 4.8,
     reviewCount: 312,
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80',
-    location: 'Manhattan, NYC',
+    image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=400&q=80',
+    location: 'Ocho Rios, Jamaica',
     services: ['Manicure', 'Pedicure', 'Nail Art'],
     categories: ['nails'],
     price: '$$',
   },
   {
     id: 4,
-    name: 'David Kim',
+    name: 'Trevon Campbell',
     specialty: 'Color Specialist',
     rating: 4.9,
     reviewCount: 267,
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80',
-    location: 'Queens, NYC',
+    image: 'https://images.unsplash.com/photo-1531891570158-e71b35a485bc?w=400&q=80',
+    location: 'Portmore, Jamaica',
     services: ['Balayage', 'Highlights', 'Color Correction'],
     categories: ['coloring'],
     price: '$$$',
   },
   {
     id: 5,
-    name: 'Jessica Martinez',
+    name: 'Natasha Reid',
     specialty: 'Makeup Artist',
     rating: 5.0,
     reviewCount: 198,
-    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80',
-    location: 'Manhattan, NYC',
+    image: 'https://images.unsplash.com/photo-1598550487031-3999f7f8d719?w=400&q=80',
+    location: 'Spanish Town, Jamaica',
     services: ['Bridal Makeup', 'Special Events', 'Lessons'],
     categories: ['makeup'],
     price: '$$$',
   },
   {
     id: 6,
-    name: 'Alex Thompson',
+    name: 'Andre Thompson',
     specialty: 'Precision Barber',
     rating: 4.7,
     reviewCount: 156,
-    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80',
-    location: 'Bronx, NYC',
+    image: 'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=400&q=80',
+    location: 'Negril, Jamaica',
     services: ['Fades', 'Line-ups', 'Beard Sculpting'],
     categories: ['haircuts', 'beards'],
     price: '$$',
@@ -142,64 +142,66 @@ export const HighlyRatedSection = () => {
           {filteredStylists.map((stylist) => (
             <div
               key={stylist.id}
-              className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+              className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer"
             >
-              {/* Profile Image */}
-              <div className="relative h-64 overflow-hidden">
+              {/* Profile Image with Overlay */}
+              <div className="relative h-96 overflow-hidden">
                 <img
                   src={stylist.image}
                   alt={stylist.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
+
                 {/* Rating Badge */}
-                <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-2 rounded-full flex items-center gap-2 shadow-lg">
-                  <span className="text-yellow-500 text-xl">★</span>
-                  <span className="font-bold text-gray-900">{stylist.rating}</span>
-                  <span className="text-gray-600 text-sm">({stylist.reviewCount})</span>
+                <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg">
+                  <span className="text-yellow-500 text-base">★</span>
+                  <span className="font-bold text-gray-900 text-sm">{stylist.rating}</span>
+                  <span className="text-gray-600 text-xs">({stylist.reviewCount})</span>
                 </div>
+
                 {/* Price Badge */}
-                <div className="absolute top-4 right-4 bg-purple-600 text-white px-4 py-2 rounded-full font-bold shadow-lg">
+                <div className="absolute top-4 right-4 bg-purple-600 text-white px-3 py-1.5 rounded-full font-bold shadow-lg text-sm">
                   {stylist.price}
                 </div>
-              </div>
 
-              {/* Card Content */}
-              <div className="p-5">
-                {/* Name & Specialty */}
-                <h3 className="text-xl font-bold text-gray-900 mb-1">
-                  {stylist.name}
-                </h3>
-                <p className="text-purple-600 font-semibold mb-2 text-sm">
-                  {stylist.specialty}
-                </p>
+                {/* Text Overlay at Bottom */}
+                <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
+                  {/* Name & Specialty */}
+                  <h3 className="text-2xl font-bold mb-1">
+                    {stylist.name}
+                  </h3>
+                  <p className="text-yellow-400 font-semibold mb-3 text-sm">
+                    {stylist.specialty}
+                  </p>
 
-                {/* Location */}
-                <div className="flex items-center gap-2 text-gray-600 mb-3 text-sm">
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                  </svg>
-                  <span>{stylist.location}</span>
-                </div>
+                  {/* Location */}
+                  <div className="flex items-center gap-2 mb-3 text-sm">
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                    </svg>
+                    <span>{stylist.location}</span>
+                  </div>
 
-                {/* Services */}
-                <div className="mb-3">
-                  <p className="text-xs font-semibold text-gray-700 mb-1.5">Services:</p>
-                  <div className="flex flex-wrap gap-2">
+                  {/* Services */}
+                  <div className="flex flex-wrap gap-2 mb-3">
                     {stylist.services.map((service, index) => (
                       <span
                         key={index}
-                        className="bg-gray-100 text-gray-700 px-2.5 py-1 rounded-full text-xs"
+                        className="bg-white/20 backdrop-blur-sm text-white px-2.5 py-1 rounded-full text-xs border border-white/30"
                       >
                         {service}
                       </span>
                     ))}
                   </div>
-                </div>
 
-                {/* Book Button */}
-                <button className="w-full bg-gradient-to-r from-purple-600 to-pink-500 text-white py-2.5 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-600 transition-all shadow-md hover:shadow-lg text-sm">
-                  Book Appointment
-                </button>
+                  {/* Book Button */}
+                  <button className="w-full bg-gradient-to-r from-purple-600 to-pink-500 text-white py-2.5 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-600 transition-all shadow-lg text-sm">
+                    Book Appointment
+                  </button>
+                </div>
               </div>
             </div>
           ))}

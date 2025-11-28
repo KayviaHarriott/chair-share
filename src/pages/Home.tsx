@@ -303,7 +303,7 @@ export const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-12 px-4 bg-gradient-to-b from-white to-purple-100">
+      <section className="relative py-12 px-4 pb-0 bg-gradient-to-b from-white to-slate-900">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto bg-gradient-to-br from-purple-600 to-purple-800 rounded-3xl border border-purple-400 p-6 md:p-10 text-center shadow-2xl">
             <h2 className="text-2xl md:text-4xl font-bold text-white mb-3">
@@ -329,7 +329,7 @@ export const Home = () => {
       </SpecialOffersSection>
 
       {/* Footer - Outside Parallax */}
-      <footer className="relative py-8 px-4 bg-slate-900 border-t border-purple-800">
+      <footer className="relative py-8 px-4 bg-slate-900">
         <div className="container mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
             <div>
