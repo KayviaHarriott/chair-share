@@ -77,10 +77,10 @@ export const Home = () => {
       {/* Special Offers Section with Parallax - Contains all sections below */}
       <SpecialOffersSection>
         {/* Featured Section */}
-        <section className="relative py-16 px-4 bg-white">
+        <section className="relative py-10 px-4 bg-white">
         <div className="container mx-auto">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
               Featured Professionals
             </h2>
             <a href="#" className="text-purple-600 hover:text-purple-700 flex items-center gap-2 font-semibold">
@@ -163,18 +163,18 @@ export const Home = () => {
       <HighlyRatedSection />
 
       {/* How It Works Section */}
-      <section className="relative py-16 px-4 bg-white" id="how-it-works">
+      <section className="relative py-10 px-4 bg-white" id="how-it-works">
         <div className="container mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3">
               How It Works
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 max-w-2xl mx-auto text-sm">
               Get started in three simple steps and experience luxury beauty services at your fingertips
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {/* Step 1 */}
             <div className="text-center">
               <div className="w-20 h-20 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4 shadow-lg shadow-yellow-500/50">
@@ -218,10 +218,10 @@ export const Home = () => {
       </section>
 
       {/* New to Chairshare Section */}
-      <section className="relative py-16 px-4 bg-purple-50/50">
+      <section className="relative py-10 px-4 bg-purple-50/50">
         <div className="container mx-auto">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
               New to Chairshare
             </h2>
             <a href="#" className="text-purple-600 hover:text-purple-700 flex items-center gap-2 font-semibold">
@@ -303,34 +303,35 @@ export const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-20 px-4 bg-gradient-to-b from-white to-purple-100">
+      <section className="relative py-12 px-4 bg-gradient-to-b from-white to-purple-100">
         <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto bg-gradient-to-br from-purple-600 to-purple-800 rounded-3xl border border-purple-400 p-8 md:p-12 text-center shadow-2xl">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+          <div className="max-w-4xl mx-auto bg-gradient-to-br from-purple-600 to-purple-800 rounded-3xl border border-purple-400 p-6 md:p-10 text-center shadow-2xl">
+            <h2 className="text-2xl md:text-4xl font-bold text-white mb-3">
               Ready to Experience{' '}
               <span className="bg-gradient-to-r from-yellow-300 to-yellow-100 bg-clip-text text-transparent">
                 Royal Treatment?
               </span>
             </h2>
-            <p className="text-purple-100 text-lg mb-8 max-w-2xl mx-auto">
+            <p className="text-purple-100 text-base mb-6 max-w-2xl mx-auto">
               Join thousands of satisfied clients who trust Chairshare for their beauty and grooming needs.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-8 py-4 bg-yellow-500 text-slate-900 font-bold rounded-xl hover:bg-yellow-400 transition-all shadow-lg text-lg">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <button className="px-6 py-3 bg-yellow-500 text-slate-900 font-bold rounded-xl hover:bg-yellow-400 transition-all shadow-lg">
                 Get Started Now
               </button>
-              <button className="px-8 py-4 bg-white/20 backdrop-blur-sm border border-white/40 text-white font-bold rounded-xl hover:bg-white/30 transition-all text-lg">
+              <button className="px-6 py-3 bg-white/20 backdrop-blur-sm border border-white/40 text-white font-bold rounded-xl hover:bg-white/30 transition-all">
                 Learn More
               </button>
             </div>
           </div>
         </div>
       </section>
+      </SpecialOffersSection>
 
-      {/* Footer */}
-      <footer className="relative py-12 px-4 bg-slate-900 border-t border-purple-800">
+      {/* Footer - Outside Parallax */}
+      <footer className="relative py-8 px-4 bg-slate-900 border-t border-purple-800">
         <div className="container mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
             <div>
               <h4 className="text-white font-bold mb-4">Services</h4>
               <ul className="space-y-2">
@@ -368,7 +369,7 @@ export const Home = () => {
             </div>
           </div>
           
-          <div className="border-t border-purple-800 pt-8">
+          <div className="border-t border-purple-800 pt-6">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <div className="flex items-center space-x-2">
                 <div className="w-10 h-10 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-lg flex items-center justify-center">
@@ -398,7 +399,6 @@ export const Home = () => {
           </div>
         </div>
       </footer>
-      </SpecialOffersSection>
     </div>
   );
 }

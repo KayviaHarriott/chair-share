@@ -105,26 +105,26 @@ export const HighlyRatedSection = () => {
     : stylists.filter(stylist => stylist.categories.includes(activeCategory));
 
   return (
-    <section className="bg-white py-16 md:py-24">
+    <section className="bg-white py-10 md:py-16">
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16">
         {/* Section Header */}
-        <div className="mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        <div className="mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
             Highly Rated Professionals
           </h2>
-          <p className="text-lg text-gray-600">
+          <p className="text-base text-gray-600">
             Discover talented stylists, barbers, and beauty experts in your area
           </p>
         </div>
 
         {/* Category Filter */}
-        <div className="flex flex-wrap gap-3 mb-12">
+        <div className="flex flex-wrap gap-2 mb-8">
           {categories.map((category) => (
             <button
               key={category.id}
               onClick={() => setActiveCategory(category.id)}
               className={`
-                flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all transform hover:scale-105
+                flex items-center gap-2 px-5 py-2 rounded-full font-semibold transition-all transform hover:scale-105
                 ${activeCategory === category.id
                   ? 'bg-gradient-to-r from-purple-600 to-pink-500 text-white shadow-lg'
                   : 'bg-white text-gray-700 hover:bg-gray-100 shadow-md'
@@ -138,14 +138,14 @@ export const HighlyRatedSection = () => {
         </div>
 
         {/* Stylists Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredStylists.map((stylist) => (
             <div
               key={stylist.id}
               className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
             >
               {/* Profile Image */}
-              <div className="relative h-80 overflow-hidden">
+              <div className="relative h-64 overflow-hidden">
                 <img
                   src={stylist.image}
                   alt={stylist.name}
@@ -164,17 +164,17 @@ export const HighlyRatedSection = () => {
               </div>
 
               {/* Card Content */}
-              <div className="p-6">
+              <div className="p-5">
                 {/* Name & Specialty */}
-                <h3 className="text-2xl font-bold text-gray-900 mb-1">
+                <h3 className="text-xl font-bold text-gray-900 mb-1">
                   {stylist.name}
                 </h3>
-                <p className="text-purple-600 font-semibold mb-3">
+                <p className="text-purple-600 font-semibold mb-2 text-sm">
                   {stylist.specialty}
                 </p>
 
                 {/* Location */}
-                <div className="flex items-center gap-2 text-gray-600 mb-4">
+                <div className="flex items-center gap-2 text-gray-600 mb-3 text-sm">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                   </svg>
@@ -182,13 +182,13 @@ export const HighlyRatedSection = () => {
                 </div>
 
                 {/* Services */}
-                <div className="mb-4">
-                  <p className="text-sm font-semibold text-gray-700 mb-2">Services:</p>
+                <div className="mb-3">
+                  <p className="text-xs font-semibold text-gray-700 mb-1.5">Services:</p>
                   <div className="flex flex-wrap gap-2">
                     {stylist.services.map((service, index) => (
                       <span
                         key={index}
-                        className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
+                        className="bg-gray-100 text-gray-700 px-2.5 py-1 rounded-full text-xs"
                       >
                         {service}
                       </span>
@@ -197,7 +197,7 @@ export const HighlyRatedSection = () => {
                 </div>
 
                 {/* Book Button */}
-                <button className="w-full bg-gradient-to-r from-purple-600 to-pink-500 text-white py-3 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-600 transition-all shadow-md hover:shadow-lg">
+                <button className="w-full bg-gradient-to-r from-purple-600 to-pink-500 text-white py-2.5 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-600 transition-all shadow-md hover:shadow-lg text-sm">
                   Book Appointment
                 </button>
               </div>
