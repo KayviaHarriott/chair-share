@@ -93,7 +93,7 @@ export const SpecialOffersSection = ({ children }: SpecialOffersSectionProps) =>
                     {offer.title}
                   </h3>
                   <p className="text-gray-600 mb-4">{offer.description}</p>
-                  <button className="w-full bg-gradient-to-r from-purple-600 to-pink-500 text-white py-3 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-600 transition-all">
+                  <button className="w-full bg-white text-black border-2 border-black py-3 rounded-lg font-semibold hover:bg-gray-50 transition-all">
                     Claim Offer
                   </button>
                 </div>

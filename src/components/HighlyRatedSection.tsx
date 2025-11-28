@@ -198,7 +198,7 @@ export const HighlyRatedSection = () => {
                   </div>
 
                   {/* Book Button */}
-                  <button className="w-full bg-gradient-to-r from-purple-600 to-pink-500 text-white py-2.5 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-600 transition-all shadow-lg text-sm">
+                  <button className="w-full bg-white text-black py-2.5 rounded-lg font-semibold hover:bg-gray-100 transition-all shadow-lg text-sm">
                     Book Appointment
                   </button>
                 </div>
