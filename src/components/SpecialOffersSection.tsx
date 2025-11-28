@@ -24,7 +24,11 @@ const offers = [
   },
 ];
 
-export const SpecialOffersSection = () => {
+interface SpecialOffersSectionProps {
+  children?: React.ReactNode;
+}
+
+export const SpecialOffersSection = ({ children }: SpecialOffersSectionProps) => {
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
@@ -36,19 +40,21 @@ export const SpecialOffersSection = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Calculate parallax offset - the section moves slower than scroll
-  const parallaxOffset = scrollY * 0.5;
+  // Calculate parallax offset - the section moves slower than scroll for smoother effect
+  const parallaxOffset = scrollY * 0.3;
 
   return (
     <section 
-      className="relative -mt-20 z-20"
+      className="relative -mt-20 z-20 px-4 md:px-8"
       style={{
-        transform: `translateY(-${Math.min(parallaxOffset, 100)}px)`,
+        transform: `translateY(-${Math.min(parallaxOffset, 80)}px)`,
+        transition: 'transform 0.1s ease-out',
       }}
     >
       {/* Rounded top container */}
-      <div className="bg-white rounded-t-[50px] md:rounded-t-[80px] shadow-2xl overflow-hidden">
-        <div className="px-4 py-16 md:px-8 lg:px-16 max-w-7xl mx-auto">
+      <div className="bg-white rounded-t-[50px] md:rounded-t-[80px] shadow-2xl">
+        {/* Special Offers Content */}
+        <div className="py-16 md:py-20 px-4 md:px-8 lg:px-16 max-w-7xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -95,6 +101,9 @@ export const SpecialOffersSection = () => {
             ))}
           </div>
         </div>
+
+        {/* All content below rendered as children */}
+        {children}
       </div>
     </section>
   );

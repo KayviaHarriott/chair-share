@@ -105,20 +105,20 @@ export const HighlyRatedSection = () => {
     : stylists.filter(stylist => stylist.categories.includes(activeCategory));
 
   return (
-    <section className="bg-gray-50 py-16 md:py-24">
+    <section className="bg-white py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16">
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <div className="mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Highly Rated Professionals
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600">
             Discover talented stylists, barbers, and beauty experts in your area
           </p>
         </div>
 
         {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        <div className="flex flex-wrap gap-3 mb-12">
           {categories.map((category) => (
             <button
               key={category.id}

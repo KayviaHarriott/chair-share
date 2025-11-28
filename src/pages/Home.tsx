@@ -74,11 +74,10 @@ export const Home = () => {
         </div>
       </header>
 
-      {/* Special Offers Section with Parallax */}
-      <SpecialOffersSection />
-
-      {/* Featured Section */}
-      <section className="relative py-16 px-4 bg-white">
+      {/* Special Offers Section with Parallax - Contains all sections below */}
+      <SpecialOffersSection>
+        {/* Featured Section */}
+        <section className="relative py-16 px-4 bg-white">
         <div className="container mx-auto">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
@@ -399,6 +398,7 @@ export const Home = () => {
           </div>
         </div>
       </footer>
+      </SpecialOffersSection>
     </div>
   );
 }
