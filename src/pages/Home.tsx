@@ -1,4 +1,6 @@
 import { NavBar } from "../components/NavBar";
+import { SpecialOffersSection } from "../components/SpecialOffersSection";
+import { HighlyRatedSection } from "../components/HighlyRatedSection";
 
 export const Home = () => {
   return (
@@ -72,111 +74,8 @@ export const Home = () => {
         </div>
       </header>
 
-      {/* Special Offers Section */}
-      <section className="relative py-16 px-4 bg-gradient-to-b from-transparent via-purple-100/50 to-white" id="services">
-        <div className="container mx-auto">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
-              Special Offers
-            </h2>
-            <a href="#" className="text-purple-600 hover:text-purple-700 flex items-center gap-2 font-semibold">
-              View All
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </a>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Offer Card 1 */}
-            <div className="group relative bg-white rounded-2xl overflow-hidden border border-purple-200 hover:border-purple-400 transition-all shadow-lg hover:shadow-xl">
-              <div className="absolute top-4 right-4 z-10">
-                <span className="px-3 py-1 bg-yellow-500 text-slate-900 text-xs font-bold rounded-full">
-                  30% OFF
-                </span>
-              </div>
-              <div className="h-48 bg-gradient-to-br from-yellow-500/20 to-purple-500/20 flex items-center justify-center">
-                <span className="text-6xl">💇‍♀️</span>
-              </div>
-              <div className="p-6">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-yellow-500 text-sm">★★★★★</span>
-                  <span className="text-gray-600 text-sm">4.9</span>
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-2">Premium Haircut</h3>
-                <p className="text-gray-600 text-sm mb-4">Experience luxury cuts from master stylists</p>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <span className="text-gray-400 line-through text-sm">$60</span>
-                    <span className="text-purple-600 font-bold text-xl ml-2">$42</span>
-                  </div>
-                  <button className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all font-semibold">
-                    Book Now
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Offer Card 2 */}
-            <div className="group relative bg-white rounded-2xl overflow-hidden border border-purple-200 hover:border-purple-400 transition-all shadow-lg hover:shadow-xl">
-              <div className="absolute top-4 right-4 z-10">
-                <span className="px-3 py-1 bg-yellow-500 text-slate-900 text-xs font-bold rounded-full">
-                  25% OFF
-                </span>
-              </div>
-              <div className="h-48 bg-gradient-to-br from-pink-500/20 to-purple-500/20 flex items-center justify-center">
-                <span className="text-6xl">💅</span>
-              </div>
-              <div className="p-6">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-yellow-500 text-sm">★★★★★</span>
-                  <span className="text-gray-600 text-sm">4.8</span>
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-2">Deluxe Manicure</h3>
-                <p className="text-gray-600 text-sm mb-4">Pamper your nails with our royal treatment</p>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <span className="text-gray-400 line-through text-sm">$40</span>
-                    <span className="text-purple-600 font-bold text-xl ml-2">$30</span>
-                  </div>
-                  <button className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all font-semibold">
-                    Book Now
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Offer Card 3 */}
-            <div className="group relative bg-white rounded-2xl overflow-hidden border border-purple-200 hover:border-purple-400 transition-all shadow-lg hover:shadow-xl">
-              <div className="absolute top-4 right-4 z-10">
-                <span className="px-3 py-1 bg-yellow-500 text-slate-900 text-xs font-bold rounded-full">
-                  40% OFF
-                </span>
-              </div>
-              <div className="h-48 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 flex items-center justify-center">
-                <span className="text-6xl">🧔</span>
-              </div>
-              <div className="p-6">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-yellow-500 text-sm">★★★★★</span>
-                  <span className="text-gray-600 text-sm">5.0</span>
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-2">Beard Grooming</h3>
-                <p className="text-gray-600 text-sm mb-4">Professional beard styling and care</p>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <span className="text-gray-400 line-through text-sm">$35</span>
-                    <span className="text-purple-600 font-bold text-xl ml-2">$21</span>
-                  </div>
-                  <button className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all font-semibold">
-                    Book Now
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Special Offers Section with Parallax */}
+      <SpecialOffersSection />
 
       {/* Featured Section */}
       <section className="relative py-16 px-4 bg-white">
@@ -261,92 +160,8 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* Highly Rated Section */}
-      <section className="relative py-16 px-4 bg-purple-50/50" id="professionals">
-        <div className="container mx-auto">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
-              Highly Rated
-            </h2>
-            <a href="#" className="text-purple-600 hover:text-purple-700 flex items-center gap-2 font-semibold">
-              View All
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </a>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            {/* Rating Card 1 */}
-            <div className="bg-white rounded-xl overflow-hidden border border-purple-200 hover:border-purple-400 transition-all shadow-lg hover:shadow-xl group cursor-pointer">
-              <div className="aspect-square bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center text-6xl">
-                👩‍🦰
-              </div>
-              <div className="p-4">
-                <div className="flex items-center justify-between mb-1">
-                  <h3 className="font-bold text-slate-900 text-sm md:text-base">Jenna's Facials</h3>
-                  <div className="flex items-center gap-1">
-                    <span className="text-yellow-500 text-sm">★</span>
-                    <span className="text-slate-900 font-semibold text-xs">4.9</span>
-                  </div>
-                </div>
-                <p className="text-gray-600 text-xs">Facial Specialist</p>
-              </div>
-            </div>
-
-            {/* Rating Card 2 */}
-            <div className="bg-white rounded-xl overflow-hidden border border-purple-200 hover:border-purple-400 transition-all shadow-lg hover:shadow-xl group cursor-pointer">
-              <div className="aspect-square bg-gradient-to-br from-yellow-500/20 to-orange-500/20 flex items-center justify-center text-6xl">
-                💇‍♀️
-              </div>
-              <div className="p-4">
-                <div className="flex items-center justify-between mb-1">
-                  <h3 className="font-bold text-slate-900 text-sm md:text-base">Hair by Annie Marie</h3>
-                  <div className="flex items-center gap-1">
-                    <span className="text-yellow-500 text-sm">★</span>
-                    <span className="text-slate-900 font-semibold text-xs">4.8</span>
-                  </div>
-                </div>
-                <p className="text-gray-600 text-xs">Hair Stylist</p>
-              </div>
-            </div>
-
-            {/* Rating Card 3 */}
-            <div className="bg-white rounded-xl overflow-hidden border border-purple-200 hover:border-purple-400 transition-all shadow-lg hover:shadow-xl group cursor-pointer">
-              <div className="aspect-square bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center text-6xl">
-                ✂️
-              </div>
-              <div className="p-4">
-                <div className="flex items-center justify-between mb-1">
-                  <h3 className="font-bold text-slate-900 text-sm md:text-base">LauRell by Mel</h3>
-                  <div className="flex items-center gap-1">
-                    <span className="text-yellow-500 text-sm">★</span>
-                    <span className="text-slate-900 font-semibold text-xs">4.9</span>
-                  </div>
-                </div>
-                <p className="text-gray-600 text-xs">Barber & Stylist</p>
-              </div>
-            </div>
-
-            {/* Rating Card 4 */}
-            <div className="bg-white rounded-xl overflow-hidden border border-purple-200 hover:border-purple-400 transition-all shadow-lg hover:shadow-xl group cursor-pointer">
-              <div className="aspect-square bg-gradient-to-br from-green-500/20 to-teal-500/20 flex items-center justify-center text-6xl">
-                🎨
-              </div>
-              <div className="p-4">
-                <div className="flex items-center justify-between mb-1">
-                  <h3 className="font-bold text-slate-900 text-sm md:text-base">Happy Cutz</h3>
-                  <div className="flex items-center gap-1">
-                    <span className="text-yellow-500 text-sm">★</span>
-                    <span className="text-slate-900 font-semibold text-xs">5.0</span>
-                  </div>
-                </div>
-                <p className="text-gray-600 text-xs">Nail Artist</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Highly Rated Section with Profile Cards and Filters */}
+      <HighlyRatedSection />
 
       {/* How It Works Section */}
       <section className="relative py-16 px-4 bg-white" id="how-it-works">
