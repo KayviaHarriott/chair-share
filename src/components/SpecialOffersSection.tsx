@@ -45,7 +45,7 @@ export const SpecialOffersSection = ({ children }: SpecialOffersSectionProps) =>
 
   return (
     <section 
-      className="relative -mt-20 z-20 px-4 md:px-8"
+      className="relative -mt-20 -mb-20 z-20 px-4 md:px-8"
       style={{
         transform: `translateY(-${Math.min(parallaxOffset, 80)}px)`,
         transition: 'transform 0.1s ease-out',
@@ -54,26 +54,26 @@ export const SpecialOffersSection = ({ children }: SpecialOffersSectionProps) =>
       {/* Rounded top container */}
       <div className="bg-white rounded-t-[50px] md:rounded-t-[80px] shadow-2xl">
         {/* Special Offers Content */}
-        <div className="py-12 md:py-16 px-4 md:px-8 lg:px-16 max-w-7xl mx-auto">
+        <div className="py-16 md:py-20 px-4 md:px-8 lg:px-16 max-w-7xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Special Offers
             </h2>
-            <p className="text-base text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Exclusive deals and limited-time promotions just for you
             </p>
           </div>
 
           {/* Offers Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {offers.map((offer) => (
               <div
                 key={offer.id}
                 className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
               >
                 {/* Image */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-56 overflow-hidden">
                   <img
                     src={offer.image}
                     alt={offer.title}
@@ -88,11 +88,11 @@ export const SpecialOffersSection = ({ children }: SpecialOffersSectionProps) =>
                 </div>
 
                 {/* Content */}
-                <div className="p-5">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
                     {offer.title}
                   </h3>
-                  <p className="text-gray-600 text-sm mb-4">{offer.description}</p>
+                  <p className="text-gray-600 mb-4">{offer.description}</p>
                   <button className="w-full bg-gradient-to-r from-purple-600 to-pink-500 text-white py-3 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-600 transition-all">
                     Claim Offer
                   </button>
