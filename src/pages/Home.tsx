@@ -1,6 +1,6 @@
 export const Home = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-purple-900 to-purple-50">
       {/* Hero Section */}
       <header className="relative overflow-hidden">
         {/* Decorative Elements */}
@@ -98,13 +98,13 @@ export const Home = () => {
       </header>
 
       {/* Special Offers Section */}
-      <section className="relative py-16 px-4" id="services">
+      <section className="relative py-16 px-4 bg-gradient-to-b from-transparent via-purple-100/50 to-white" id="services">
         <div className="container mx-auto">
           <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
               Special Offers
             </h2>
-            <a href="#" className="text-yellow-400 hover:text-yellow-300 flex items-center gap-2 font-semibold">
+            <a href="#" className="text-purple-600 hover:text-purple-700 flex items-center gap-2 font-semibold">
               View All
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -114,7 +114,7 @@ export const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Offer Card 1 */}
-            <div className="group relative bg-gradient-to-br from-purple-900/50 to-slate-900/50 rounded-2xl overflow-hidden border border-white/10 hover:border-yellow-500/50 transition-all backdrop-blur-sm">
+            <div className="group relative bg-white rounded-2xl overflow-hidden border border-purple-200 hover:border-purple-400 transition-all shadow-lg hover:shadow-xl">
               <div className="absolute top-4 right-4 z-10">
                 <span className="px-3 py-1 bg-yellow-500 text-slate-900 text-xs font-bold rounded-full">
                   30% OFF
@@ -125,17 +125,17 @@ export const Home = () => {
               </div>
               <div className="p-6">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-yellow-400 text-sm">★★★★★</span>
-                  <span className="text-gray-400 text-sm">4.9</span>
+                  <span className="text-yellow-500 text-sm">★★★★★</span>
+                  <span className="text-gray-600 text-sm">4.9</span>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">Premium Haircut</h3>
-                <p className="text-gray-400 text-sm mb-4">Experience luxury cuts from master stylists</p>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Premium Haircut</h3>
+                <p className="text-gray-600 text-sm mb-4">Experience luxury cuts from master stylists</p>
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-gray-500 line-through text-sm">$60</span>
-                    <span className="text-yellow-400 font-bold text-xl ml-2">$42</span>
+                    <span className="text-gray-400 line-through text-sm">$60</span>
+                    <span className="text-purple-600 font-bold text-xl ml-2">$42</span>
                   </div>
-                  <button className="px-4 py-2 bg-yellow-500/10 text-yellow-400 rounded-lg hover:bg-yellow-500 hover:text-slate-900 transition-all font-semibold">
+                  <button className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all font-semibold">
                     Book Now
                   </button>
                 </div>
@@ -143,7 +143,7 @@ export const Home = () => {
             </div>
 
             {/* Offer Card 2 */}
-            <div className="group relative bg-gradient-to-br from-purple-900/50 to-slate-900/50 rounded-2xl overflow-hidden border border-white/10 hover:border-yellow-500/50 transition-all backdrop-blur-sm">
+            <div className="group relative bg-white rounded-2xl overflow-hidden border border-purple-200 hover:border-purple-400 transition-all shadow-lg hover:shadow-xl">
               <div className="absolute top-4 right-4 z-10">
                 <span className="px-3 py-1 bg-yellow-500 text-slate-900 text-xs font-bold rounded-full">
                   25% OFF
@@ -154,17 +154,17 @@ export const Home = () => {
               </div>
               <div className="p-6">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-yellow-400 text-sm">★★★★★</span>
-                  <span className="text-gray-400 text-sm">4.8</span>
+                  <span className="text-yellow-500 text-sm">★★★★★</span>
+                  <span className="text-gray-600 text-sm">4.8</span>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">Deluxe Manicure</h3>
-                <p className="text-gray-400 text-sm mb-4">Pamper your nails with our royal treatment</p>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Deluxe Manicure</h3>
+                <p className="text-gray-600 text-sm mb-4">Pamper your nails with our royal treatment</p>
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-gray-500 line-through text-sm">$40</span>
-                    <span className="text-yellow-400 font-bold text-xl ml-2">$30</span>
+                    <span className="text-gray-400 line-through text-sm">$40</span>
+                    <span className="text-purple-600 font-bold text-xl ml-2">$30</span>
                   </div>
-                  <button className="px-4 py-2 bg-yellow-500/10 text-yellow-400 rounded-lg hover:bg-yellow-500 hover:text-slate-900 transition-all font-semibold">
+                  <button className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all font-semibold">
                     Book Now
                   </button>
                 </div>
@@ -172,7 +172,7 @@ export const Home = () => {
             </div>
 
             {/* Offer Card 3 */}
-            <div className="group relative bg-gradient-to-br from-purple-900/50 to-slate-900/50 rounded-2xl overflow-hidden border border-white/10 hover:border-yellow-500/50 transition-all backdrop-blur-sm">
+            <div className="group relative bg-white rounded-2xl overflow-hidden border border-purple-200 hover:border-purple-400 transition-all shadow-lg hover:shadow-xl">
               <div className="absolute top-4 right-4 z-10">
                 <span className="px-3 py-1 bg-yellow-500 text-slate-900 text-xs font-bold rounded-full">
                   40% OFF
@@ -183,17 +183,17 @@ export const Home = () => {
               </div>
               <div className="p-6">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-yellow-400 text-sm">★★★★★</span>
-                  <span className="text-gray-400 text-sm">5.0</span>
+                  <span className="text-yellow-500 text-sm">★★★★★</span>
+                  <span className="text-gray-600 text-sm">5.0</span>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">Beard Grooming</h3>
-                <p className="text-gray-400 text-sm mb-4">Professional beard styling and care</p>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Beard Grooming</h3>
+                <p className="text-gray-600 text-sm mb-4">Professional beard styling and care</p>
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-gray-500 line-through text-sm">$35</span>
-                    <span className="text-yellow-400 font-bold text-xl ml-2">$21</span>
+                    <span className="text-gray-400 line-through text-sm">$35</span>
+                    <span className="text-purple-600 font-bold text-xl ml-2">$21</span>
                   </div>
-                  <button className="px-4 py-2 bg-yellow-500/10 text-yellow-400 rounded-lg hover:bg-yellow-500 hover:text-slate-900 transition-all font-semibold">
+                  <button className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all font-semibold">
                     Book Now
                   </button>
                 </div>
@@ -204,13 +204,13 @@ export const Home = () => {
       </section>
 
       {/* Featured Section */}
-      <section className="relative py-16 px-4">
+      <section className="relative py-16 px-4 bg-white">
         <div className="container mx-auto">
           <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
               Featured Professionals
             </h2>
-            <a href="#" className="text-yellow-400 hover:text-yellow-300 flex items-center gap-2 font-semibold">
+            <a href="#" className="text-purple-600 hover:text-purple-700 flex items-center gap-2 font-semibold">
               View All
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -220,7 +220,7 @@ export const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Featured Card 1 */}
-            <div className="bg-gradient-to-br from-purple-900/30 to-slate-900/30 rounded-2xl overflow-hidden border border-white/10 hover:border-yellow-500/50 transition-all backdrop-blur-sm">
+            <div className="bg-purple-50 rounded-2xl overflow-hidden border border-purple-200 hover:border-purple-400 transition-all shadow-lg hover:shadow-xl">
               <div className="flex flex-col sm:flex-row gap-6 p-6">
                 <div className="w-full sm:w-32 h-32 bg-gradient-to-br from-yellow-500/30 to-purple-500/30 rounded-xl flex items-center justify-center text-5xl flex-shrink-0">
                   👨‍🦱
@@ -228,23 +228,23 @@ export const Home = () => {
                 <div className="flex-1">
                   <div className="flex items-start justify-between mb-2">
                     <div>
-                      <h3 className="text-xl font-bold text-white">Shayla's Hair & Nails</h3>
-                      <p className="text-gray-400 text-sm">Master Stylist & Nail Artist</p>
+                      <h3 className="text-xl font-bold text-slate-900">Shayla's Hair & Nails</h3>
+                      <p className="text-gray-600 text-sm">Master Stylist & Nail Artist</p>
                     </div>
                     <div className="flex items-center gap-1">
-                      <span className="text-yellow-400">★</span>
-                      <span className="text-white font-semibold">4.9</span>
+                      <span className="text-yellow-500">★</span>
+                      <span className="text-slate-900 font-semibold">4.9</span>
                     </div>
                   </div>
-                  <p className="text-gray-400 text-sm mb-4">
+                  <p className="text-gray-600 text-sm mb-4">
                     10+ years of experience in luxury hair styling and nail artistry. Specializing in modern cuts and creative nail designs.
                   </p>
                   <div className="flex flex-wrap gap-2 mb-4">
-                    <span className="px-3 py-1 bg-yellow-500/10 text-yellow-400 rounded-full text-xs">Haircuts</span>
-                    <span className="px-3 py-1 bg-yellow-500/10 text-yellow-400 rounded-full text-xs">Styling</span>
-                    <span className="px-3 py-1 bg-yellow-500/10 text-yellow-400 rounded-full text-xs">Nails</span>
+                    <span className="px-3 py-1 bg-purple-200 text-purple-700 rounded-full text-xs">Haircuts</span>
+                    <span className="px-3 py-1 bg-purple-200 text-purple-700 rounded-full text-xs">Styling</span>
+                    <span className="px-3 py-1 bg-purple-200 text-purple-700 rounded-full text-xs">Nails</span>
                   </div>
-                  <button className="w-full sm:w-auto px-6 py-2 bg-gradient-to-r from-yellow-500 to-yellow-600 text-slate-900 font-semibold rounded-lg hover:from-yellow-400 hover:to-yellow-500 transition-all">
+                  <button className="w-full sm:w-auto px-6 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-all">
                     Book Appointment
                   </button>
                 </div>
@@ -252,7 +252,7 @@ export const Home = () => {
             </div>
 
             {/* Featured Card 2 */}
-            <div className="bg-gradient-to-br from-purple-900/30 to-slate-900/30 rounded-2xl overflow-hidden border border-white/10 hover:border-yellow-500/50 transition-all backdrop-blur-sm">
+            <div className="bg-purple-50 rounded-2xl overflow-hidden border border-purple-200 hover:border-purple-400 transition-all shadow-lg hover:shadow-xl">
               <div className="flex flex-col sm:flex-row gap-6 p-6">
                 <div className="w-full sm:w-32 h-32 bg-gradient-to-br from-blue-500/30 to-purple-500/30 rounded-xl flex items-center justify-center text-5xl flex-shrink-0">
                   🧔‍♂️
@@ -260,23 +260,23 @@ export const Home = () => {
                 <div className="flex-1">
                   <div className="flex items-start justify-between mb-2">
                     <div>
-                      <h3 className="text-xl font-bold text-white">Marcus The Barber</h3>
-                      <p className="text-gray-400 text-sm">Expert Barber & Grooming Specialist</p>
+                      <h3 className="text-xl font-bold text-slate-900">Marcus The Barber</h3>
+                      <p className="text-gray-600 text-sm">Expert Barber & Grooming Specialist</p>
                     </div>
                     <div className="flex items-center gap-1">
-                      <span className="text-yellow-400">★</span>
-                      <span className="text-white font-semibold">5.0</span>
+                      <span className="text-yellow-500">★</span>
+                      <span className="text-slate-900 font-semibold">5.0</span>
                     </div>
                   </div>
-                  <p className="text-gray-400 text-sm mb-4">
+                  <p className="text-gray-600 text-sm mb-4">
                     Elite barbering with precision cuts, beard sculpting, and hot towel shaves. Your grooming destination for excellence.
                   </p>
                   <div className="flex flex-wrap gap-2 mb-4">
-                    <span className="px-3 py-1 bg-yellow-500/10 text-yellow-400 rounded-full text-xs">Haircuts</span>
-                    <span className="px-3 py-1 bg-yellow-500/10 text-yellow-400 rounded-full text-xs">Beard</span>
-                    <span className="px-3 py-1 bg-yellow-500/10 text-yellow-400 rounded-full text-xs">Shaving</span>
+                    <span className="px-3 py-1 bg-purple-200 text-purple-700 rounded-full text-xs">Haircuts</span>
+                    <span className="px-3 py-1 bg-purple-200 text-purple-700 rounded-full text-xs">Beard</span>
+                    <span className="px-3 py-1 bg-purple-200 text-purple-700 rounded-full text-xs">Shaving</span>
                   </div>
-                  <button className="w-full sm:w-auto px-6 py-2 bg-gradient-to-r from-yellow-500 to-yellow-600 text-slate-900 font-semibold rounded-lg hover:from-yellow-400 hover:to-yellow-500 transition-all">
+                  <button className="w-full sm:w-auto px-6 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-all">
                     Book Appointment
                   </button>
                 </div>
@@ -287,13 +287,13 @@ export const Home = () => {
       </section>
 
       {/* Highly Rated Section */}
-      <section className="relative py-16 px-4" id="professionals">
+      <section className="relative py-16 px-4 bg-purple-50/50" id="professionals">
         <div className="container mx-auto">
           <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
               Highly Rated
             </h2>
-            <a href="#" className="text-yellow-400 hover:text-yellow-300 flex items-center gap-2 font-semibold">
+            <a href="#" className="text-purple-600 hover:text-purple-700 flex items-center gap-2 font-semibold">
               View All
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -303,70 +303,70 @@ export const Home = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {/* Rating Card 1 */}
-            <div className="bg-gradient-to-br from-purple-900/30 to-slate-900/30 rounded-xl overflow-hidden border border-white/10 hover:border-yellow-500/50 transition-all backdrop-blur-sm group cursor-pointer">
+            <div className="bg-white rounded-xl overflow-hidden border border-purple-200 hover:border-purple-400 transition-all shadow-lg hover:shadow-xl group cursor-pointer">
               <div className="aspect-square bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center text-6xl">
                 👩‍🦰
               </div>
               <div className="p-4">
                 <div className="flex items-center justify-between mb-1">
-                  <h3 className="font-bold text-white text-sm md:text-base">Jenna's Facials</h3>
+                  <h3 className="font-bold text-slate-900 text-sm md:text-base">Jenna's Facials</h3>
                   <div className="flex items-center gap-1">
-                    <span className="text-yellow-400 text-sm">★</span>
-                    <span className="text-white font-semibold text-xs">4.9</span>
+                    <span className="text-yellow-500 text-sm">★</span>
+                    <span className="text-slate-900 font-semibold text-xs">4.9</span>
                   </div>
                 </div>
-                <p className="text-gray-400 text-xs">Facial Specialist</p>
+                <p className="text-gray-600 text-xs">Facial Specialist</p>
               </div>
             </div>
 
             {/* Rating Card 2 */}
-            <div className="bg-gradient-to-br from-purple-900/30 to-slate-900/30 rounded-xl overflow-hidden border border-white/10 hover:border-yellow-500/50 transition-all backdrop-blur-sm group cursor-pointer">
+            <div className="bg-white rounded-xl overflow-hidden border border-purple-200 hover:border-purple-400 transition-all shadow-lg hover:shadow-xl group cursor-pointer">
               <div className="aspect-square bg-gradient-to-br from-yellow-500/20 to-orange-500/20 flex items-center justify-center text-6xl">
                 💇‍♀️
               </div>
               <div className="p-4">
                 <div className="flex items-center justify-between mb-1">
-                  <h3 className="font-bold text-white text-sm md:text-base">Hair by Annie Marie</h3>
+                  <h3 className="font-bold text-slate-900 text-sm md:text-base">Hair by Annie Marie</h3>
                   <div className="flex items-center gap-1">
-                    <span className="text-yellow-400 text-sm">★</span>
-                    <span className="text-white font-semibold text-xs">4.8</span>
+                    <span className="text-yellow-500 text-sm">★</span>
+                    <span className="text-slate-900 font-semibold text-xs">4.8</span>
                   </div>
                 </div>
-                <p className="text-gray-400 text-xs">Hair Stylist</p>
+                <p className="text-gray-600 text-xs">Hair Stylist</p>
               </div>
             </div>
 
             {/* Rating Card 3 */}
-            <div className="bg-gradient-to-br from-purple-900/30 to-slate-900/30 rounded-xl overflow-hidden border border-white/10 hover:border-yellow-500/50 transition-all backdrop-blur-sm group cursor-pointer">
+            <div className="bg-white rounded-xl overflow-hidden border border-purple-200 hover:border-purple-400 transition-all shadow-lg hover:shadow-xl group cursor-pointer">
               <div className="aspect-square bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center text-6xl">
                 ✂️
               </div>
               <div className="p-4">
                 <div className="flex items-center justify-between mb-1">
-                  <h3 className="font-bold text-white text-sm md:text-base">LauRell by Mel</h3>
+                  <h3 className="font-bold text-slate-900 text-sm md:text-base">LauRell by Mel</h3>
                   <div className="flex items-center gap-1">
-                    <span className="text-yellow-400 text-sm">★</span>
-                    <span className="text-white font-semibold text-xs">4.9</span>
+                    <span className="text-yellow-500 text-sm">★</span>
+                    <span className="text-slate-900 font-semibold text-xs">4.9</span>
                   </div>
                 </div>
-                <p className="text-gray-400 text-xs">Barber & Stylist</p>
+                <p className="text-gray-600 text-xs">Barber & Stylist</p>
               </div>
             </div>
 
             {/* Rating Card 4 */}
-            <div className="bg-gradient-to-br from-purple-900/30 to-slate-900/30 rounded-xl overflow-hidden border border-white/10 hover:border-yellow-500/50 transition-all backdrop-blur-sm group cursor-pointer">
+            <div className="bg-white rounded-xl overflow-hidden border border-purple-200 hover:border-purple-400 transition-all shadow-lg hover:shadow-xl group cursor-pointer">
               <div className="aspect-square bg-gradient-to-br from-green-500/20 to-teal-500/20 flex items-center justify-center text-6xl">
                 🎨
               </div>
               <div className="p-4">
                 <div className="flex items-center justify-between mb-1">
-                  <h3 className="font-bold text-white text-sm md:text-base">Happy Cutz</h3>
+                  <h3 className="font-bold text-slate-900 text-sm md:text-base">Happy Cutz</h3>
                   <div className="flex items-center gap-1">
-                    <span className="text-yellow-400 text-sm">★</span>
-                    <span className="text-white font-semibold text-xs">5.0</span>
+                    <span className="text-yellow-500 text-sm">★</span>
+                    <span className="text-slate-900 font-semibold text-xs">5.0</span>
                   </div>
                 </div>
-                <p className="text-gray-400 text-xs">Nail Artist</p>
+                <p className="text-gray-600 text-xs">Nail Artist</p>
               </div>
             </div>
           </div>
@@ -374,13 +374,13 @@ export const Home = () => {
       </section>
 
       {/* How It Works Section */}
-      <section className="relative py-16 px-4" id="how-it-works">
+      <section className="relative py-16 px-4 bg-white" id="how-it-works">
         <div className="container mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
               How It Works
             </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
+            <p className="text-gray-600 max-w-2xl mx-auto">
               Get started in three simple steps and experience luxury beauty services at your fingertips
             </p>
           </div>
@@ -391,9 +391,9 @@ export const Home = () => {
               <div className="w-20 h-20 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4 shadow-lg shadow-yellow-500/50">
                 🔍
               </div>
-              <div className="bg-gradient-to-br from-purple-900/30 to-slate-900/30 rounded-xl p-6 border border-white/10 backdrop-blur-sm">
-                <h3 className="text-xl font-bold text-white mb-3">Browse & Search</h3>
-                <p className="text-gray-400 text-sm">
+              <div className="bg-purple-50 rounded-xl p-6 border border-purple-200">
+                <h3 className="text-xl font-bold text-slate-900 mb-3">Browse & Search</h3>
+                <p className="text-gray-600 text-sm">
                   Explore our curated list of elite professionals. Filter by service, location, and ratings to find your perfect match.
                 </p>
               </div>
@@ -404,9 +404,9 @@ export const Home = () => {
               <div className="w-20 h-20 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4 shadow-lg shadow-yellow-500/50">
                 📅
               </div>
-              <div className="bg-gradient-to-br from-purple-900/30 to-slate-900/30 rounded-xl p-6 border border-white/10 backdrop-blur-sm">
-                <h3 className="text-xl font-bold text-white mb-3">Book Appointment</h3>
-                <p className="text-gray-400 text-sm">
+              <div className="bg-purple-50 rounded-xl p-6 border border-purple-200">
+                <h3 className="text-xl font-bold text-slate-900 mb-3">Book Appointment</h3>
+                <p className="text-gray-600 text-sm">
                   Select your preferred date and time. Our smart booking system ensures you get the slot that works best for you.
                 </p>
               </div>
@@ -417,9 +417,9 @@ export const Home = () => {
               <div className="w-20 h-20 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4 shadow-lg shadow-yellow-500/50">
                 ✨
               </div>
-              <div className="bg-gradient-to-br from-purple-900/30 to-slate-900/30 rounded-xl p-6 border border-white/10 backdrop-blur-sm">
-                <h3 className="text-xl font-bold text-white mb-3">Enjoy Service</h3>
-                <p className="text-gray-400 text-sm">
+              <div className="bg-purple-50 rounded-xl p-6 border border-purple-200">
+                <h3 className="text-xl font-bold text-slate-900 mb-3">Enjoy Service</h3>
+                <p className="text-gray-600 text-sm">
                   Show up and enjoy premium service. Rate your experience and help others discover excellence.
                 </p>
               </div>
@@ -429,13 +429,13 @@ export const Home = () => {
       </section>
 
       {/* New to Chairshare Section */}
-      <section className="relative py-16 px-4">
+      <section className="relative py-16 px-4 bg-purple-50/50">
         <div className="container mx-auto">
           <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
               New to Chairshare
             </h2>
-            <a href="#" className="text-yellow-400 hover:text-yellow-300 flex items-center gap-2 font-semibold">
+            <a href="#" className="text-purple-600 hover:text-purple-700 flex items-center gap-2 font-semibold">
               View All
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -445,7 +445,7 @@ export const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* New Card 1 */}
-            <div className="group relative bg-gradient-to-br from-purple-900/30 to-slate-900/30 rounded-2xl overflow-hidden border border-white/10 hover:border-yellow-500/50 transition-all backdrop-blur-sm cursor-pointer">
+            <div className="group relative bg-white rounded-2xl overflow-hidden border border-purple-200 hover:border-purple-400 transition-all shadow-lg hover:shadow-xl cursor-pointer">
               <div className="h-48 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 flex items-center justify-center text-6xl relative">
                 <span>🌟</span>
                 <div className="absolute top-4 left-4">
@@ -455,11 +455,11 @@ export const Home = () => {
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-2">Maria's Spa and Wellness</h3>
-                <p className="text-gray-400 text-sm mb-4">Full-service spa offering massages, facials, and relaxation treatments</p>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Maria's Spa and Wellness</h3>
+                <p className="text-gray-600 text-sm mb-4">Full-service spa offering massages, facials, and relaxation treatments</p>
                 <div className="flex items-center justify-between">
-                  <span className="text-gray-400 text-sm">Starting at <span className="text-yellow-400 font-bold text-lg">$45</span></span>
-                  <button className="px-4 py-2 bg-yellow-500/10 text-yellow-400 rounded-lg hover:bg-yellow-500 hover:text-slate-900 transition-all font-semibold">
+                  <span className="text-gray-600 text-sm">Starting at <span className="text-purple-600 font-bold text-lg">$45</span></span>
+                  <button className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all font-semibold">
                     Explore
                   </button>
                 </div>
@@ -467,7 +467,7 @@ export const Home = () => {
             </div>
 
             {/* New Card 2 */}
-            <div className="group relative bg-gradient-to-br from-purple-900/30 to-slate-900/30 rounded-2xl overflow-hidden border border-white/10 hover:border-yellow-500/50 transition-all backdrop-blur-sm cursor-pointer">
+            <div className="group relative bg-white rounded-2xl overflow-hidden border border-purple-200 hover:border-purple-400 transition-all shadow-lg hover:shadow-xl cursor-pointer">
               <div className="h-48 bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center text-6xl relative">
                 <span>👔</span>
                 <div className="absolute top-4 left-4">
@@ -477,11 +477,11 @@ export const Home = () => {
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-2">The Gentlemen's Cut</h3>
-                <p className="text-gray-400 text-sm mb-4">Premium barbershop specializing in classic and modern men's grooming</p>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">The Gentlemen's Cut</h3>
+                <p className="text-gray-600 text-sm mb-4">Premium barbershop specializing in classic and modern men's grooming</p>
                 <div className="flex items-center justify-between">
-                  <span className="text-gray-400 text-sm">Starting at <span className="text-yellow-400 font-bold text-lg">$38</span></span>
-                  <button className="px-4 py-2 bg-yellow-500/10 text-yellow-400 rounded-lg hover:bg-yellow-500 hover:text-slate-900 transition-all font-semibold">
+                  <span className="text-gray-600 text-sm">Starting at <span className="text-purple-600 font-bold text-lg">$38</span></span>
+                  <button className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all font-semibold">
                     Explore
                   </button>
                 </div>
@@ -489,7 +489,7 @@ export const Home = () => {
             </div>
 
             {/* New Card 3 */}
-            <div className="group relative bg-gradient-to-br from-purple-900/30 to-slate-900/30 rounded-2xl overflow-hidden border border-white/10 hover:border-yellow-500/50 transition-all backdrop-blur-sm cursor-pointer">
+            <div className="group relative bg-white rounded-2xl overflow-hidden border border-purple-200 hover:border-purple-400 transition-all shadow-lg hover:shadow-xl cursor-pointer">
               <div className="h-48 bg-gradient-to-br from-pink-500/20 to-purple-500/20 flex items-center justify-center text-6xl relative">
                 <span>💖</span>
                 <div className="absolute top-4 left-4">
@@ -499,11 +499,11 @@ export const Home = () => {
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-2">Glam Squad Studio</h3>
-                <p className="text-gray-400 text-sm mb-4">Makeup artistry and special occasion styling by certified professionals</p>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Glam Squad Studio</h3>
+                <p className="text-gray-600 text-sm mb-4">Makeup artistry and special occasion styling by certified professionals</p>
                 <div className="flex items-center justify-between">
-                  <span className="text-gray-400 text-sm">Starting at <span className="text-yellow-400 font-bold text-lg">$65</span></span>
-                  <button className="px-4 py-2 bg-yellow-500/10 text-yellow-400 rounded-lg hover:bg-yellow-500 hover:text-slate-900 transition-all font-semibold">
+                  <span className="text-gray-600 text-sm">Starting at <span className="text-purple-600 font-bold text-lg">$65</span></span>
+                  <button className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all font-semibold">
                     Explore
                   </button>
                 </div>
@@ -514,23 +514,23 @@ export const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-20 px-4">
+      <section className="relative py-20 px-4 bg-gradient-to-b from-white to-purple-100">
         <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto bg-gradient-to-br from-yellow-500/20 to-purple-500/20 rounded-3xl border border-yellow-500/30 p-8 md:p-12 text-center backdrop-blur-sm">
+          <div className="max-w-4xl mx-auto bg-gradient-to-br from-purple-600 to-purple-800 rounded-3xl border border-purple-400 p-8 md:p-12 text-center shadow-2xl">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
               Ready to Experience{' '}
-              <span className="bg-gradient-to-r from-yellow-400 to-yellow-200 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-yellow-300 to-yellow-100 bg-clip-text text-transparent">
                 Royal Treatment?
               </span>
             </h2>
-            <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+            <p className="text-purple-100 text-lg mb-8 max-w-2xl mx-auto">
               Join thousands of satisfied clients who trust Chairshare for their beauty and grooming needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-8 py-4 bg-gradient-to-r from-yellow-500 to-yellow-600 text-slate-900 font-bold rounded-xl hover:from-yellow-400 hover:to-yellow-500 transition-all shadow-lg shadow-yellow-500/50 text-lg">
+              <button className="px-8 py-4 bg-yellow-500 text-slate-900 font-bold rounded-xl hover:bg-yellow-400 transition-all shadow-lg text-lg">
                 Get Started Now
               </button>
-              <button className="px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-bold rounded-xl hover:bg-white/20 transition-all text-lg">
+              <button className="px-8 py-4 bg-white/20 backdrop-blur-sm border border-white/40 text-white font-bold rounded-xl hover:bg-white/30 transition-all text-lg">
                 Learn More
               </button>
             </div>
@@ -539,47 +539,47 @@ export const Home = () => {
       </section>
 
       {/* Footer */}
-      <footer className="relative py-12 px-4 border-t border-white/10">
+      <footer className="relative py-12 px-4 bg-slate-900 border-t border-purple-800">
         <div className="container mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
             <div>
               <h4 className="text-white font-bold mb-4">Services</h4>
               <ul className="space-y-2">
-                <li><a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">Haircuts</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">Styling</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">Nails</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">Beard Care</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Haircuts</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Styling</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Nails</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Beard Care</a></li>
               </ul>
             </div>
             <div>
               <h4 className="text-white font-bold mb-4">Company</h4>
               <ul className="space-y-2">
-                <li><a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">About Us</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">Careers</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">Blog</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">Press</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">About Us</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Careers</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Blog</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Press</a></li>
               </ul>
             </div>
             <div>
               <h4 className="text-white font-bold mb-4">Support</h4>
               <ul className="space-y-2">
-                <li><a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">Help Center</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">Contact Us</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">FAQ</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">Safety</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Help Center</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Contact Us</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">FAQ</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Safety</a></li>
               </ul>
             </div>
             <div>
               <h4 className="text-white font-bold mb-4">Legal</h4>
               <ul className="space-y-2">
-                <li><a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">Terms of Service</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">Cookie Policy</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Privacy Policy</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Terms of Service</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Cookie Policy</a></li>
               </ul>
             </div>
           </div>
           
-          <div className="border-t border-white/10 pt-8">
+          <div className="border-t border-purple-800 pt-8">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <div className="flex items-center space-x-2">
                 <div className="w-10 h-10 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-lg flex items-center justify-center">
@@ -595,13 +595,13 @@ export const Home = () => {
               </p>
               
               <div className="flex items-center gap-4">
-                <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-yellow-500/20 transition-all">
+                <a href="#" className="w-10 h-10 bg-purple-800/50 rounded-full flex items-center justify-center hover:bg-purple-700 transition-all">
                   <span className="text-white">📘</span>
                 </a>
-                <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-yellow-500/20 transition-all">
+                <a href="#" className="w-10 h-10 bg-purple-800/50 rounded-full flex items-center justify-center hover:bg-purple-700 transition-all">
                   <span className="text-white">📷</span>
                 </a>
-                <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-yellow-500/20 transition-all">
+                <a href="#" className="w-10 h-10 bg-purple-800/50 rounded-full flex items-center justify-center hover:bg-purple-700 transition-all">
                   <span className="text-white">🐦</span>
                 </a>
               </div>
