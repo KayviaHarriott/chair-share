@@ -68,7 +68,7 @@ const stylists: Stylist[] = [
     specialty: 'Makeup Artist',
     rating: 5.0,
     reviewCount: 198,
-    image: 'https://images.unsplash.com/photo-1598550487031-3999f7f8d719?w=400&q=80',
+    image: 'https://images.unsplash.com/photo-1531891570158-e71b35a485bc?w=400&q=80',
     location: 'Spanish Town, Jamaica',
     services: ['Bridal Makeup', 'Special Events', 'Lessons'],
     categories: ['makeup'],
