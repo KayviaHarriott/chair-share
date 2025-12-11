@@ -1,7 +1,19 @@
 // Update History - Add new updates to the top of this array
 import { UPDATES } from "../assets/UpdatesData";
+import { useState } from "react";
 
 export const Updates = () => {
+  const [selectedFilter, setSelectedFilter] = useState<string>("all");
+  
+  // Filter buttons configuration
+  const filters = [
+    { id: "all", label: "All Updates", icon: "📋" },
+    { id: "feature", label: "Features", icon: "✨" },
+    { id: "bugfix", label: "Bug Fixes", icon: "🐛" },
+    { id: "improvement", label: "Improvements", icon: "⚡" },
+    { id: "maintenance", label: "Maintenance", icon: "🔧" },
+  ];
+  
   const getTypeColor = (type: string) => {
     switch (type) {
       case "feature":
@@ -26,22 +38,53 @@ export const Updates = () => {
     });
   };
 
-  // Sort updates by date (newest first)
-  const sortedUpdates = [...UPDATES].sort((a, b) => {
-    return new Date(b.date).getTime() - new Date(a.date).getTime();
-  });
+  // Sort updates by date (newest first) and filter by type
+  const sortedUpdates = [...UPDATES]
+    .filter((update) => selectedFilter === "all" || update.type === selectedFilter)
+    .sort((a, b) => {
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-4">
             Project Updates
           </h1>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
             Stay informed about the latest features, improvements, and fixes to our system.
           </p>
+        </div>
+
+        {/* Filter Buttons */}
+        <div className="mb-12">
+          <div className="flex flex-wrap justify-center gap-3">
+            {filters.map((filter) => (
+              <button
+                key={filter.id}
+                onClick={() => setSelectedFilter(filter.id)}
+                className={`
+                  inline-flex items-center gap-2 px-4 py-2.5 rounded-lg font-medium
+                  transition-all duration-200 ease-in-out
+                  ${
+                    selectedFilter === filter.id
+                      ? "bg-blue-500 text-white shadow-lg shadow-blue-500/30 scale-105"
+                      : "bg-white text-slate-700 hover:bg-slate-50 hover:shadow-md border border-slate-200"
+                  }
+                `}
+              >
+                <span className="text-lg">{filter.icon}</span>
+                <span className="text-sm sm:text-base">{filter.label}</span>
+                {selectedFilter === filter.id && (
+                  <span className="bg-white/20 text-white text-xs px-2 py-0.5 rounded-full">
+                    {sortedUpdates.length}
+                  </span>
+                )}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Updates Timeline */}
@@ -118,8 +161,8 @@ export const Updates = () => {
           </div>
         </div>
 
-        {/* Empty State (when no updates) */}
-        {UPDATES.length === 0 && (
+        {/* Empty State (when no updates or filtered results) */}
+        {sortedUpdates.length === 0 && (
           <div className="text-center py-16">
             <svg
               className="mx-auto h-16 w-16 text-slate-400 mb-4"
@@ -135,9 +178,13 @@ export const Updates = () => {
               />
             </svg>
             <h3 className="text-xl font-semibold text-slate-900 mb-2">
-              No updates yet
+              {selectedFilter === "all" ? "No updates yet" : `No ${selectedFilter} updates`}
             </h3>
-            <p className="text-slate-600">Check back soon for project updates!</p>
+            <p className="text-slate-600">
+              {selectedFilter === "all"
+                ? "Check back soon for project updates!"
+                : "Try selecting a different filter to see more updates."}
+            </p>
           </div>
         )}
       </div>
