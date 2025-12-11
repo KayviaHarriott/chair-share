@@ -27,11 +27,13 @@ export const Home = () => {
     if (searchValue) return; // Stop animation when user types
 
     const currentPhrase = phrases[currentPhraseIndex];
-    
+
     if (isTyping) {
       if (placeholderText.length < currentPhrase.length) {
         const timeout = setTimeout(() => {
-          setPlaceholderText(currentPhrase.slice(0, placeholderText.length + 1));
+          setPlaceholderText(
+            currentPhrase.slice(0, placeholderText.length + 1)
+          );
         }, 100);
         return () => clearTimeout(timeout);
       } else {
@@ -54,25 +56,25 @@ export const Home = () => {
   }, [placeholderText, isTyping, currentPhraseIndex, searchValue, phrases]);
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-amber-50 via-white to-amber-50">
-      {/* Hero Section */}
+    <div className="min-h-screen">
       <div className="max-w-[1200px] container mx-auto px-4 py-16 sm:py-24">
+        {/* Hero Section */}
         <div className="max-w-4xl mx-auto text-center">
           {/* Heading */}
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif mb-6">
             <span className="text-slate-900">Book Your</span>
             <br />
-            <span className="text-amber-500">Perfect Chair</span>
+            <span className="text-[#E5B819]">Perfect Chair</span>
           </h1>
 
           {/* Subtitle */}
           <p className="text-lg sm:text-xl text-slate-600 mb-12 max-w-2xl mx-auto leading-relaxed">
-            Discover and book top-rated beauty professionals in your area. Seamless
-            scheduling, premium service, elevated experience.
+            Discover and book top-rated beauty professionals in your area.
+            Seamless scheduling, premium service, elevated experience.
           </p>
 
           {/* Search Bar */}
-          <div className="bg-white rounded-2xl shadow-xl p-4 mb-8 max-w-3xl mx-auto">
+          <div className="bg-white rounded-2xl shadow-xl shadow-[#FCECCD] p-4 mb-8 max-w-3xl mx-auto">
             <div className="flex flex-col sm:flex-row gap-3 items-center">
               <div className="relative flex-1 w-full">
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
@@ -119,7 +121,7 @@ export const Home = () => {
 
           {/* Popular Searches */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 flex-wrap">
-            <span className="text-sm text-slate-600 font-medium">Popular searches:</span>
+            <span className="text-sm text-slate-600 ">Popular searches:</span>
             {popularSearches.map((search, index) => (
               <button
                 key={index}
@@ -131,7 +133,31 @@ export const Home = () => {
             ))}
           </div>
         </div>
+        {/* Design Images */}
+        <div className="flex gap-2 py-[56px]">
+
+          <div className="h-full w-1/3 flex flex-col gap-2">
+            {/* <img className=" h-[300px] w-1/3" src="./imgs/image_1.png"/> */}
+            <div className="h-[300px] bg-cover grayscale rounded-2xl bg-[url(./imgs/image_1.png)]">
+            </div>
+            <div className="h-[200px] bg-cover grayscale rounded-2xl bg-no-repeat bg-[url(./imgs/image_3.png)]">
+            </div>
+          </div>
+
+          <div className="h-full w-1/3 flex flex-col gap-2">
+            <div className="h-[200px] bg-cover grayscale bg-center rounded-2xl bg-no-repeat bg-[url(./imgs/image_5.png)]">
+            </div>
+            <div className="h-[300px] bg-cover grayscale rounded-2xl bg-no-repeat bg-[url(./imgs/image_4.png)]">
+            </div>
+          </div>
+
+
+          <div className="h-full w-1/3">
+            <div className="h-[508px] bg-cover grayscale rounded-2xl bg-no-repeat bg-[url(./imgs/image_2.png)]">
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
-}
+};
