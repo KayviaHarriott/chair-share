@@ -140,7 +140,7 @@ export const Home = () => {
             {/* <img className=" h-[300px] w-1/3" src="./imgs/image_1.png"/> */}
             <div className="h-[300px] bg-cover grayscale rounded-2xl bg-[url(./imgs/image_1.png)]">
             </div>
-            <div className="h-[200px] bg-cover grayscale rounded-2xl bg-no-repeat bg-[url(./imgs/image_3.png)]">
+            <div className="h-[200px] bg-center bg-cover grayscale rounded-2xl bg-no-repeat bg-[url(./imgs/image_6.png)]">
             </div>
           </div>
 
