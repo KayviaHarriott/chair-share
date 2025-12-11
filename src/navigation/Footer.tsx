@@ -24,117 +24,97 @@ export const Footer = () => {
             </p>
           </div>
 
-          {/* Product Links */}
+          {/* Platform Links */}
           <div>
-            <h4 className="font-semibold text-white mb-4">Product</h4>
+            <h4 className="font-semibold text-white mb-4">Platform</h4>
             <ul className="space-y-3">
               <li>
                 <Link to="/" className="text-indigo-200 hover:text-white text-sm transition-colors">
-                  Overview
+                  Home
                 </Link>
               </li>
               <li>
-                <Link to="/" className="text-indigo-200 hover:text-white text-sm transition-colors">
-                  Features
+                <Link to="/browse" className="text-indigo-200 hover:text-white text-sm transition-colors">
+                  Browse Merchants
                 </Link>
               </li>
               <li>
-                <div className="flex items-center gap-2">
-                  <Link to="/" className="text-indigo-200 hover:text-white text-sm transition-colors">
-                    Solutions
-                  </Link>
-                  <span className="bg-indigo-600 text-white text-xs px-2 py-0.5 rounded-full">
-                    New
-                  </span>
-                </div>
-              </li>
-              <li>
-                <Link to="/" className="text-indigo-200 hover:text-white text-sm transition-colors">
-                  Tutorials
+                <Link to="/merchant/onboarding" className="text-indigo-200 hover:text-white text-sm transition-colors">
+                  Become a Merchant
                 </Link>
               </li>
               <li>
-                <Link to="/" className="text-indigo-200 hover:text-white text-sm transition-colors">
-                  Pricing
+                <Link to="/booking-request" className="text-indigo-200 hover:text-white text-sm transition-colors">
+                  Book Now
                 </Link>
               </li>
               <li>
                 <Link to="/updates" className="text-indigo-200 hover:text-white text-sm transition-colors">
-                  Releases
+                  Updates
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Company Links */}
+          {/* For Merchants */}
           <div>
-            <h4 className="font-semibold text-white mb-4">Company</h4>
+            <h4 className="font-semibold text-white mb-4">For Merchants</h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/" className="text-indigo-200 hover:text-white text-sm transition-colors">
-                  About us
+                <Link to="/merchant/dashboard" className="text-indigo-200 hover:text-white text-sm transition-colors">
+                  Dashboard
                 </Link>
               </li>
               <li>
-                <Link to="/" className="text-indigo-200 hover:text-white text-sm transition-colors">
-                  Careers
+                <Link to="/merchant/profile" className="text-indigo-200 hover:text-white text-sm transition-colors">
+                  Profile
                 </Link>
               </li>
               <li>
-                <Link to="/" className="text-indigo-200 hover:text-white text-sm transition-colors">
-                  Press
+                <Link to="/merchant/onboarding" className="text-indigo-200 hover:text-white text-sm transition-colors">
+                  Get Started
                 </Link>
               </li>
               <li>
-                <Link to="/" className="text-indigo-200 hover:text-white text-sm transition-colors">
-                  News
+                <Link to="/auth/login" className="text-indigo-200 hover:text-white text-sm transition-colors">
+                  Sign In
                 </Link>
               </li>
               <li>
-                <Link to="/" className="text-indigo-200 hover:text-white text-sm transition-colors">
-                  Media kit
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="text-indigo-200 hover:text-white text-sm transition-colors">
-                  Contact
+                <Link to="/auth/register" className="text-indigo-200 hover:text-white text-sm transition-colors">
+                  Register
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Resources Links */}
+          {/* Account Links */}
           <div>
-            <h4 className="font-semibold text-white mb-4">Resources</h4>
+            <h4 className="font-semibold text-white mb-4">Account</h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/" className="text-indigo-200 hover:text-white text-sm transition-colors">
-                  Blog
+                <Link to="/auth/login" className="text-indigo-200 hover:text-white text-sm transition-colors">
+                  Log In
                 </Link>
               </li>
               <li>
-                <Link to="/" className="text-indigo-200 hover:text-white text-sm transition-colors">
-                  Newsletter
+                <Link to="/auth/register" className="text-indigo-200 hover:text-white text-sm transition-colors">
+                  Sign Up
                 </Link>
               </li>
               <li>
-                <Link to="/" className="text-indigo-200 hover:text-white text-sm transition-colors">
-                  Events
+                <Link to="/auth/forgot-password" className="text-indigo-200 hover:text-white text-sm transition-colors">
+                  Forgot Password
                 </Link>
               </li>
               <li>
-                <Link to="/" className="text-indigo-200 hover:text-white text-sm transition-colors">
-                  Help centre
+                <Link to="/browse" className="text-indigo-200 hover:text-white text-sm transition-colors">
+                  Find Services
                 </Link>
               </li>
               <li>
-                <Link to="/" className="text-indigo-200 hover:text-white text-sm transition-colors">
-                  Tutorials
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="text-indigo-200 hover:text-white text-sm transition-colors">
-                  Support
+                <Link to="/updates" className="text-indigo-200 hover:text-white text-sm transition-colors">
+                  What's New
                 </Link>
               </li>
             </ul>
