@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 
 export const Footer = () => {
   return (
-    <footer className="bg-gradient-to-br from-indigo-900 via-indigo-800 to-indigo-900 text-white">
+    <div className="bg-linear-to-br from-[#3A0844] via-indigo-800 to-indigo-900 flex justify-center">
+      <div className="max-w-[1200px] w-full text-white">
+          <footer className=" text-white">
       {/* Footer Code Here */}
       <div className="container mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -170,5 +172,10 @@ export const Footer = () => {
         </div>
       </div>
     </footer>
+
+      </div>
+    </div>
+
+    
   );
 };
