@@ -1,5 +1,5 @@
 import './App.css'
-import { Route, Routes } from 'react-router'
+import { Route, Routes, useLocation } from 'react-router'
 import { Home } from './pages/HomePage'
 import { Updates } from './pages/Updates'
 import { NavBar } from './navigation/NavBar'
@@ -31,12 +31,18 @@ import { NotFoundPage } from './pages/errors/NotFoundPage'
 
 
 function App() {
+   const location = useLocation()
+
+  // Hide NavBar on the /updates page
+  const hideNavBar = location.pathname === "/updates"
 
   return (
     <>
-    <div className="sticky top-0 z-50">
-      <NavBar/>
-    </div>
+    {!hideNavBar && (
+        <div className="sticky top-0 z-50">
+          <NavBar />
+        </div>
+      )}
       <Routes>
         {/* Public routes */}
         <Route path="/" element={<Home />} />
@@ -66,9 +72,11 @@ function App() {
         {/* Fallback */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      <div>
-        <Footer/>
-      </div>
+      {!hideNavBar && (
+        <div className="sticky top-0 z-50">
+          <Footer />
+        </div>
+      )}
     </>
   )
 }

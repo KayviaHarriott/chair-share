@@ -48,11 +48,6 @@ export const Footer = () => {
                   Book Now
                 </Link>
               </li>
-              <li>
-                <Link to="/updates" className="text-indigo-200 hover:text-white text-sm transition-colors">
-                  Updates
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -110,11 +105,6 @@ export const Footer = () => {
               <li>
                 <Link to="/browse" className="text-indigo-200 hover:text-white text-sm transition-colors">
                   Find Services
-                </Link>
-              </li>
-              <li>
-                <Link to="/updates" className="text-indigo-200 hover:text-white text-sm transition-colors">
-                  What's New
                 </Link>
               </li>
             </ul>
