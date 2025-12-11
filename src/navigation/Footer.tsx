@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export const Footer = () => {
   return (
-    <div className="bg-linear-to-br from-[#3A0844] via-indigo-800 to-indigo-900 flex justify-center">
+    <div className="bg-linear-to-br from-[#3A0844] via-indigo-800 to-[#6A057E] flex justify-center">
       <div className="max-w-[1200px] w-full text-white">
           <footer className=" text-white">
       {/* Footer Code Here */}
@@ -122,7 +122,8 @@ export const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-indigo-700">
+        <div className="mt-12 ">
+            <div className="border-t pt-8 border-[#9D26B5] opacity-40 "></div>
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-indigo-300 text-sm">
               © 2077 ChairShare. All rights reserved.
