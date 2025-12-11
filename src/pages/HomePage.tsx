@@ -54,9 +54,9 @@ export const Home = () => {
   }, [placeholderText, isTyping, currentPhraseIndex, searchValue, phrases]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-amber-50">
+    <div className="min-h-screen bg-linear-to-br from-amber-50 via-white to-amber-50">
       {/* Hero Section */}
-      <div className="container mx-auto px-4 py-16 sm:py-24">
+      <div className="max-w-[1200px] container mx-auto px-4 py-16 sm:py-24">
         <div className="max-w-4xl mx-auto text-center">
           {/* Heading */}
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif mb-6">
