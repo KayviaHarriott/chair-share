@@ -26,6 +26,11 @@ export const Updates = () => {
     });
   };
 
+  // Sort updates by date (newest first)
+  const sortedUpdates = [...UPDATES].sort((a, b) => {
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  });
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
@@ -46,7 +51,7 @@ export const Updates = () => {
 
           {/* Updates List */}
           <div className="space-y-8">
-            {UPDATES.map((update, index) => (
+            {sortedUpdates.map((update, index) => (
               <div
                 key={index}
                 className="relative bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
