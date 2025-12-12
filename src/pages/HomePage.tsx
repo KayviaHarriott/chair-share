@@ -153,17 +153,26 @@ export const Home = () => {
 
         {/* How it Works */}
         <div className="-mt-80 relative z-10  ">
-          <div className="bg-linear-to-t from-[#eff1f3] via-[#eff1f3]/90 pb-4 pt-50 to-transparent font-serif mb-6 px-8">
-            <h2 className="text-2xl sm:text-2xl lg:text-3xl pt-4 max-w-[500px]">
-              <span className="text-gray-500">Finding a stylist near you shouldn't be that hard,</span>{" "}
-              <span >let's make it easier.</span>
+          <div className="bg-linear-to-t from-[#eff1f3] via-[#eff1f3]/90 pb-4 pt-50 to-transparent font-serif px-8">
+            <h2 className="text-2xl sm:text-2xl lg:text-3xl pt-4 max-w-[500px] mb-2">
+              <span className="text-gray-500">
+                Finding a stylist near you shouldn't be that hard,
+              </span>{" "}
+              <span>let's make it easier.</span>
             </h2>
           </div>
 
-          <div className="flex gap-4 px-8" >
-            <div className="border w-1/5 h-[250px]">One</div>
-             <div className="border w-1/5 h-[250px]">One</div>
-              <div className="border w-1/5 h-[250px]">One</div>
+          <div className="flex gap-4 px-8">
+            <div className="border w-1/5 h-[250px]">Step One</div>
+            <div className="border w-1/5 h-[250px]">Step Two</div>
+            <div className="border w-1/5 h-[250px]">Step Three</div>
+            <div className="w-2/5 h-[250px] flex flex-col gap-2">
+              <div className="h-full bg-gray-200 rounded-sm">Get Started</div>
+
+              <a className="bg-black text-white py-2 px-2 rounded-sm text-center">
+                Sign Up Today
+              </a>
+            </div>
           </div>
         </div>
       </div>
