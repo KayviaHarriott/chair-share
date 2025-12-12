@@ -191,10 +191,10 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <div className="bg-[#FFC83A] flex justify-center">
-        <div className="max-w-[1200px] text-[#272727] flex justify-between w-full gap-6 text-center py-12 px-12">
+      <div className="bg-[#272727] flex justify-center">
+        <div className="max-w-[1200px] text-white flex justify-between w-full gap-6 text-center py-12 px-12">
           <div className="flex flex-col items-center">
-            <div className="h-18 w-18 rounded-full bg-[#CF4422] flex items-center justify-center mb-2">
+            <div className="h-18 w-18 rounded-full flex items-center justify-center mb-2">
               <img
                 src="/icons/shieldIcon.png"
                 alt="shield icon"
@@ -205,13 +205,13 @@ export const Home = () => {
             <h3 className="text-lg font-semibold">
               Vetted Beauty Professionals
             </h3>
-            <p className="font-light text-sm">
+            <p className="text-sm text-green-300">
               Every stylist is verified before joining
             </p>
           </div>
 
           <div className="flex flex-col items-center">
-            <div className="h-18 w-18 rounded-full bg-[#CF4422] flex items-center justify-center mb-2">
+            <div className="h-18 w-18 rounded-full flex items-center justify-center mb-2">
               <img
                 src="/icons/starIcon.png"
                 alt="shield icon"
@@ -219,13 +219,13 @@ export const Home = () => {
               />
             </div>
             <h3 className="text-xl font-bold">Trusted Services</h3>
-            <p className="font-light text-sm">
+            <p className="text-sm text-green-300">
               Backed by real portfolios and client reviews
             </p>
           </div>
 
           <div className="flex flex-col items-center">
-            <div className="h-18 w-18 rounded-full bg-[#CF4422] flex items-center justify-center mb-2">
+            <div className="h-18 w-18 rounded-full flex items-center justify-center mb-2">
               <img
                 src="/icons/privacyIcon.png"
                 alt="shield icon"
@@ -233,7 +233,7 @@ export const Home = () => {
               />
             </div>
             <h3 className="text-xl font-bold">Secure Bookings</h3>
-            <p className="font-light text-sm">
+            <p className="text-sm text-green-300">
               Clear pricing and transparent availability
             </p>
           </div>
