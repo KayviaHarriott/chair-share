@@ -190,51 +190,7 @@ export const Home = () => {
           </div>
         </div>
 
-        {/* CTA Section */}
-        <div className="py-16 text-center border-t-2 border-amber-400">
-          {/* Code Goes Here */}
-          <div className="max-w-4xl mx-auto">
-            {/* Badge */}
-            <div className="inline-block mb-6">
-              <span className="px-4 py-2 bg-amber-50 text-amber-700 text-sm font-medium rounded-full border border-amber-200">
-                GET STARTED TODAY
-              </span>
-            </div>
 
-            {/* Heading */}
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-gray-900 mb-6">
-              Ready to Book Your <span className="font-bold">Next Appointment?</span>
-            </h2>
-
-            {/* Subtitle */}
-            <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
-              Join thousands of satisfied clients who trust ChairShare for their beauty needs
-            </p>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button className="px-8 py-4 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center gap-2">
-                Get Started
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13 7l5 5m0 0l-5 5m5-5H6"
-                  />
-                </svg>
-              </button>
-              <button className="px-8 py-4 bg-white hover:bg-gray-50 text-gray-700 font-semibold rounded-full border-2 border-gray-300 hover:border-gray-400 shadow-sm hover:shadow-md transition-all duration-200">
-                Learn More
-              </button>
-            </div>
-          </div>
-        </div>
       </div>
       <div className="bg-[#FFC83A] flex justify-center">
         <div className="max-w-[1200px] text-[#272727] flex justify-between w-full gap-6 text-center py-12">
@@ -262,9 +218,49 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <div>
+      <div className="py-16 text-center border-t-2 border-amber-400">
         {/* Code Goes Here */}
-        <p>Ready to Book Your Next Appointment</p>
+        <div className="max-w-4xl mx-auto">
+          {/* Badge */}
+          <div className="inline-block mb-6">
+            <span className="px-4 py-2 bg-amber-50 text-amber-700 text-sm font-medium rounded-full border border-amber-200">
+              GET STARTED TODAY
+            </span>
+          </div>
+
+          {/* Heading */}
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-gray-900 mb-6">
+            Ready to Book Your <span className="font-bold">Next Appointment?</span>
+          </h2>
+
+          {/* Subtitle */}
+          <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
+            Join thousands of satisfied clients who trust ChairShare for their beauty needs
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button className="px-8 py-4 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center gap-2">
+              Get Started
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"
+                />
+              </svg>
+            </button>
+            <button className="px-8 py-4 bg-white hover:bg-gray-50 text-gray-700 font-semibold rounded-full border-2 border-gray-300 hover:border-gray-400 shadow-sm hover:shadow-md transition-all duration-200">
+              Learn More
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
