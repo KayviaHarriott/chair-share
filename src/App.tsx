@@ -28,6 +28,7 @@ import { OnboardingPage } from './pages/merchant/OnboardingPage'
 
 // Errors
 import { NotFoundPage } from './pages/errors/NotFoundPage'
+import { FAQsPage } from './pages/general/FAQsPage'
 
 
 function App() {
@@ -51,6 +52,7 @@ const hideNavBar = hiddenPaths.includes(location.pathname);
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/updates" element={<Updates />} />
         <Route path="/login" element={<LogInPage />} />
+        <Route path="/faqs" element={<FAQsPage />} />
         <Route path="/auth/forgot-password" element={<ForgotPasswordPage />} />
 
         {/* Client routes */}

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export const Home = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -221,13 +222,6 @@ export const Home = () => {
       <div className="py-16 text-center border-t-2 border-amber-400">
         {/* Code Goes Here */}
         <div className="max-w-4xl mx-auto">
-          {/* Badge */}
-          <div className="inline-block mb-6">
-            <span className="px-4 py-2 bg-amber-50 text-amber-700 text-sm font-medium rounded-full border border-amber-200">
-              GET STARTED TODAY
-            </span>
-          </div>
-
           {/* Heading */}
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-gray-900 mb-6">
             Ready to Book Your <span className="font-bold">Next Appointment?</span>
@@ -239,26 +233,19 @@ export const Home = () => {
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button className="px-8 py-4 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center gap-2">
-              Get Started
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+          <div className="flex w-full justify-center gap-3">
+            <Link
+                className="bg-linear-to-br from-amber-500 to-[#BF4E30] px-6 py-2 text-white rounded-full"
+                to="/register"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M13 7l5 5m0 0l-5 5m5-5H6"
-                />
-              </svg>
-            </button>
-            <button className="px-8 py-4 bg-white hover:bg-gray-50 text-gray-700 font-semibold rounded-full border-2 border-gray-300 hover:border-gray-400 shadow-sm hover:shadow-md transition-all duration-200">
-              Learn More
-            </button>
+                Get Started
+              </Link>
+              <Link
+                className="border border-gray-200 bg-white px-6 py-2 text-gray-500 rounded-full"
+                to="/faqs"
+              >
+                Learn More
+              </Link>
           </div>
         </div>
       </div>
