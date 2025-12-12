@@ -216,6 +216,10 @@ export const Home = () => {
           </div>
         </div>
       </div>
+      <div>
+        {/* Code Goes Here */}
+        <p>Ready to Book Your Next Appointment</p>
+      </div>
     </div>
   );
 };
