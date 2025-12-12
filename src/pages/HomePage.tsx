@@ -136,18 +136,18 @@ export const Home = () => {
         {/* Design Images */}
         <div className="flex gap-2 py-14">
           <div className="h-full w-1/3 flex flex-col gap-2">
-            {/* <img className=" h-[300px] w-1/3" src="./imgs/image_1.png"/> */}
-            <div className="h-[300px] bg-cover grayscale-60 rounded-2xl bg-[url(./imgs/image_1.png)]"></div>
-            <div className="h-[200px] bg-center bg-cover grayscale-60  rounded-2xl bg-no-repeat bg-[url(./imgs/image_6.png)]"></div>
+            {/* <img className=" h-[300px] w-1/3" src="/imgs/image_1.png"/> */}
+            <div className="h-[300px] bg-cover grayscale-60 rounded-2xl bg-[url(/imgs/image_1.png)]"></div>
+            <div className="h-[200px] bg-center bg-cover grayscale-60  rounded-2xl bg-no-repeat bg-[url(/imgs/image_6.png)]"></div>
           </div>
 
           <div className="h-full w-1/3 flex flex-col gap-2">
-            <div className="h-[200px] bg-cover grayscale-60  bg-center rounded-2xl bg-no-repeat bg-[url(./imgs/image_5.png)]"></div>
-            <div className="h-[300px] bg-cover grayscale-60  rounded-2xl bg-no-repeat bg-[url(./imgs/image_4.png)]"></div>
+            <div className="h-[200px] bg-cover grayscale-60  bg-center rounded-2xl bg-no-repeat bg-[url(/imgs/image_5.png)]"></div>
+            <div className="h-[300px] bg-cover grayscale-60  rounded-2xl bg-no-repeat bg-[url(/imgs/image_4.png)]"></div>
           </div>
 
           <div className="h-full w-1/3">
-            <div className="h-[508px] bg-cover grayscale-60  rounded-2xl bg-no-repeat bg-[url(./imgs/image_2.png)]"></div>
+            <div className="h-[508px] bg-cover grayscale-60  rounded-2xl bg-no-repeat bg-[url(/imgs/image_2.png)]"></div>
           </div>
         </div>
 
