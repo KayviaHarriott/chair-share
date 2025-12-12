@@ -56,7 +56,7 @@ export const Home = () => {
   }, [placeholderText, isTyping, currentPhraseIndex, searchValue, phrases]);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[#eff1f3]">
       <div className="max-w-[1200px] container mx-auto px-4 py-16 sm:py-24">
         {/* Hero Section */}
         <div className="max-w-4xl mx-auto text-center">
@@ -97,7 +97,7 @@ export const Home = () => {
                   value={searchValue}
                   onChange={(e) => setSearchValue(e.target.value)}
                   placeholder={placeholderText}
-                  className="w-full pl-12 pr-4 py-4 text-slate-700 placeholder-slate-400 bg-slate-50 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-all"
+                  className="w-full pl-12 pr-4 py-4 text-slate-700 placeholder-slate-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-all"
                 />
               </div>
               <button className="w-full sm:w-auto px-8 py-4 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2">
@@ -134,28 +134,28 @@ export const Home = () => {
           </div>
         </div>
         {/* Design Images */}
-        <div className="flex gap-2 py-[56px]">
-
+        <div className="flex gap-2 py-14">
           <div className="h-full w-1/3 flex flex-col gap-2">
             {/* <img className=" h-[300px] w-1/3" src="./imgs/image_1.png"/> */}
-            <div className="h-[300px] bg-cover grayscale rounded-2xl bg-[url(./imgs/image_1.png)]">
-            </div>
-            <div className="h-[200px] bg-center bg-cover grayscale rounded-2xl bg-no-repeat bg-[url(./imgs/image_6.png)]">
-            </div>
+            <div className="h-[300px] bg-cover grayscale rounded-2xl bg-[url(./imgs/image_1.png)]"></div>
+            <div className="h-[200px] bg-center bg-cover grayscale rounded-2xl bg-no-repeat bg-[url(./imgs/image_6.png)]"></div>
           </div>
 
           <div className="h-full w-1/3 flex flex-col gap-2">
-            <div className="h-[200px] bg-cover grayscale bg-center rounded-2xl bg-no-repeat bg-[url(./imgs/image_5.png)]">
-            </div>
-            <div className="h-[300px] bg-cover grayscale rounded-2xl bg-no-repeat bg-[url(./imgs/image_4.png)]">
-            </div>
+            <div className="h-[200px] bg-cover grayscale bg-center rounded-2xl bg-no-repeat bg-[url(./imgs/image_5.png)]"></div>
+            <div className="h-[300px] bg-cover grayscale rounded-2xl bg-no-repeat bg-[url(./imgs/image_4.png)]"></div>
           </div>
-
 
           <div className="h-full w-1/3">
-            <div className="h-[508px] bg-cover grayscale rounded-2xl bg-no-repeat bg-[url(./imgs/image_2.png)]">
-            </div>
+            <div className="h-[508px] bg-cover grayscale rounded-2xl bg-no-repeat bg-[url(./imgs/image_2.png)]"></div>
           </div>
+        </div>
+
+        {/* How it Works */}
+        <div className="-mt-64 relative z-10 ">
+          <h2 className="bg-linear-to-t from-[#eff1f3] pb-4 pt-34 to-transparent text-3xl sm:text-4xl lg:text-5xl font-serif mb-6 text-center">
+            How it Works
+          </h2>
         </div>
       </div>
     </div>
