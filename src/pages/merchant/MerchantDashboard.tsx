@@ -128,16 +128,11 @@ export const MerchantDashboard = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="flex justify-center items-center">
+      <div className="w-full max-w-[1200px]">
+        <div className="min-h-screen flex">
       {/* Sidebar */}
-      <div className="fixed left-0 top-0 h-full w-64 bg-white border-r border-gray-200 p-6 hidden lg:block">
-        <div className="flex items-center gap-2 mb-8">
-          <div className="w-10 h-10 bg-amber-500 rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-xl">C</span>
-          </div>
-          <span className="font-bold text-xl">ChairShare</span>
-        </div>
-
+      <div className="w-1/5">
         <nav className="space-y-2">
           <button
             onClick={() => setActiveTab("dashboard")}
@@ -176,7 +171,7 @@ export const MerchantDashboard = () => {
       </div>
 
       {/* Main Content */}
-      <div className="lg:ml-64 p-4 lg:p-8">
+      <div className="w-4/5">
         {/* Header */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-4">
           <div>
@@ -390,6 +385,8 @@ export const MerchantDashboard = () => {
             </div>
           ))}
         </div>
+      </div>
+    </div>
       </div>
     </div>
   );
