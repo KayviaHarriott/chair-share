@@ -177,19 +177,42 @@ export const Home = () => {
             </div>
             <div className="w-1/4 h-[250px] flex flex-col gap-2">
               <div className="h-full rounded-sm flex justify-center items-center ">
-                
-               {/* <div className="text-center">
+                {/* <div className="text-center">
                  <p className="font-bold">Ready to get started?</p>
                  <p className="text-sm">Your next great hairstyle is just a few clicks away. Join our community and discover the best local talent.</p>
                </div> */}
-
-
               </div>
 
               <a className="bg-black text-white py-3 px-2 font-semibold rounded-lg shadow-lg text-sm text-center cursor-pointer">
                 Sign Up Today
               </a>
             </div>
+          </div>
+        </div>
+      </div>
+      <div className="bg-[#FFC83A] flex justify-center">
+        <div className="max-w-[1200px] text-[#272727] flex justify-between w-full gap-6 text-center py-12">
+          <div>
+            <h3 className="text-lg font-semibold">
+              Vetted Beauty Professionals
+            </h3>
+            <p className="font-light">
+              Every stylist is verified before joining
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-bold">Trusted Services</h3>
+            <p className="font-light">
+              Backed by real portfolios and client reviews
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-bold">Secure Bookings</h3>
+            <p className="font-light">
+              Clear pricing and transparent availability
+            </p>
           </div>
         </div>
       </div>
