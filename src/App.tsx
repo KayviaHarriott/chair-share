@@ -34,7 +34,9 @@ function App() {
    const location = useLocation()
 
   // Hide NavBar on the /updates page
-  const hideNavBar = location.pathname === "/updates"
+  const hiddenPaths = ["/updates", "/login", "/register"];
+
+const hideNavBar = hiddenPaths.includes(location.pathname);
 
   return (
     <>
@@ -48,10 +50,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/updates" element={<Updates />} />
-
-        {/* Auth */}
-        <Route path="/auth/login" element={<LogInPage />} />
-        <Route path="/auth/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LogInPage />} />
         <Route path="/auth/forgot-password" element={<ForgotPasswordPage />} />
 
         {/* Client routes */}
