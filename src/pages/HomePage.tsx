@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { BannerIconCard } from "../components/BannerIconCard";
 
 export const Home = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -193,50 +194,34 @@ export const Home = () => {
       </div>
       <div className="bg-[#272727] flex justify-center">
         <div className="max-w-[1200px] text-white flex justify-between w-full gap-6 text-center py-12 px-12">
-          <div className="flex flex-col items-center">
-            <div className="h-18 w-18 rounded-full flex items-center justify-center mb-2">
-              <img
-                src="/icons/shieldIcon.png"
-                alt="shield icon"
-                className="h-10 w-10"
-              />
-            </div>
-
-            <h3 className="text-lg font-semibold">
-              Vetted Beauty Professionals
-            </h3>
-            <p className="text-sm text-green-300">
-              Every stylist is verified before joining
-            </p>
-          </div>
-
-          <div className="flex flex-col items-center">
-            <div className="h-18 w-18 rounded-full flex items-center justify-center mb-2">
-              <img
-                src="/icons/starIcon.png"
-                alt="shield icon"
-                className="h-10 w-10"
-              />
-            </div>
-            <h3 className="text-xl font-bold">Trusted Services</h3>
-            <p className="text-sm text-green-300">
-              Backed by real portfolios and client reviews
-            </p>
-          </div>
-
-          <div className="flex flex-col items-center">
-            <div className="h-18 w-18 rounded-full flex items-center justify-center mb-2">
-              <img
-                src="/icons/privacyIcon.png"
-                alt="shield icon"
-                className="h-10 w-10"
-              />
-            </div>
-            <h3 className="text-xl font-bold">Secure Bookings</h3>
-            <p className="text-sm text-green-300">
-              Clear pricing and transparent availability
-            </p>
-          </div>
+          {[
+            {
+              icon: "/icons/shieldIcon.png",
+              alt: "shield icon",
+              title: "Vetted Beauty Professionals",
+              description: "Every stylist is verified before joining",
+            },
+            {
+              icon: "/icons/starIcon.png",
+              alt: "star icon",
+              title: "Trusted Services",
+              description: "Backed by real portfolios and client reviews",
+            },
+            {
+              icon: "/icons/privacyIcon.png",
+              alt: "lock icon",
+              title: "Secure Bookings",
+              description: "Clear pricing and transparent availability",
+            },
+          ].map((item, index) => (
+            <BannerIconCard
+              key={index}
+              title={item.title}
+              alt={item.alt}
+              description={item.description}
+              icon={item.icon}
+            />
+          ))}
         </div>
       </div>
       <div className="py-16 text-center">
