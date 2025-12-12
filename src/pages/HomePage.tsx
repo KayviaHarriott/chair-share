@@ -101,7 +101,7 @@ export const Home = () => {
                   className="w-full pl-12 pr-4 py-4 text-slate-700 placeholder-slate-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-all"
                 />
               </div>
-              <button className="w-full sm:w-auto px-8 py-4 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2">
+              <button className="w-full sm:w-auto px-8 py-4 bg-[#CF4422] hover:bg-amber-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2">
                 Search
                 <svg
                   className="w-5 h-5"
@@ -164,15 +164,15 @@ export const Home = () => {
           </div>
 
           <div className="flex gap-4 px-8">
-            <div className="border-gray-300 border rounded-lg py-2 px-3 w-1/4 h-[250px]">
+            <div className="border-gray-200 bg-white border rounded-lg py-2 px-3 w-1/4 h-[250px]">
               <p className="font-bold">1</p>
               <p className="font-bold">Sign Up</p>
             </div>
-            <div className="border-gray-300 border rounded-lg py-2 px-3 w-1/4 h-[250px]">
+            <div className="border-gray-200 bg-white border rounded-lg py-2 px-3 w-1/4 h-[250px]">
               <p className="font-bold">2</p>
               <p className="font-bold">Find Your Stylist</p>
             </div>
-            <div className="border-gray-300 border rounded-lg py-2 px-3 w-1/4 h-[250px]">
+            <div className="border-gray-200 bg-white border rounded-lg py-2 px-3 w-1/4 h-[250px]">
               <p className="font-bold">3</p>
               <p className="font-bold">Book Your Appointment</p>
             </div>
@@ -190,62 +190,84 @@ export const Home = () => {
             </div>
           </div>
         </div>
-
-
       </div>
       <div className="bg-[#FFC83A] flex justify-center">
-        <div className="max-w-[1200px] text-[#272727] flex justify-between w-full gap-6 text-center py-12">
-          <div>
+        <div className="max-w-[1200px] text-[#272727] flex justify-between w-full gap-6 text-center py-12 px-12">
+          <div className="flex flex-col items-center">
+            <div className="h-18 w-18 rounded-full bg-[#CF4422] flex items-center justify-center mb-2">
+              <img
+                src="/icons/shieldIcon.png"
+                alt="shield icon"
+                className="h-10 w-10"
+              />
+            </div>
+
             <h3 className="text-lg font-semibold">
               Vetted Beauty Professionals
             </h3>
-            <p className="font-light">
+            <p className="font-light text-sm">
               Every stylist is verified before joining
             </p>
           </div>
 
-          <div>
+          <div className="flex flex-col items-center">
+            <div className="h-18 w-18 rounded-full bg-[#CF4422] flex items-center justify-center mb-2">
+              <img
+                src="/icons/starIcon.png"
+                alt="shield icon"
+                className="h-10 w-10"
+              />
+            </div>
             <h3 className="text-xl font-bold">Trusted Services</h3>
-            <p className="font-light">
+            <p className="font-light text-sm">
               Backed by real portfolios and client reviews
             </p>
           </div>
 
-          <div>
+          <div className="flex flex-col items-center">
+            <div className="h-18 w-18 rounded-full bg-[#CF4422] flex items-center justify-center mb-2">
+              <img
+                src="/icons/privacyIcon.png"
+                alt="shield icon"
+                className="h-10 w-10"
+              />
+            </div>
             <h3 className="text-xl font-bold">Secure Bookings</h3>
-            <p className="font-light">
+            <p className="font-light text-sm">
               Clear pricing and transparent availability
             </p>
           </div>
         </div>
       </div>
-      <div className="py-16 text-center border-t-2 border-amber-400">
+      <div className="py-16 text-center">
         {/* Code Goes Here */}
         <div className="max-w-4xl mx-auto">
           {/* Heading */}
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-gray-900 mb-6">
-            Ready to Book Your <span className="font-bold">Next Appointment?</span>
+            Ready to Book Your{" "}
+            <span className="font-bold">Next Appointment?</span>
           </h2>
 
           {/* Subtitle */}
           <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
-            Join thousands of satisfied clients who trust ChairShare for their beauty needs
+            Join thousands of satisfied clients who trust ChairShare for their
+            beauty needs
           </p>
 
           {/* CTA Buttons */}
           <div className="flex w-full justify-center gap-3">
             <Link
-                className="bg-linear-to-br from-amber-500 to-[#BF4E30] px-6 py-2 text-white rounded-full"
-                to="/register"
-              >
-                Get Started
-              </Link>
-              <Link
-                className="border border-gray-200 bg-white px-6 py-2 text-gray-500 rounded-full"
-                to="/faqs"
-              >
-                Learn More
-              </Link>
+              className="bg-linear-to-br from-amber-500 to-[#BF4E30] px-6 py-2 text-white rounded-full"
+              to="/register"
+            >
+              Get Started
+            </Link>
+            <Link
+              className="border border-gray-200 bg-white px-6 py-2 text-gray-500 rounded-full"
+              to="/faqs"
+            >
+              Learn More
+            </Link>
           </div>
         </div>
       </div>
