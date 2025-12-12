@@ -46,6 +46,7 @@ function App() {
       <Routes>
         {/* Public routes */}
         <Route path="/" element={<Home />} />
+        <Route path="/register" element={<RegisterPage />} />
         <Route path="/updates" element={<Updates />} />
 
         {/* Auth */}

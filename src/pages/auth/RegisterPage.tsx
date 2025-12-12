@@ -48,27 +48,7 @@ export const RegisterPage = () => {
     <div className="min-h-screen flex">
       {/* Left Side - Image Carousel */}
       <div className="hidden lg:flex lg:w-1/2 relative bg-gradient-to-br from-indigo-900 via-purple-800 to-indigo-900 overflow-hidden">
-        {/* Logo */}
-        <div className="absolute top-8 left-8 z-20">
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-              <span className="text-indigo-900 font-bold text-xl">C</span>
-            </div>
-            <span className="text-white font-bold text-xl">ChairShare</span>
-          </div>
-        </div>
-
-        {/* Back to Website Button */}
-        <Link
-          to="/"
-          className="absolute top-8 right-8 z-20 px-4 py-2 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white rounded-lg transition-colors flex items-center gap-2"
-        >
-          <span>Back to website</span>
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </Link>
-
+        
         {/* Carousel Content */}
         <div className="relative w-full h-full">
           {slides.map((slide, index) => (
@@ -110,13 +90,6 @@ export const RegisterPage = () => {
       {/* Right Side - Registration Form */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-gray-900">
         <div className="w-full max-w-md">
-          {/* Mobile Logo */}
-          <div className="lg:hidden flex items-center justify-center gap-2 mb-8">
-            <div className="w-10 h-10 bg-amber-500 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">C</span>
-            </div>
-            <span className="text-white font-bold text-xl">ChairShare</span>
-          </div>
 
           <div className="text-center mb-8">
             <h1 className="text-4xl font-bold text-white mb-3">Create an account</h1>
@@ -249,6 +222,9 @@ export const RegisterPage = () => {
               </div>
             </div>
 
+           
+
+
             {/* Social Login Buttons */}
             <div className="grid grid-cols-2 gap-4">
               <button
@@ -285,6 +261,21 @@ export const RegisterPage = () => {
                 <span className="text-sm font-medium">Apple</span>
               </button>
             </div>
+
+            <p className="text-white text-center">Or</p>
+
+             {/* Back to Website Button */}
+        <Link
+          to="/"
+          className="px-4 py-2 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white rounded-lg transition-colors flex items-center gap-2"
+        >
+          <span>Back to website</span>
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </Link>
+
+
           </form>
         </div>
       </div>

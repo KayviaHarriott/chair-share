@@ -15,7 +15,7 @@ export const NavBar = () => {
           </div>
           <div className="w-1/3 flex justify-end items-center gap-3">
             <Link to="/merchants">Sign In</Link>
-              <Link className="bg-amber-500 px-6 py-2 text-white rounded-full" to="/merchants">Get Started</Link>
+              <Link className="bg-amber-500 px-6 py-2 text-white rounded-full" to="/register">Get Started</Link>
           </div>
         </div>
       </div>
