@@ -137,25 +137,34 @@ export const Home = () => {
         <div className="flex gap-2 py-14">
           <div className="h-full w-1/3 flex flex-col gap-2">
             {/* <img className=" h-[300px] w-1/3" src="./imgs/image_1.png"/> */}
-            <div className="h-[300px] bg-cover grayscale rounded-2xl bg-[url(./imgs/image_1.png)]"></div>
-            <div className="h-[200px] bg-center bg-cover grayscale rounded-2xl bg-no-repeat bg-[url(./imgs/image_6.png)]"></div>
+            <div className="h-[300px] bg-cover grayscale-60 rounded-2xl bg-[url(./imgs/image_1.png)]"></div>
+            <div className="h-[200px] bg-center bg-cover grayscale-60  rounded-2xl bg-no-repeat bg-[url(./imgs/image_6.png)]"></div>
           </div>
 
           <div className="h-full w-1/3 flex flex-col gap-2">
-            <div className="h-[200px] bg-cover grayscale bg-center rounded-2xl bg-no-repeat bg-[url(./imgs/image_5.png)]"></div>
-            <div className="h-[300px] bg-cover grayscale rounded-2xl bg-no-repeat bg-[url(./imgs/image_4.png)]"></div>
+            <div className="h-[200px] bg-cover grayscale-60  bg-center rounded-2xl bg-no-repeat bg-[url(./imgs/image_5.png)]"></div>
+            <div className="h-[300px] bg-cover grayscale-60  rounded-2xl bg-no-repeat bg-[url(./imgs/image_4.png)]"></div>
           </div>
 
           <div className="h-full w-1/3">
-            <div className="h-[508px] bg-cover grayscale rounded-2xl bg-no-repeat bg-[url(./imgs/image_2.png)]"></div>
+            <div className="h-[508px] bg-cover grayscale-60  rounded-2xl bg-no-repeat bg-[url(./imgs/image_2.png)]"></div>
           </div>
         </div>
 
         {/* How it Works */}
-        <div className="-mt-64 relative z-10 ">
-          <h2 className="bg-linear-to-t from-[#eff1f3] pb-4 pt-34 to-transparent text-3xl sm:text-4xl lg:text-5xl font-serif mb-6 text-center">
-            How it Works
-          </h2>
+        <div className="-mt-80 relative z-10  ">
+          <div className="bg-linear-to-t from-[#eff1f3] via-[#eff1f3]/90 pb-4 pt-50 to-transparent font-serif mb-6 px-8">
+            <h2 className="text-2xl sm:text-2xl lg:text-3xl pt-4 max-w-[500px]">
+              <span className="text-gray-500">Finding a stylist near you shouldn't be that hard,</span>{" "}
+              <span >let's make it easier.</span>
+            </h2>
+          </div>
+
+          <div className="flex gap-4 px-8" >
+            <div className="border w-1/5 h-[250px]">One</div>
+             <div className="border w-1/5 h-[250px]">One</div>
+              <div className="border w-1/5 h-[250px]">One</div>
+          </div>
         </div>
       </div>
     </div>

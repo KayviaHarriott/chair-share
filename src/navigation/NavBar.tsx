@@ -18,10 +18,9 @@ export const NavBar = () => {
       <nav className="shadow-sm/5 bg-white border-b border-gray-200 flex justify-center py-4  px-4 text-gray-800 ">
         <div className="max-w-[1200px] w-full ">
           <div className="w-full flex justify-between items-center">
-            <div className="w-1/3 flex items-center gap-2">
-              {/* <Link to="/"><img className="h-[50px]" src="./imgs/Logo.png" /></Link> */}
-              <Link className="text-xl" to="/">
-                <p>ChairShare</p>
+            <div className="w-1/3 flex items-center gap-2 mb-1">
+              <Link to="/">
+                <img className="h-[50px]" src="./imgs/HorizontalLogo.png" />
               </Link>
             </div>
             <div className="w-1/3 flex items-center justify-center font-serif gap-6">

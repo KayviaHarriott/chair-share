@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export const Footer = () => {
   return (
-    <div className="bg-linear-to-br from-[#3A0844] via-indigo-800 to-[#6A057E] flex justify-center">
+    <div className="bg-[#272727] flex justify-center">
       <div className="max-w-[1200px] w-full text-white">
           <footer className=" text-white">
       {/* Footer Code Here */}
@@ -16,35 +16,35 @@ export const Footer = () => {
               </div>
               <h3 className="text-xl font-bold">ChairShare</h3>
             </div>
-            <p className="text-indigo-200 text-sm leading-relaxed">
-              10x your workflow with ChairShare
+            <p className="text-white text-sm leading-relaxed font-bold">
+              Find a chair near you.
             </p>
-            <p className="text-indigo-300 text-xs">
-              Save countless hours of design and ship great looking designs faster.
+            <p className="text-white text-xs">
+              Save countless hours of searching for the right stylist, find a trusted one nearby you.
             </p>
           </div>
 
           {/* Platform Links */}
           <div>
-            <h4 className="font-semibold text-white mb-4">Platform</h4>
+            <h4 className="font-semibold text-white mb-4">For You</h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/" className="text-indigo-200 hover:text-white text-sm transition-colors">
+                <Link to="/" className="text-white hover:text-white text-sm transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/browse" className="text-indigo-200 hover:text-white text-sm transition-colors">
+                <Link to="/browse" className="text-white hover:text-white text-sm transition-colors">
                   Browse Merchants
                 </Link>
               </li>
               <li>
-                <Link to="/merchant/onboarding" className="text-indigo-200 hover:text-white text-sm transition-colors">
+                <Link to="/merchant/onboarding" className="text-white hover:text-white text-sm transition-colors">
                   Become a Merchant
                 </Link>
               </li>
               <li>
-                <Link to="/booking-request" className="text-indigo-200 hover:text-white text-sm transition-colors">
+                <Link to="/booking-request" className="text-white hover:text-white text-sm transition-colors">
                   Book Now
                 </Link>
               </li>
@@ -56,27 +56,27 @@ export const Footer = () => {
             <h4 className="font-semibold text-white mb-4">For Merchants</h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/merchant/dashboard" className="text-indigo-200 hover:text-white text-sm transition-colors">
+                <Link to="/merchant/dashboard" className="text-white hover:text-white text-sm transition-colors">
                   Dashboard
                 </Link>
               </li>
               <li>
-                <Link to="/merchant/profile" className="text-indigo-200 hover:text-white text-sm transition-colors">
+                <Link to="/merchant/profile" className="text-white hover:text-white text-sm transition-colors">
                   Profile
                 </Link>
               </li>
               <li>
-                <Link to="/merchant/onboarding" className="text-indigo-200 hover:text-white text-sm transition-colors">
+                <Link to="/merchant/onboarding" className="text-white hover:text-white text-sm transition-colors">
                   Get Started
                 </Link>
               </li>
               <li>
-                <Link to="/auth/login" className="text-indigo-200 hover:text-white text-sm transition-colors">
+                <Link to="/auth/login" className="text-white hover:text-white text-sm transition-colors">
                   Sign In
                 </Link>
               </li>
               <li>
-                <Link to="/auth/register" className="text-indigo-200 hover:text-white text-sm transition-colors">
+                <Link to="/auth/register" className="text-white hover:text-white text-sm transition-colors">
                   Register
                 </Link>
               </li>
@@ -88,22 +88,22 @@ export const Footer = () => {
             <h4 className="font-semibold text-white mb-4">Account</h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/auth/login" className="text-indigo-200 hover:text-white text-sm transition-colors">
+                <Link to="/auth/login" className="text-white hover:text-white text-sm transition-colors">
                   Log In
                 </Link>
               </li>
               <li>
-                <Link to="/auth/register" className="text-indigo-200 hover:text-white text-sm transition-colors">
+                <Link to="/auth/register" className="text-white hover:text-white text-sm transition-colors">
                   Sign Up
                 </Link>
               </li>
               <li>
-                <Link to="/auth/forgot-password" className="text-indigo-200 hover:text-white text-sm transition-colors">
+                <Link to="/auth/forgot-password" className="text-white hover:text-white text-sm transition-colors">
                   Forgot Password
                 </Link>
               </li>
               <li>
-                <Link to="/browse" className="text-indigo-200 hover:text-white text-sm transition-colors">
+                <Link to="/browse" className="text-white hover:text-white text-sm transition-colors">
                   Find Services
                 </Link>
               </li>
@@ -113,16 +113,16 @@ export const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="mt-12 ">
-            <div className="border-t pt-8 border-[#9D26B5] opacity-40 "></div>
+            <div className="border-t pt-8 border-gray-600 opacity-40 "></div>
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-indigo-300 text-sm">
+            <p className="text-white text-sm">
               © 2077 ChairShare. All rights reserved.
             </p>
             <a
               href="https://tekupja.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-indigo-200 hover:text-white text-sm transition-colors group"
+              className="flex items-center gap-2 text-white hover:text-white text-sm transition-colors group"
             >
               <span>Developed by TekUpJa</span>
               <svg
