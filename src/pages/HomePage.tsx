@@ -163,13 +163,30 @@ export const Home = () => {
           </div>
 
           <div className="flex gap-4 px-8">
-            <div className="border w-1/5 h-[250px]">Step One</div>
-            <div className="border w-1/5 h-[250px]">Step Two</div>
-            <div className="border w-1/5 h-[250px]">Step Three</div>
-            <div className="w-2/5 h-[250px] flex flex-col gap-2">
-              <div className="h-full bg-gray-200 rounded-sm">Get Started</div>
+            <div className="border-gray-300 border rounded-lg py-2 px-3 w-1/4 h-[250px]">
+              <p className="font-bold">1</p>
+              <p className="font-bold">Sign Up</p>
+            </div>
+            <div className="border-gray-300 border rounded-lg py-2 px-3 w-1/4 h-[250px]">
+              <p className="font-bold">2</p>
+              <p className="font-bold">Find Your Stylist</p>
+            </div>
+            <div className="border-gray-300 border rounded-lg py-2 px-3 w-1/4 h-[250px]">
+              <p className="font-bold">3</p>
+              <p className="font-bold">Book Your Appointment</p>
+            </div>
+            <div className="w-1/4 h-[250px] flex flex-col gap-2">
+              <div className="h-full rounded-sm flex justify-center items-center ">
+                
+               {/* <div className="text-center">
+                 <p className="font-bold">Ready to get started?</p>
+                 <p className="text-sm">Your next great hairstyle is just a few clicks away. Join our community and discover the best local talent.</p>
+               </div> */}
 
-              <a className="bg-black text-white py-2 px-2 rounded-sm text-center">
+
+              </div>
+
+              <a className="bg-black text-white py-3 px-2 font-semibold rounded-lg shadow-lg text-sm text-center cursor-pointer">
                 Sign Up Today
               </a>
             </div>
