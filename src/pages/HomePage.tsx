@@ -56,7 +56,7 @@ export const Home = () => {
   }, [placeholderText, isTyping, currentPhraseIndex, searchValue, phrases]);
 
   return (
-    <div className="min-h-screen bg-[#eff1f3]">
+    <div className="min-h-screen bg-[#eff1f3] bg-linear-to-b from-[#eff1f3] to-white">
       <div className="max-w-[1200px] container mx-auto px-4 py-16 sm:py-24">
         {/* Hero Section */}
         <div className="max-w-4xl mx-auto text-center">
