@@ -16,17 +16,20 @@ export const RegisterPage = () => {
     {
       title: "Capturing Moments,",
       subtitle: "Creating Memories",
-      image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&h=1200&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&h=1200&fit=crop",
     },
     {
       title: "Your Perfect Chair",
       subtitle: "Awaits You",
-      image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&h=1200&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&h=1200&fit=crop",
     },
     {
       title: "Beauty Professionals",
       subtitle: "At Your Service",
-      image: "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=800&h=1200&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=800&h=1200&fit=crop",
     },
   ];
 
@@ -48,7 +51,6 @@ export const RegisterPage = () => {
     <div className="min-h-screen flex">
       {/* Left Side - Image Carousel */}
       <div className="hidden lg:flex lg:w-1/2 relative bg-gradient-to-br from-indigo-900 via-purple-800 to-indigo-900 overflow-hidden">
-        
         {/* Carousel Content */}
         <div className="relative w-full h-full">
           {slides.map((slide, index) => (
@@ -67,7 +69,9 @@ export const RegisterPage = () => {
               />
               <div className="relative h-full flex flex-col justify-end p-12 text-white">
                 <h2 className="text-5xl font-bold mb-2">{slide.title}</h2>
-                <p className="text-4xl font-light opacity-90">{slide.subtitle}</p>
+                <p className="text-4xl font-light opacity-90">
+                  {slide.subtitle}
+                </p>
               </div>
             </div>
           ))}
@@ -90,12 +94,16 @@ export const RegisterPage = () => {
       {/* Right Side - Registration Form */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-gray-900">
         <div className="w-full max-w-md">
-
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-white mb-3">Create an account</h1>
+            <h1 className="text-4xl font-bold text-white mb-3">
+              Create an account
+            </h1>
             <p className="text-gray-400">
               Already have an account?{" "}
-              <Link to="/auth/login" className="text-purple-400 hover:text-purple-300 transition-colors">
+              <Link
+                to="/auth/login"
+                className="text-purple-400 hover:text-purple-300 transition-colors"
+              >
                 Log in
               </Link>
             </p>
@@ -158,7 +166,12 @@ export const RegisterPage = () => {
                 className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-300 transition-colors"
               >
                 {showPassword ? (
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -167,7 +180,12 @@ export const RegisterPage = () => {
                     />
                   </svg>
                 ) : (
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -196,9 +214,15 @@ export const RegisterPage = () => {
                 className="mt-1 w-4 h-4 bg-gray-800 border-gray-700 rounded text-purple-600 focus:ring-purple-500 focus:ring-offset-gray-900"
                 required
               />
-              <label htmlFor="agreeToTerms" className="text-sm text-gray-400 leading-relaxed">
+              <label
+                htmlFor="agreeToTerms"
+                className="text-sm text-gray-400 leading-relaxed"
+              >
                 I agree to the{" "}
-                <a href="#" className="text-purple-400 hover:text-purple-300 transition-colors">
+                <a
+                  href="#"
+                  className="text-purple-400 hover:text-purple-300 transition-colors"
+                >
                   Terms & Conditions
                 </a>
               </label>
@@ -218,12 +242,11 @@ export const RegisterPage = () => {
                 <div className="w-full border-t border-gray-700"></div>
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-4 bg-gray-900 text-gray-400">Or register with</span>
+                <span className="px-4 bg-gray-900 text-gray-400">
+                  Or register with
+                </span>
               </div>
             </div>
-
-           
-
 
             {/* Social Login Buttons */}
             <div className="grid grid-cols-2 gap-4">
@@ -255,7 +278,11 @@ export const RegisterPage = () => {
                 type="button"
                 className="flex items-center justify-center gap-2 px-4 py-3 bg-gray-800 hover:bg-gray-750 border border-gray-700 text-white rounded-lg transition-colors"
               >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <svg
+                  className="w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
                   <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" />
                 </svg>
                 <span className="text-sm font-medium">Apple</span>
@@ -264,21 +291,29 @@ export const RegisterPage = () => {
 
             <p className="text-white text-center">Or</p>
 
-             {/* Back to Website Button */}
-        <Link
-          to="/"
-          className="px-4 py-2 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white rounded-lg transition-colors flex items-center gap-2"
-        >
-          <span>Back to website</span>
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </Link>
-
-
+            {/* Back to Website Button */}
+            <Link
+              to="/"
+              className="px-4 py-2 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white rounded-lg transition-colors flex items-center gap-2"
+            >
+              <span>Back to website</span>
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </Link>
           </form>
         </div>
       </div>
     </div>
   );
-}
+};
