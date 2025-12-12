@@ -152,7 +152,7 @@ export const Home = () => {
         </div>
 
         {/* How it Works */}
-        <div className="-mt-80 relative z-10  ">
+        <div className="-mt-90 relative z-10  ">
           <div className="bg-linear-to-t from-[#eff1f3] via-[#eff1f3]/90 pb-4 pt-50 to-transparent font-serif px-8">
             <h2 className="text-2xl sm:text-2xl lg:text-3xl pt-4 max-w-[500px] mb-2">
               <span className="text-gray-500">
