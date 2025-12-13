@@ -79,7 +79,7 @@ const categories = [
 ];
 
 export const NavBar = () => {
-  const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
+  const [hoveredCategory, setHoveredCategory] = useState<string | null>("Hair");
 
   return (
     <div>
@@ -117,7 +117,7 @@ export const NavBar = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-6 mt-6">
+        <div className="flex gap-6 mt-6">
           {categories.map((category) => (
             <div
               key={category.name}
@@ -128,29 +128,30 @@ export const NavBar = () => {
               <button className="font-bold text-lg hover:text-amber-600 transition-colors">
                 {category.name}
               </button>
-
-              {hoveredCategory === category.name && (
-                <div className="absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-xl p-6 z-50">
-                  <div className="flex gap-6">
-                    {category.subcategories.map((subcategory, index) => (
-                      <div key={index}>
-                        <b>{subcategory.title}</b>
-                        <ul className="space-y-1">
-                          {subcategory.items.map((item, itemIndex) => (
-                            <li key={itemIndex} className="hover:text-amber-600 cursor-pointer">
-                              {item}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
             </div>
           ))}
         </div>
       </nav>
+      {categories.map((category) => (
+        hoveredCategory === category.name && (
+          <div key={category.name} className="absolute top-full left-0 w-full bg-white border border-gray-200 p-6 z-50">
+            <div className="flex gap-6">
+              {category.subcategories.map((subcategory, index) => (
+                <div key={index}>
+                  <b>{subcategory.title}</b>
+                  <ul className="space-y-1">
+                    {subcategory.items.map((item, itemIndex) => (
+                      <li key={itemIndex} className="hover:text-amber-600 cursor-pointer">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+      ))}
     </div>
   );
 };
