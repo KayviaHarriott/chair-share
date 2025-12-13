@@ -66,7 +66,7 @@ export const Home = () => {
         backgroundColor=""
         content={
           <>
-            <div className="max-w-4xl mx-auto text-center py-16">
+            <div className="max-w-4xl mx-auto text-center pt-16">
               {/* Heading */}
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif mb-6">
                 <span className="text-slate-900">Book Your</span>
@@ -269,7 +269,41 @@ export const Home = () => {
       />
 
       {/* Book Appointment */}
-      <Section backgroundColor="" content={<></>} />
+      <Section backgroundColor="" content={<>
+        
+        <div className="py-16 text-center">
+        {/* Code Goes Here */}
+        <div className="max-w-4xl mx-auto">
+          {/* Heading */}
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-gray-900 mb-6">
+            Ready to Book Your{" "}
+            <span className="font-bold">Next Appointment?</span>
+          </h2>
+
+          {/* Subtitle */}
+          <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
+            Join thousands of satisfied clients who trust ChairShare for their
+            beauty needs
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="flex w-full justify-center gap-3">
+            <Link
+              className="bg-linear-to-br from-amber-500 to-[#BF4E30] px-6 py-2 text-white rounded-full"
+              to="/register"
+            >
+              Get Started
+            </Link>
+            <Link
+              className="border border-gray-200 bg-white px-6 py-2 text-gray-500 rounded-full"
+              to="/faqs"
+            >
+              Learn More
+            </Link>
+          </div>
+        </div>
+      </div>
+        </>} />
     </div>
   );
 };
