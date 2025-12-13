@@ -59,12 +59,88 @@ export const Home = () => {
   }, [placeholderText, isTyping, currentPhraseIndex, searchValue, phrases]);
 
   return (
-    <div className="min-h-screen bg-[#eff1f3] ">
+    <div className="bg-[#eff1f3] ">
       {/* Header/CTA */}
-      <Section backgroundColor="" content={<></>} />
+      <Section backgroundColor="" content={<>
+        <div className="max-w-4xl mx-auto text-center py-16">
+          {/* Heading */}
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif mb-6">
+            <span className="text-slate-900">Book Your</span>
+            <br />
+            <span className="text-[#E5B819]">Perfect Chair</span>
+          </h1>
+
+          {/* Subtitle */}
+          <p className="text-lg sm:text-xl text-slate-600 mb-12 max-w-2xl mx-auto leading-relaxed">
+            Discover and book top-rated beauty professionals in your area.
+            Seamless scheduling, premium service, elevated experience.
+          </p>
+
+          {/* Search Bar */}
+          <div className="bg-white rounded-2xl shadow-xl shadow-[#FCECCD] p-4 mb-8 max-w-3xl mx-auto">
+            <div className="flex flex-col sm:flex-row gap-3 items-center">
+              <div className="relative flex-1 w-full">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    />
+                  </svg>
+                </div>
+                <input
+                  type="text"
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
+                  placeholder={placeholderText}
+                  className="w-full pl-12 pr-4 py-4 text-slate-700 placeholder-slate-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-all"
+                />
+              </div>
+              <button className="w-full sm:w-auto px-8 py-4 bg-[#CF4422] hover:bg-amber-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2">
+                Search
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          {/* Popular Searches */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 flex-wrap">
+            <span className="text-sm text-slate-600 ">Popular searches:</span>
+            {popularSearches.map((search, index) => (
+              <button
+                key={index}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-white hover:bg-amber-50 text-slate-700 rounded-full border border-slate-200 hover:border-amber-300 transition-all duration-200 shadow-sm hover:shadow-md"
+              >
+                <span className="text-base">{search.icon}</span>
+                <span className="text-sm font-medium">{search.label}</span>
+              </button>
+            ))}
+          </div>
+        </div></>} />
 
       {/* Styling Images * How to Section */}
-      <Section backgroundColor="" content={<></>} />
+      <Section backgroundColor="" content={<>
+        
+        </>} />
 
       {/* Banner */}
       <Section backgroundColor="#272727" content={<>
