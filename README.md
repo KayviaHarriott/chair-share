@@ -71,3 +71,7 @@ export default defineConfig([
   },
 ])
 ```
+
+
+<!-- To Suggest -->
+- Page on where to get products, recommended stores nearby
