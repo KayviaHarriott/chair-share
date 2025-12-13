@@ -66,7 +66,7 @@ export const Home = () => {
         backgroundColor=""
         content={
           <>
-            <div className="max-w-4xl mx-auto text-center pt-16">
+            <div className="max-w-4xl mx-auto text-center pt-25 ">
               {/* Heading */}
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif mb-6">
                 <span className="text-slate-900">Book Your</span>

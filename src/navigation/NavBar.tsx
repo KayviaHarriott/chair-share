@@ -6,7 +6,7 @@ export const NavBar = () => {
   return (
     <div>
       <div className="bg-[#272727] text-gray-200 flex justify-center">
-        <div className="max-w-[1200px] w-full flex justify-end items-center gap-4 py-1">
+        <div className="max-w-[1200px] w-full flex justify-end items-center gap-4 py-1 px-5">
           <p className="text-sm">Become a Merchant</p>
           <p className="mb-1">|</p>
           <p className="text-sm">Contact Us</p>
