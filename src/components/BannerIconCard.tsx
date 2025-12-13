@@ -9,7 +9,7 @@ interface BannerIconCardProps {
 export const BannerIconCard: React.FC<BannerIconCardProps> = ({icon, alt, title, description, key}) => {
   return (
     <div key={key} className="flex flex-col items-center">
-      <div className="h-18 w-18 rounded-full flex items-center justify-center mb-2">
+      <div className="h-18 w-18 rounded-full bg-gray-700 flex items-center justify-center mb-2">
         <img
           src={icon}
           alt={alt}
@@ -18,7 +18,7 @@ export const BannerIconCard: React.FC<BannerIconCardProps> = ({icon, alt, title,
       </div>
 
       <h3 className="text-lg font-semibold">{title}</h3>
-      <p className="text-sm text-green-300">
+      <p className="text-sm text-green-100">
         {description}
       </p>
     </div>
