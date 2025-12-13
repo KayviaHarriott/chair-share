@@ -1,8 +1,85 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
+// Categories data structure
+const categories = [
+  {
+    name: "Hair",
+    subcategories: [
+      {
+        title: "Braids",
+        items: ["Box Braids", "Knotless Braids", "Feed-in Braids", "Locs (starter /retwist)", "Cornrows", "Twists"]
+      },
+      {
+        title: "Natural Hair",
+        items: ["Silk Press", "Wash & Style", "Blowout", "Conditioning Treatment", "Two-Strand Twist", "Curl Definition"]
+      },
+      {
+        title: "Weaves/Wigs",
+        items: ["Sew-ins", "Wig Installs", "Quick Weaves"]
+      }
+    ]
+  },
+  {
+    name: "Barbering",
+    subcategories: [
+      {
+        title: "Hair Services",
+        items: ["Shape-up / Line-up", "Fade", "Taper", "Beard grooming", "Full haircut", "Kids cut"]
+      },
+      {
+        title: "Add-Ons",
+        items: ["Hot towel treatment", "Razor finish"]
+      }
+    ]
+  },
+  {
+    name: "Nails",
+    subcategories: [
+      {
+        title: "Acrylics",
+        items: ["Full set", "Refill", "Removal", "Ombre", "Encapsulated Designs"]
+      },
+      {
+        title: "Press-Ons",
+        items: ["Custom press-ons", "Basic press-ons", "Press-on application"]
+      },
+      {
+        title: "Gel/Polish",
+        items: ["Regular polish", "Gel polish", "Nail art", "French tips"]
+      }
+    ]
+  },
+  {
+    name: "Lashes",
+    subcategories: [
+      {
+        title: "Lash Services",
+        items: ["Classic Lashes", "Volume Lashes", "Hybrid Lashes", "Lash Lift", "Lash Tint", "Lash Removal"]
+      },
+      {
+        title: "Add-Ons",
+        items: ["Brow tinting", "Lash lift combo"]
+      }
+    ]
+  },
+  {
+    name: "Makeup",
+    subcategories: [
+      {
+        title: "Makeup Services",
+        items: ["Bridal Makeup", "Special Event Makeup", "Everyday Makeup", "Airbrush Makeup", "Makeup Lessons", "Brow Shaping"]
+      },
+      {
+        title: "Add-Ons",
+        items: ["False lashes", "Touch-up kit"]
+      }
+    ]
+  }
+];
+
 export const NavBar = () => {
-  const [hoveredCategory, setHoveredCategory] = useState<string | null>("Hair");
+  const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
 
   return (
     <div>
@@ -40,296 +117,40 @@ export const NavBar = () => {
           </div>
         </div>
 
-        <div className="flex gap-6 mt-6">
-          {/* Hair Menu */}
-          <div
-            className="relative"
-            onMouseEnter={() => setHoveredCategory("Hair")}
-            onMouseLeave={() => setHoveredCategory(null)}
-          >
-            <button className="font-bold text-lg hover:text-amber-600 transition-colors">
-              Hair
-            </button>
-          </div>
+        <div className="flex flex-col gap-6 mt-6">
+          {categories.map((category) => (
+            <div
+              key={category.name}
+              className="relative"
+              onMouseEnter={() => setHoveredCategory(category.name)}
+              onMouseLeave={() => setHoveredCategory(null)}
+            >
+              <button className="font-bold text-lg hover:text-amber-600 transition-colors">
+                {category.name}
+              </button>
 
-          {/* Barbering Menu */}
-          <div
-            className="relative"
-            onMouseEnter={() => setHoveredCategory("Barbering")}
-            onMouseLeave={() => setHoveredCategory(null)}
-          >
-            <button className="font-bold text-lg hover:text-amber-600 transition-colors">
-              Barbering
-            </button>
-          </div>
-
-          {/* Nails Menu */}
-          <div
-            className="relative"
-            onMouseEnter={() => setHoveredCategory("Nails")}
-            onMouseLeave={() => setHoveredCategory(null)}
-          >
-            <button className="font-bold text-lg hover:text-amber-600 transition-colors">
-              Nails
-            </button>
-          </div>
-
-          {/* Lashes Menu */}
-          <div
-            className="relative"
-            onMouseEnter={() => setHoveredCategory("Lashes")}
-            onMouseLeave={() => setHoveredCategory(null)}
-          >
-            <button className="font-bold text-lg hover:text-amber-600 transition-colors">
-              Lashes
-            </button>
-          </div>
-
-          {/* Makeup Menu */}
-          <div
-            className="relative"
-            onMouseEnter={() => setHoveredCategory("Makeup")}
-            onMouseLeave={() => setHoveredCategory(null)}
-          >
-            <button className="font-bold text-lg hover:text-amber-600 transition-colors">
-              Makeup
-            </button>
-          </div>
+              {hoveredCategory === category.name && (
+                <div className="absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-xl p-6 z-50">
+                  <div className="flex gap-6">
+                    {category.subcategories.map((subcategory, index) => (
+                      <div key={index}>
+                        <b>{subcategory.title}</b>
+                        <ul className="space-y-1">
+                          {subcategory.items.map((item, itemIndex) => (
+                            <li key={itemIndex} className="hover:text-amber-600 cursor-pointer">
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </nav>
-      {hoveredCategory === "Hair" && (
-        <div className="absolute top-full left-0 w-full bg-white border border-gray-200 p-6 z-50">
-          <div className="flex gap-6">
-            <div>
-              <b>Braids</b>
-              <ul className="space-y-1">
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Box Braids
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Knotless Braids
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Feed-in Braids
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Locs (starter /retwist)
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Cornrows
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">Twists</li>
-              </ul>
-            </div>
-
-            <div>
-              <b>Natural Hair</b>
-              <ul className="space-y-1">
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Silk Press
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Wash & Style
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">Blowout</li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Conditioning Treatment
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Two-Strand Twist
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Curl Definition
-                </li>
-              </ul>
-            </div>
-            <div>
-              <b>Weaves/Wigs</b>
-              <ul className="space-y-1">
-                <li className="hover:text-amber-600 cursor-pointer">Sew-ins</li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Wig Installs
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Quick Weaves
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      )}
-      {hoveredCategory === "Barbering" && (
-        <div className="absolute top-full left-0 w-full bg-white border border-gray-200 p-6 z-50">
-          <div className="flex gap-6">
-            <div>
-              <b>Hair Services</b>
-              <ul className="space-y-1">
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Shape-up / Line-up
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">Fade</li>
-                <li className="hover:text-amber-600 cursor-pointer">Taper</li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Beard grooming
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Full haircut
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Kids cut
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <b>Add-Ons</b>
-              <ul className="space-y-1">
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Hot towel treatment
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Razor finish
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      )}
-      {hoveredCategory === "Nails" && (
-        <div className="absolute top-full left-0 w-full bg-white border border-gray-200 p-6 z-50">
-          <div className="flex gap-6">
-            <div>
-              <b>Acrylics</b>
-              <ul className="space-y-1">
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Full set
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">Refill</li>
-                <li className="hover:text-amber-600 cursor-pointer">Removal</li>
-                <li className="hover:text-amber-600 cursor-pointer">Ombre</li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Encapsulated Designs
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <b>Press-Ons</b>
-              <ul className="space-y-1">
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Custom press-ons
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Basic press-ons
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Press-on application
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <b>Gel/Polish</b>
-              <ul className="space-y-1">
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Regular polish
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Gel polish
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Nail art
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  French tips
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      )}{" "}
-      {hoveredCategory === "Lashes" && (
-        <div className="absolute top-full left-0 w-full bg-white border border-gray-200 p-6 z-50">
-          <div className="flex gap-6">
-            <div>
-              <b>Lash Services</b>
-              <ul className="space-y-1">
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Classic Lashes
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Volume Lashes
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Hybrid Lashes
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Lash Lift
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Lash Tint
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Lash Removal
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <b>Add-Ons</b>
-              <ul className="space-y-1">
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Brow tinting
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Lash lift combo
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      )}
-      {hoveredCategory === "Makeup" && (
-        <div className="absolute top-full left-0 w-full bg-white border border-gray-200 p-6 z-50">
-          <div className="flex gap-6">
-            <div>
-              <b>Makeup Services</b>
-              <ul className="space-y-1">
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Bridal Makeup
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Special Event Makeup
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Everyday Makeup
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Airbrush Makeup
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Makeup Lessons
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Brow Shaping
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <b>Add-Ons</b>
-              <ul className="space-y-1">
-                <li className="hover:text-amber-600 cursor-pointer">
-                  False lashes
-                </li>
-                <li className="hover:text-amber-600 cursor-pointer">
-                  Touch-up kit
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
