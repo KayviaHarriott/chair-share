@@ -170,7 +170,7 @@ export const Home = () => {
               </div>
             </div>
 
-            <div className="pb-8 -mt-60 relative z-10 ">
+            <div className="pb-14 -mt-60 relative z-10 ">
               <div className="pt-20 bg-linear-to-t from-[#eff1f3] via-[#eff1f3]/85 to-transparent pb-4 font-serif">
                 <h2 className="text-2xl sm:text-2xl lg:text-3xl max-w-[500px] mb-2 pt-4 ">
                   <span className="text-gray-500">
