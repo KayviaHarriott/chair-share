@@ -66,7 +66,7 @@ export const Home = () => {
         backgroundColor=""
         content={
           <>
-          <div className="flex gap-2 pt-14 -mt-8 opacity-12">
+            <div className="flex gap-2 pt-14 -mt-8 opacity-12">
               <div className="h-full w-1/3 flex flex-col gap-2">
                 {/* <img className=" h-[300px] w-1/3" src="/imgs/image_1.png"/> */}
                 <div className="h-[300px] shadow-lg shadow-gray-300 bg-cover grayscale-60 rounded-2xl bg-[url(/imgs/image_1.png)]"></div>
@@ -88,11 +88,11 @@ export const Home = () => {
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif mb-6">
                 <span className="text-slate-900">Book Your</span>
                 <br />
-                <span className="text-[#E5B819]">Perfect Chair</span>
+                <span className="text-[#FF8500]">Perfect Chair</span>
               </h1>
 
               {/* Subtitle */}
-              <p className="text-lg sm:text-xl text-slate-700 mb-12 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-lg sm:text-xl text-slate-800 mb-12 max-w-2xl mx-auto leading-relaxed">
                 Discover and book top-rated beauty professionals in your area.
                 Seamless scheduling, premium service, elevated experience.
               </p>
@@ -124,7 +124,7 @@ export const Home = () => {
                       className="w-full pl-12 pr-4 py-4 text-slate-700 placeholder-slate-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-all"
                     />
                   </div>
-                  <button className="w-full font-serif sm:w-auto px-8 py-4 bg-[#d7a524] hover:bg-amber-600 text-white  rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2">
+                  <button className="w-full font-serif sm:w-auto px-8 py-4 bg-[#FF8500] hover:bg-amber-600 text-white  rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2">
                     Search
                   </button>
                 </div>
@@ -151,24 +151,66 @@ export const Home = () => {
       />
 
       {/* Styling Images * How to Section */}
-      <Section content={<div> </div>} />
+      <Section
+        content={
+          <div className="mt-20 flex justify-between">
+            {[
+              {
+                icon: "/icons/shieldIcon.png",
+                alt: "shield icon",
+                title: "Vetted Beauty Professionals",
+                description: "Every stylist is verified before joining",
+              },
+              { title: "" },
+              {
+                icon: "/icons/starIcon.png",
+                alt: "star icon",
+                title: "Trusted Services",
+                description: "Backed by real portfolios and client reviews",
+              },
+              { title: "" },
+              {
+                icon: "/icons/privacyIcon.png",
+                alt: "lock icon",
+                title: "Secure Bookings",
+                description: "Clear pricing and transparent availability",
+              },
+            ].map((item, index) => (
+              <div key={index} className="">
+                {item.title ? (
+                  <div className="flex gap-3">
+                    <img className="h-10" src={item.icon} />
+                    <div className="">
+                      <p className="font-bold">{item.title}</p>
+                      <p className="text-sm text-slate-600">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="border-l h-full border-slate-200"></div>
+                )}
+              </div>
+            ))}
+          </div>
+        }
+      />
 
       <Section
         backgroundColor=""
         content={
           <>
-
             <div className="py-14 ">
               <div className="pt-6 pb-4 font-serif">
                 <h2 className="text-2xl sm:text-2xl lg:text-3xl max-w-[500px] ">
-                  <span className="text-gray-500">
+                  <span>
                     Finding a stylist near you shouldn't be that hard,
                   </span>{" "}
-                  <span>let's make it easier.</span>
+                  <span className="text-[#F67600]">let's make it easier.</span>
                 </h2>
               </div>
 
-              <div className="flex w-full gap-4 bg-[#eff1f3] ">
+              <div className="flex w-full gap-4">
                 <SectionCard
                   width={3}
                   title="Explore Services"
@@ -263,41 +305,45 @@ export const Home = () => {
       />
 
       {/* Book Appointment */}
-      <Section backgroundColor="" content={<>
-        
-        <div className="py-16 text-center">
-        {/* Code Goes Here */}
-        <div className="max-w-4xl mx-auto">
-          {/* Heading */}
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-gray-900 mb-6">
-            Ready to Book Your{" "}
-            <span className="font-bold">Next Appointment?</span>
-          </h2>
+      <Section
+        backgroundColor=""
+        content={
+          <>
+            <div className="py-16 text-center">
+              {/* Code Goes Here */}
+              <div className="max-w-4xl mx-auto">
+                {/* Heading */}
+                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-gray-900 mb-6">
+                  Ready to Book Your{" "}
+                  <span className="font-bold">Next Appointment?</span>
+                </h2>
 
-          {/* Subtitle */}
-          <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
-            Join thousands of satisfied clients who trust ChairShare for their
-            beauty needs
-          </p>
+                {/* Subtitle */}
+                <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
+                  Join thousands of satisfied clients who trust ChairShare for
+                  their beauty needs
+                </p>
 
-          {/* CTA Buttons */}
-          <div className="flex w-full justify-center gap-3">
-            <Link
-              className="bg-linear-to-br from-amber-500 to-[#BF4E30] px-6 py-2 text-white rounded-full"
-              to="/register"
-            >
-              Get Started
-            </Link>
-            <Link
-              className="border border-gray-200 bg-white px-6 py-2 text-gray-500 rounded-full"
-              to="/faqs"
-            >
-              Learn More
-            </Link>
-          </div>
-        </div>
-      </div>
-        </>} />
+                {/* CTA Buttons */}
+                <div className="flex w-full justify-center gap-3">
+                  <Link
+                    className="bg-linear-to-br from-amber-500 to-[#BF4E30] px-6 py-2 text-white rounded-full"
+                    to="/register"
+                  >
+                    Get Started
+                  </Link>
+                  <Link
+                    className="border border-gray-200 bg-white px-6 py-2 text-gray-500 rounded-full"
+                    to="/faqs"
+                  >
+                    Learn More
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </>
+        }
+      />
     </div>
   );
 };
