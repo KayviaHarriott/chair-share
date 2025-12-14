@@ -170,7 +170,7 @@ export const NavBar = () => {
                   className="relative"
                   onMouseEnter={() => setHoveredCategory(category.name)}
                 >
-                  <button className="hover:text-amber-600 transition-colors flex items-center mt-3">
+                  <button className="hover:text-amber-600 transition-colors flex items-center mt-3 cursor-pointer">
                     {category.name}
 
                     {/* Only show arrow if subcategories exist */}
@@ -198,7 +198,7 @@ export const NavBar = () => {
                       <div className="flex gap-24">
                         {category.subcategories.map((subcategory, index) => (
                           <div key={index}>
-                            <p className="pb-2 font-bold hover:text-amber-600 cursor-pointer">{subcategory.title}</p>
+                            <p className="pb-2 font-bold">{subcategory.title}</p>
                             <ul className="space-y-1 text-gray-800">
                               {subcategory.items.map((item, itemIndex) => (
                                 <li
