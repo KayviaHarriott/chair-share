@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-
+import { KeyboardArrowDownRounded } from "@mui/icons-material";
 // Categories data structure
 const categories = [
   {
@@ -92,15 +92,15 @@ export const NavBar = () => {
           <p className="text-sm">FAQs</p>
         </div>
       </div>
-      <nav className="shadow-sm/5 bg-white border-b border-gray-200 flex flex-col justify-center pt-4 items-center text-gray-800 ">
+      <nav className="shadow-sm/5 bg-white border-b border-gray-200 flex flex-col justify-center pt-4 items-center ">
         <div className="max-w-[1200px] px-4 pb-2 w-full">
-          <div className="w-full flex justify-between items-center font-semibold">
+          <div className="w-full flex justify-between items-center">
             <div className="w-1/3 flex items-center gap-2 mb-1">
               <Link to="/">
                 <img className="h-[50px]" src="./imgs/HorizontalLogo.png" />
               </Link>
             </div>
-            <div className="w-1/3 flex items-center justify-center  gap-6">
+            <div className="w-1/3 flex items-center justify-center gap-6">
               <Link to="/about">How it Works</Link>
               <Link to="/merchants">Services</Link>
               <Link to="/">Near Me</Link>
@@ -117,7 +117,7 @@ export const NavBar = () => {
           </div>
         </div>
 
-        <div className="border-t w-full pt-3 border-gray-300 flex items-center justify-center">
+        <div className="border-t w-full pt-3 border-gray-200 flex items-center justify-center">
           <div className="max-w-[1200px] w-full flex gap-8  pb-3 px-4 ">
             {categories.map((category) => (
               <div
@@ -126,8 +126,8 @@ export const NavBar = () => {
                 onMouseEnter={() => setHoveredCategory(category.name)}
                 onMouseLeave={() => setHoveredCategory(null)}
               >
-                <button className="font-semibold text-md hover:text-amber-600 transition-colors">
-                  {category.name}
+                <button className="hover:text-amber-600 transition-colors flex items-center">
+                  {category.name} <KeyboardArrowDownRounded/>
                 </button>
               </div>
             ))}
@@ -137,7 +137,7 @@ export const NavBar = () => {
      <div className="">
        {categories.map((category) => (
          hoveredCategory === category.name && (
-           <div key={category.name} className="absolute top-full left-0 w-full bg-white   border-gray-200 px-6 pt-2 pb-4 z-50 flex justify-center">
+           <div key={category.name} className="absolute top-full left-0 w-full bg-white   border-gray-200 px-6 pt-5 pb-8 z-50 flex justify-center">
             <div className="max-w-[1200px] w-full px-4"> 
              <div className="flex gap-24 ">
                {category.subcategories.map((subcategory, index) => (
