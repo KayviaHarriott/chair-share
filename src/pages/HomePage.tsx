@@ -92,7 +92,7 @@ export const Home = () => {
               </h1>
 
               {/* Subtitle */}
-              <p className="text-lg sm:text-xl text-slate-600 mb-12 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-lg sm:text-lg text-slate-800 mb-12 max-w-2xl mx-auto leading-relaxed">
                 Discover and book top-rated beauty professionals in your area.
                 Seamless scheduling, premium service, elevated experience.
               </p>
@@ -131,7 +131,7 @@ export const Home = () => {
               </div>
 
               {/* Popular Searches */}
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 flex-wrap">
+              {/* <div className="flex flex-col sm:flex-row items-center justify-center gap-3 flex-wrap">
                 <span className="text-sm text-slate-600 ">
                   Popular searches:
                 </span>
@@ -144,7 +144,7 @@ export const Home = () => {
                     <span className="text-sm font-medium">{search.label}</span>
                   </button>
                 ))}
-              </div>
+              </div> */}
             </div>
           </>
         }
@@ -153,7 +153,7 @@ export const Home = () => {
       {/* Site Benefits */}
       <Section
         content={
-          <div className="mt-20 pb-10 px-16 flex justify-between">
+          <div className="mt-28 pb-8 px-16 flex justify-between">
             {[
               {
                 icon: "/icons/shieldIcon.png",
@@ -196,19 +196,32 @@ export const Home = () => {
         }
       />
 
+      <Section
+        content={
+          <div className="w-full flex items-center justify-center py-8">
+            <hr className="mt-3 h-0.5 border-t-0 w-22 bg-black opacity-25 dark:bg-white/10" />
+            <img
+              className="h-16 -mb-4 opacity-25"
+              src="/icons/scissorsIcon.png"
+            />
+            <hr className="mt-3 h-0.5 border-t-0 w-22 bg-black opacity-25 dark:bg-white/10" />
+          </div>
+        }
+      />
+
       {/* How To */}
       <Section
         backgroundColor=""
         content={
           <>
-            <div className="pt-12 pb-18 px-16 ">
-              <div className="pb-4 font-serif  flex items-center justify-center text-center">
+            <div className="pt-5 pb-18 px-16 ">
+              <div className="pb-4 font-serif flex flex-col items-center justify-center text-center">
                 {/* <div className="h-1 bg-[#F67600] w-[80px] mb-2"></div> */}
                 <h2 className="text-2xl sm:text-2xl lg:text-3xl max-w-[500px] ">
-                  <span>
-                    Finding a stylist shouldn't be hard,
-                  </span>{" "}
-                  <span className="text-[#F67600] font-semibold">we make it easier.</span>
+                  <span>Finding a stylist shouldn't be hard,</span>{" "}
+                  <span className="text-[#F67600] font-semibold">
+                    we make it easier.
+                  </span>
                 </h2>
               </div>
 
