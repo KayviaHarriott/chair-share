@@ -118,7 +118,7 @@ export const NavBar = () => {
         </div>
 
         <div className="border-t w-full pt-2 border-gray-200 flex items-center justify-center">
-          <div className="max-w-[1200px] w-full flex gap-8 pb-3 px-4 ">
+          <div className="max-w-[1200px] w-full flex gap-8 pb-4 pt-1 px-4 ">
             {categories.map((category) => (
               <div
                 key={category.name}
