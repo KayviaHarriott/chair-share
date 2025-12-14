@@ -153,7 +153,7 @@ export const Home = () => {
       {/* Styling Images * How to Section */}
       <Section
         content={
-          <div className="mt-20 flex justify-between">
+          <div className="mt-20 pb-10 flex justify-between">
             {[
               {
                 icon: "/icons/shieldIcon.png",
@@ -200,8 +200,8 @@ export const Home = () => {
         backgroundColor=""
         content={
           <>
-            <div className="py-14 ">
-              <div className="pt-6 pb-4 font-serif">
+            <div className="py-12 ">
+              <div className="pb-4 font-serif">
                 <h2 className="text-2xl sm:text-2xl lg:text-3xl max-w-[500px] ">
                   <span>
                     Finding a stylist near you shouldn't be that hard,
@@ -264,45 +264,21 @@ export const Home = () => {
           </>
         }
       />
-
-      {/* Banner */}
+{/* Banner */}
       <Section
-        backgroundColor="#272727"
         content={
           <>
-            <div className="text-white flex justify-between w-full gap-6 text-center py-12 px-12">
-              {[
-                {
-                  icon: "/icons/shieldIcon.png",
-                  alt: "shield icon",
-                  title: "Vetted Beauty Professionals",
-                  description: "Every stylist is verified before joining",
-                },
-                {
-                  icon: "/icons/starIcon.png",
-                  alt: "star icon",
-                  title: "Trusted Services",
-                  description: "Backed by real portfolios and client reviews",
-                },
-                {
-                  icon: "/icons/privacyIcon.png",
-                  alt: "lock icon",
-                  title: "Secure Bookings",
-                  description: "Clear pricing and transparent availability",
-                },
-              ].map((item, index) => (
-                <BannerIconCard
-                  key={index}
-                  title={item.title}
-                  alt={item.alt}
-                  description={item.description}
-                  icon={item.icon}
-                />
-              ))}
+            <div className="bg-[#272727] rounded-lg text-white flex justify-between w-full gap-6 text-center py-12 px-12">
+             <p>Text here</p>
             </div>
           </>
         }
       />
+
+      <Section content={<div> </div>}/>
+
+
+      
 
       {/* Book Appointment */}
       <Section
