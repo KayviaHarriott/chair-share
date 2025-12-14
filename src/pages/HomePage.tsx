@@ -85,20 +85,20 @@ export const Home = () => {
 
             <div className="max-w-4xl mx-auto text-center pt-14 relative -mt-130 z-10">
               {/* Heading */}
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif mb-6">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif mb-2">
                 <span className="text-slate-900">Book Your</span>
                 <br />
                 <span className="text-[#F67600]">Perfect Chair</span>
               </h1>
 
               {/* Subtitle */}
-              <p className="text-lg sm:text-xl text-slate-800 mb-12 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-lg sm:text-xl text-slate-600 mb-12 max-w-2xl mx-auto leading-relaxed">
                 Discover and book top-rated beauty professionals in your area.
                 Seamless scheduling, premium service, elevated experience.
               </p>
 
               {/* Search Bar */}
-              <div className="bg-white rounded-2xl shadow-xl shadow-[#FCECCD] p-4 mb-8 max-w-3xl mx-auto">
+              <div className="bg-white rounded-2xl shadow-xl shadow-[#FCECCD]/40 p-4 mb-8 max-w-3xl mx-auto">
                 <div className="flex flex-col sm:flex-row gap-3 items-center">
                   <div className="relative flex-1 w-full">
                     <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
@@ -124,7 +124,7 @@ export const Home = () => {
                       className="w-full pl-12 pr-4 py-4 text-slate-700 placeholder-slate-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-all"
                     />
                   </div>
-                  <button className="w-full font-serif sm:w-auto px-8 py-4 bg-[#FF8500] hover:bg-amber-600 text-white  rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2">
+                  <button className="w-full font-serif sm:w-auto px-8 py-4 bg-[#FF8500] hover:bg-amber-600 text-white  rounded-xl shadow-lg/5 hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2">
                     Search
                   </button>
                 </div>
@@ -153,7 +153,7 @@ export const Home = () => {
       {/* Site Benefits */}
       <Section
         content={
-          <div className="mt-15 pb-10 px-16 flex justify-between">
+          <div className="mt-20 pb-10 px-16 flex justify-between">
             {[
               {
                 icon: "/icons/shieldIcon.png",
