@@ -100,12 +100,12 @@ export const NavBar = () => {
                 <img className="h-[50px]" src="./imgs/HorizontalLogo.png" />
               </Link>
             </div>
-            <div className="w-1/3 flex items-center justify-center font-serif gap-6">
+            <div className="w-1/3 flex items-center justify-center  gap-6">
               <Link to="/about">How it Works</Link>
               <Link to="/merchants">Services</Link>
               <Link to="/">Near Me</Link>
             </div>
-            <div className="w-1/3 flex justify-end items-center gap-6 font-serif">
+            <div className="w-1/3 flex justify-end items-center gap-6 ">
               <Link to="/merchants">Sign In</Link>
               <Link
                 className="bg-linear-to-br from-amber-500 to-[#BF4E30] px-6 py-2 text-white rounded-full"
@@ -126,7 +126,7 @@ export const NavBar = () => {
                 onMouseEnter={() => setHoveredCategory(category.name)}
                 onMouseLeave={() => setHoveredCategory(null)}
               >
-                <button className="font-serif text-md hover:text-amber-600 transition-colors">
+                <button className=" text-md hover:text-amber-600 transition-colors">
                   {category.name}
                 </button>
               </div>
@@ -139,7 +139,7 @@ export const NavBar = () => {
          hoveredCategory === category.name && (
            <div key={category.name} className="absolute top-full left-0 w-full bg-white   border-gray-200 px-6 pt-2 pb-4 z-50 flex justify-center">
             <div className="max-w-[1200px] w-full px-4"> 
-             <div className="flex gap-24 font-serif">
+             <div className="flex gap-24 ">
                {category.subcategories.map((subcategory, index) => (
                  <div key={index}>
                    <p className="pb-2 font-bold ">{subcategory.title}</p>
