@@ -46,7 +46,7 @@ export const Updates = () => {
     });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-linear-to-br from-slate-50 to-slate-100 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
@@ -100,7 +100,7 @@ export const Updates = () => {
                 className="relative bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
               >
                 {/* Timeline dot - hidden on mobile */}
-                <div className="hidden md:block absolute -left-8 top-8 w-16 flex justify-center">
+                <div className="hidden md:block absolute -left-8 top-8 w-16 justify-center">
                   <div className="w-4 h-4 rounded-full bg-blue-500 border-4 border-white shadow-md" />
                 </div>
 

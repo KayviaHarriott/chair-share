@@ -50,7 +50,7 @@ export const RegisterPage = () => {
   return (
     <div className="min-h-screen flex">
       {/* Left Side - Image Carousel */}
-      <div className="hidden lg:flex lg:w-1/2 relative bg-gradient-to-br from-indigo-900 via-purple-800 to-indigo-900 overflow-hidden">
+      <div className="hidden lg:flex lg:w-1/2 relative bg-linear-to-br from-indigo-900 via-purple-800 to-indigo-900 overflow-hidden">
         {/* Carousel Content */}
         <div className="relative w-full h-full">
           {slides.map((slide, index) => (

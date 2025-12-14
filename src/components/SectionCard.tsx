@@ -12,7 +12,7 @@ export const SectionCard: React.FC<SectionProps> = ({ width, title, description,
     >
         <div className="flex flex-col items-center text-center">
             <p className="font-bold text-lg">{title}</p>
-            <p className="font-light text-slate-600 max-w-[240px]">{description}</p>
+            <p className="font-light text-slate-600 max-w-60">{description}</p>
         </div>
         <div className="flex flex-col justify-end items-center h-full">
                       <p>One</p>

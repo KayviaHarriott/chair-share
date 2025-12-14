@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { BannerIconCard } from "../components/BannerIconCard";
+// import { BannerIconCard } from "../components/BannerIconCard";
 import { Section } from "../components/Section";
 import { SectionCard } from "../components/SectionCard";
 
@@ -206,9 +206,9 @@ export const Home = () => {
                 {/* <div className="h-1 bg-[#F67600] w-[80px] mb-2"></div> */}
                 <h2 className="text-2xl sm:text-2xl lg:text-3xl max-w-[500px] ">
                   <span>
-                    Finding a stylist shouldn't be that hard,
+                    Finding a stylist shouldn't be hard,
                   </span>{" "}
-                  <span className="text-[#F67600] font-semibold">let's make it easier.</span>
+                  <span className="text-[#F67600] font-semibold">we make it easier.</span>
                 </h2>
               </div>
 
