@@ -150,7 +150,7 @@ export const NavBar = () => {
               <Link className="hover:text-amber-600 cursor-pointer" to="/">Near Me</Link>
             </div>
             <div className="w-1/3 flex justify-end items-center gap-6 ">
-              <Link to="/merchants">Sign In</Link>
+              <Link className="hover:text-amber-600" to="/merchants">Sign In</Link>
               <Link
                 className="bg-linear-to-br from-amber-500 to-[#BF4E30] px-6 py-2 text-white rounded-full"
                 to="/register"
