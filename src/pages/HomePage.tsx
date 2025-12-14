@@ -60,13 +60,30 @@ export const Home = () => {
   }, [placeholderText, isTyping, currentPhraseIndex, searchValue, phrases]);
 
   return (
-    <div className="bg-[#eff1f3] ">
+    <div className="bg-white ">
       {/* Header/CTA */}
       <Section
         backgroundColor=""
         content={
           <>
-            <div className="max-w-4xl mx-auto text-center pt-14 ">
+          <div className="flex gap-2 pt-14 -mt-8 opacity-12">
+              <div className="h-full w-1/3 flex flex-col gap-2">
+                {/* <img className=" h-[300px] w-1/3" src="/imgs/image_1.png"/> */}
+                <div className="h-[300px] shadow-lg shadow-gray-300 bg-cover grayscale-60 rounded-2xl bg-[url(/imgs/image_1.png)]"></div>
+                <div className="h-[200px] bg- bg-cover grayscale-60 rounded-2xl bg-no-repeat bg-[url(/imgs/image_6.png)]"></div>
+              </div>
+
+              <div className="h-full w-1/3 flex flex-col gap-2">
+                <div className="h-[200px] shadow-lg shadow-gray-300  bg-cover grayscale-60  bg-center rounded-2xl bg-no-repeat bg-[url(/imgs/image_5.png)]"></div>
+                <div className="h-[300px] bg-cover grayscale-60  rounded-2xl bg-no-repeat bg-[url(/imgs/image_4.png)]"></div>
+              </div>
+
+              <div className="h-full w-1/3">
+                <div className="h-[508px]  bg-cover grayscale-60  rounded-2xl bg-no-repeat bg-[url(/imgs/image_2.png)]"></div>
+              </div>
+            </div>
+
+            <div className="max-w-4xl mx-auto text-center pt-14 relative -mt-130 z-10">
               {/* Heading */}
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif mb-6">
                 <span className="text-slate-900">Book Your</span>
@@ -140,26 +157,10 @@ export const Home = () => {
         backgroundColor=""
         content={
           <>
-            <div className="flex gap-2 pt-14 ">
-              <div className="h-full w-1/3 flex flex-col gap-2 ">
-                {/* <img className=" h-[300px] w-1/3" src="/imgs/image_1.png"/> */}
-                <div className="h-[300px] shadow-lg shadow-gray-300 bg-cover grayscale-60 rounded-2xl bg-[url(/imgs/image_1.png)]"></div>
-                <div className="h-[200px] bg- bg-cover grayscale-60 rounded-2xl bg-no-repeat bg-[url(/imgs/image_6.png)]"></div>
-              </div>
 
-              <div className="h-full w-1/3 flex flex-col gap-2">
-                <div className="h-[200px] shadow-lg shadow-gray-300  bg-cover grayscale-60  bg-center rounded-2xl bg-no-repeat bg-[url(/imgs/image_5.png)]"></div>
-                <div className="h-[300px] bg-cover grayscale-60  rounded-2xl bg-no-repeat bg-[url(/imgs/image_4.png)]"></div>
-              </div>
-
-              <div className="h-full w-1/3">
-                <div className="h-[508px]  bg-cover grayscale-60  rounded-2xl bg-no-repeat bg-[url(/imgs/image_2.png)]"></div>
-              </div>
-            </div>
-
-            <div className="pb-14 -mt-60 relative z-10 ">
-              <div className="pt-6 bg-linear-to-t from-[#eff1f3] via-[#eff1f3]/85 to-transparent pb-4 font-serif">
-                <h2 className="text-2xl sm:text-2xl lg:text-3xl max-w-[500px] mt-24 pt-8 ">
+            <div className="py-14 ">
+              <div className="pt-6 pb-4 font-serif">
+                <h2 className="text-2xl sm:text-2xl lg:text-3xl max-w-[500px] ">
                   <span className="text-gray-500">
                     Finding a stylist near you shouldn't be that hard,
                   </span>{" "}
