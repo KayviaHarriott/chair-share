@@ -84,7 +84,7 @@ export const NavBar = () => {
   return (
     <div>
       <div className="bg-[#272727] text-gray-200 flex justify-center">
-        <div className="max-w-[1200px] w-full flex justify-end items-center gap-4 py-1 px-5">
+        <div className="max-w-[1200px] w-full flex justify-end items-center gap-4 py-1 px-5 ">
           <p className="text-sm">Become a Merchant</p>
           <p className="mb-1">|</p>
           <p className="text-sm">Contact Us</p>
@@ -92,8 +92,8 @@ export const NavBar = () => {
           <p className="text-sm">FAQs</p>
         </div>
       </div>
-      <nav className="shadow-sm/5 bg-white border-b border-gray-200 flex flex-col justify-center py-4  px-4 text-gray-800 ">
-        <div className="max-w-[1200px] w-full ">
+      <nav className="shadow-sm/5 bg-white border-b border-gray-200 flex flex-col justify-center pt-4  items-center text-gray-800 ">
+        <div className="max-w-[1200px] px-4 pb-2 w-full">
           <div className="w-full flex justify-between items-center">
             <div className="w-1/3 flex items-center gap-2 mb-1">
               <Link to="/">
@@ -117,41 +117,45 @@ export const NavBar = () => {
           </div>
         </div>
 
-        <div className="flex gap-6 mt-6">
-          {categories.map((category) => (
-            <div
-              key={category.name}
-              className="relative"
-              onMouseEnter={() => setHoveredCategory(category.name)}
-              onMouseLeave={() => setHoveredCategory(null)}
-            >
-              <button className="font-bold text-lg hover:text-amber-600 transition-colors">
-                {category.name}
-              </button>
-            </div>
-          ))}
+        <div className="border-t w-full pt-3 border-gray-300 flex items-center justify-center">
+          <div className=" max-w-[1200px] w-full flex gap-8  pb-3 px-4 ">
+            {categories.map((category) => (
+              <div
+                key={category.name}
+                className="relative"
+                onMouseEnter={() => setHoveredCategory(category.name)}
+                onMouseLeave={() => setHoveredCategory(null)}
+              >
+                <button className="font-serif text-md hover:text-amber-600 transition-colors">
+                  {category.name}
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
       </nav>
-      {categories.map((category) => (
-        hoveredCategory === category.name && (
-          <div key={category.name} className="absolute top-full left-0 w-full bg-white border border-gray-200 p-6 z-50">
-            <div className="flex gap-6">
-              {category.subcategories.map((subcategory, index) => (
-                <div key={index}>
-                  <b>{subcategory.title}</b>
-                  <ul className="space-y-1">
-                    {subcategory.items.map((item, itemIndex) => (
-                      <li key={itemIndex} className="hover:text-amber-600 cursor-pointer">
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-        )
-      ))}
+     <div className="">
+       {categories.map((category) => (
+         hoveredCategory === category.name && (
+           <div key={category.name} className="absolute top-full left-0 w-full bg-white   border-gray-200 p-6 z-50 ">
+             <div className="flex gap-24  ">
+               {category.subcategories.map((subcategory, index) => (
+                 <div key={index}>
+                   <p className="pb-2 font-bold ">{subcategory.title}</p>
+                   <ul className="space-y-1 ">
+                     {subcategory.items.map((item, itemIndex) => (
+                       <li key={itemIndex} className="hover:text-amber-600 cursor-pointer">
+                         {item}
+                       </li>
+                     ))}
+                   </ul>
+                 </div>
+               ))}
+             </div>
+           </div>
+         )
+       ))}
+     </div>
     </div>
   );
 };
