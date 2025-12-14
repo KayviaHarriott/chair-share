@@ -145,9 +145,9 @@ export const NavBar = () => {
               </Link>
             </div>
             <div className="w-1/3 flex items-center justify-center gap-6">
-              <Link to="/about">How it Works</Link>
-              <Link to="/merchants">Services</Link>
-              <Link to="/">Near Me</Link>
+              <Link className="hover:text-amber-600 cursor-pointer" to="/about">How it Works</Link>
+              <Link className="hover:text-amber-600 cursor-pointer" to="/merchants">Services</Link>
+              <Link className="hover:text-amber-600 cursor-pointer" to="/">Near Me</Link>
             </div>
             <div className="w-1/3 flex justify-end items-center gap-6 ">
               <Link to="/merchants">Sign In</Link>
@@ -197,7 +197,7 @@ export const NavBar = () => {
                     <div className="flex gap-24">
                       {category.subcategories.map((subcategory, index) => (
                         <div key={index}>
-                          <p className="pb-2 font-bold">{subcategory.title}</p>
+                          <p className="pb-2 font-bold hover:text-amber-600 cursor-pointer">{subcategory.title}</p>
                           <ul className="space-y-1 text-gray-800">
                             {subcategory.items.map((item, itemIndex) => (
                               <li
