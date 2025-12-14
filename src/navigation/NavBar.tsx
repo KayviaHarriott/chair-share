@@ -117,8 +117,8 @@ export const NavBar = () => {
           </div>
         </div>
 
-        <div className="border-t w-full pt-3 border-gray-200 flex items-center justify-center">
-          <div className="max-w-[1200px] w-full flex gap-8  pb-3 px-4 ">
+        <div className="border-t w-full pt-2 border-gray-200 flex items-center justify-center">
+          <div className="max-w-[1200px] w-full flex gap-8 pb-3 px-4 ">
             {categories.map((category) => (
               <div
                 key={category.name}
@@ -127,7 +127,7 @@ export const NavBar = () => {
                 onMouseLeave={() => setHoveredCategory(null)}
               >
                 <button className="hover:text-amber-600 transition-colors flex items-center">
-                  {category.name} <KeyboardArrowDownRounded/>
+                  {category.name} <KeyboardArrowDownRounded sx={{marginTop: "3px"}}/>
                 </button>
               </div>
             ))}
