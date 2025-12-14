@@ -8,74 +8,118 @@ const categories = [
     subcategories: [
       {
         title: "Braids",
-        items: ["Box Braids", "Knotless Braids", "Feed-in Braids", "Locs (starter /retwist)", "Cornrows", "Twists"]
+        items: [
+          "Box Braids",
+          "Knotless Braids",
+          "Feed-in Braids",
+          "Locs (starter /retwist)",
+          "Cornrows",
+          "Twists",
+        ],
       },
       {
         title: "Natural Hair",
-        items: ["Silk Press", "Wash & Style", "Blowout", "Conditioning Treatment", "Two-Strand Twist", "Curl Definition"]
+        items: [
+          "Silk Press",
+          "Wash & Style",
+          "Blowout",
+          "Conditioning Treatment",
+          "Two-Strand Twist",
+          "Curl Definition",
+        ],
       },
       {
         title: "Weaves/Wigs",
-        items: ["Sew-ins", "Wig Installs", "Quick Weaves"]
-      }
-    ]
+        items: ["Sew-ins", "Wig Installs", "Quick Weaves"],
+      },
+    ],
   },
   {
     name: "Barbering",
     subcategories: [
       {
         title: "Hair Services",
-        items: ["Shape-up / Line-up", "Fade", "Taper", "Beard grooming", "Full haircut", "Kids cut"]
+        items: [
+          "Shape-up / Line-up",
+          "Fade",
+          "Taper",
+          "Beard grooming",
+          "Full haircut",
+          "Kids cut",
+        ],
       },
       {
         title: "Add-Ons",
-        items: ["Hot towel treatment", "Razor finish"]
-      }
-    ]
+        items: ["Hot towel treatment", "Razor finish"],
+      },
+    ],
   },
   {
     name: "Nails",
     subcategories: [
       {
         title: "Acrylics",
-        items: ["Full set", "Refill", "Removal", "Ombre", "Encapsulated Designs"]
+        items: [
+          "Full set",
+          "Refill",
+          "Removal",
+          "Ombre",
+          "Encapsulated Designs",
+        ],
       },
       {
         title: "Press-Ons",
-        items: ["Custom press-ons", "Basic press-ons", "Press-on application"]
+        items: ["Custom press-ons", "Basic press-ons", "Press-on application"],
       },
       {
         title: "Gel/Polish",
-        items: ["Regular polish", "Gel polish", "Nail art", "French tips"]
-      }
-    ]
+        items: ["Regular polish", "Gel polish", "Nail art", "French tips"],
+      },
+    ],
   },
   {
     name: "Lashes",
     subcategories: [
       {
         title: "Lash Services",
-        items: ["Classic Lashes", "Volume Lashes", "Hybrid Lashes", "Lash Lift", "Lash Tint", "Lash Removal"]
+        items: [
+          "Classic Lashes",
+          "Volume Lashes",
+          "Hybrid Lashes",
+          "Lash Lift",
+          "Lash Tint",
+          "Lash Removal",
+        ],
       },
       {
         title: "Add-Ons",
-        items: ["Brow tinting", "Lash lift combo"]
-      }
-    ]
+        items: ["Brow tinting", "Lash lift combo"],
+      },
+    ],
   },
   {
     name: "Makeup",
     subcategories: [
       {
         title: "Makeup Services",
-        items: ["Bridal Makeup", "Special Event Makeup", "Everyday Makeup", "Airbrush Makeup", "Makeup Lessons", "Brow Shaping"]
+        items: [
+          "Bridal Makeup",
+          "Special Event Makeup",
+          "Everyday Makeup",
+          "Airbrush Makeup",
+          "Makeup Lessons",
+          "Brow Shaping",
+        ],
       },
       {
         title: "Add-Ons",
-        items: ["False lashes", "Touch-up kit"]
-      }
-    ]
-  }
+        items: ["False lashes", "Touch-up kit"],
+      },
+    ],
+  },
+  {
+    name: "Recommended Supply Stores",
+  },
 ];
 
 export const NavBar = () => {
@@ -117,8 +161,8 @@ export const NavBar = () => {
           </div>
         </div>
 
-        <div className="border-t w-full pt-2 border-gray-200 flex items-center justify-center">
-          <div className="max-w-[1200px] w-full flex gap-8 pb-4 pt-1 px-4 ">
+        <div className="border-t w-full pt-1 border-gray-200 flex items-center justify-center">
+          <div className="max-w-[1200px] w-full flex gap-8 pb-4 px-4 ">
             {categories.map((category) => (
               <div
                 key={category.name}
@@ -126,37 +170,53 @@ export const NavBar = () => {
                 onMouseEnter={() => setHoveredCategory(category.name)}
                 onMouseLeave={() => setHoveredCategory(null)}
               >
-                <button className="hover:text-amber-600 transition-colors flex items-center">
-                  {category.name} <KeyboardArrowDownRounded sx={{marginTop: "3px"}}/>
+                <button className="hover:text-amber-600 transition-colors flex items-center mt-3">
+                  {category.name}
+
+                  {/* Only show arrow if subcategories exist */}
+                  {category.subcategories && (
+                    <KeyboardArrowDownRounded sx={{ marginTop: "0px" }} />
+                  )}
                 </button>
               </div>
             ))}
           </div>
         </div>
       </nav>
-     <div className="">
-       {categories.map((category) => (
-         hoveredCategory === category.name && (
-           <div key={category.name} className="absolute top-full left-0 w-full bg-white   border-gray-200 px-6 pt-5 pb-8 z-50 flex justify-center">
-            <div className="max-w-[1200px] w-full px-4"> 
-             <div className="flex gap-24 ">
-               {category.subcategories.map((subcategory, index) => (
-                 <div key={index}>
-                   <p className="pb-2 font-bold ">{subcategory.title}</p>
-                   <ul className="space-y-1 text-gray-800">
-                     {subcategory.items.map((item, itemIndex) => (
-                       <li key={itemIndex} className="hover:text-amber-600 cursor-pointer">
-                         {item}
-                       </li>
-                     ))}
-                   </ul>
-                 </div>
-               ))}
-             </div></div>
-           </div>
-         )
-       ))}
-     </div>
+      <div className="">
+        <div className="">
+          {categories.map(
+            (category) =>
+              hoveredCategory === category.name &&
+              category.subcategories && ( // ⬅ prevents dropdown from rendering if none
+                <div
+                  key={category.name}
+                  className="absolute top-full left-0 w-full bg-white border-gray-200 px-6 pt-5 pb-8 z-50 flex justify-center"
+                >
+                  <div className="max-w-[1200px] w-full px-4">
+                    <div className="flex gap-24">
+                      {category.subcategories.map((subcategory, index) => (
+                        <div key={index}>
+                          <p className="pb-2 font-bold">{subcategory.title}</p>
+                          <ul className="space-y-1 text-gray-800">
+                            {subcategory.items.map((item, itemIndex) => (
+                              <li
+                                key={itemIndex}
+                                className="hover:text-amber-600 cursor-pointer"
+                              >
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )
+          )}
+        </div>
+      </div>
     </div>
   );
 };
