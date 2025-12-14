@@ -170,6 +170,8 @@ export const Home = () => {
               <div className="flex w-full gap-4 bg-[#eff1f3] ">
                 <SectionCard
                   width={3}
+                  title="Explore Services"
+                  description="From grooming to styling, browse professionals across categories."
                   content={
                     <div className="flex flex-col justify-between h-full">
                       <div className="h-full">
@@ -183,6 +185,8 @@ export const Home = () => {
                 />
                 <SectionCard
                   width={3}
+                  title="Schedule Easily"
+                  description="Pick a pro, select your time, and confirm with one tap."
                   content={
                     <div>
                       <p>One</p>
@@ -194,6 +198,8 @@ export const Home = () => {
                 />
                 <SectionCard
                   width={3}
+                  title="Enjoy the Results"
+                  description="Let your expert handle the rest—simple, smooth, and stress-free."
                   content={
                     <div>
                       <p>One</p>
