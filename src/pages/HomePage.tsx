@@ -75,7 +75,7 @@ export const Home = () => {
               </h1>
 
               {/* Subtitle */}
-              <p className="text-lg sm:text-xl text-slate-600 mb-12 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-lg sm:text-xl text-slate-700 mb-12 max-w-2xl mx-auto leading-relaxed">
                 Discover and book top-rated beauty professionals in your area.
                 Seamless scheduling, premium service, elevated experience.
               </p>
@@ -144,7 +144,7 @@ export const Home = () => {
               <div className="h-full w-1/3 flex flex-col gap-2 ">
                 {/* <img className=" h-[300px] w-1/3" src="/imgs/image_1.png"/> */}
                 <div className="h-[300px] shadow-lg shadow-gray-300 bg-cover grayscale-60 rounded-2xl bg-[url(/imgs/image_1.png)]"></div>
-                <div className="h-[200px] bg-center bg-cover grayscale-60  rounded-2xl bg-no-repeat bg-[url(/imgs/image_6.png)]"></div>
+                <div className="h-[200px] bg- bg-cover grayscale-60 rounded-2xl bg-no-repeat bg-[url(/imgs/image_6.png)]"></div>
               </div>
 
               <div className="h-full w-1/3 flex flex-col gap-2">
@@ -158,8 +158,8 @@ export const Home = () => {
             </div>
 
             <div className="pb-14 -mt-60 relative z-10 ">
-              <div className="pt-20 bg-linear-to-t from-[#eff1f3] via-[#eff1f3]/85 to-transparent pb-4 font-serif">
-                <h2 className="text-2xl sm:text-2xl lg:text-3xl max-w-[500px] mb-2 pt-4 ">
+              <div className="pt-6 bg-linear-to-t from-[#eff1f3] via-[#eff1f3]/85 to-transparent pb-4 font-serif">
+                <h2 className="text-2xl sm:text-2xl lg:text-3xl max-w-[500px] mt-24 pt-8 ">
                   <span className="text-gray-500">
                     Finding a stylist near you shouldn't be that hard,
                   </span>{" "}
@@ -167,9 +167,9 @@ export const Home = () => {
                 </h2>
               </div>
 
-              <div className="flex w-full gap-4 bg-[#eff1f3] pt-2">
+              <div className="flex w-full gap-4 bg-[#eff1f3] ">
                 <SectionCard
-                  width={4}
+                  width={3}
                   content={
                     <div className="flex flex-col justify-between h-full">
                       <div className="h-full">
@@ -182,7 +182,7 @@ export const Home = () => {
                   }
                 />
                 <SectionCard
-                  width={4}
+                  width={3}
                   content={
                     <div>
                       <p>One</p>
@@ -193,7 +193,7 @@ export const Home = () => {
                   }
                 />
                 <SectionCard
-                  width={4}
+                  width={3}
                   content={
                     <div>
                       <p>One</p>
@@ -203,13 +203,13 @@ export const Home = () => {
                     </div>
                   }
                 />
-                <div className="flex w-1/4 items-end justify-center">
+                {/* <div className="flex w-1/4 items-end justify-center">
                   <div className="h-full w-full flex items-end">
                     <a className="w-full bg-black text-white py-3 px-2 font-semibold rounded-lg shadow-lg text-sm text-center cursor-pointer">
                       Sign Up Today
                     </a>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </>
