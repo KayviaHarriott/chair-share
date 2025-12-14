@@ -153,7 +153,7 @@ export const Home = () => {
       {/* Site Benefits */}
       <Section
         content={
-          <div className="mt-28 pb-8 px-16 flex justify-between">
+          <div className="mt-30 pb-8 px-16 flex justify-between">
             {[
               {
                 icon: "/icons/shieldIcon.png",
@@ -230,42 +230,20 @@ export const Home = () => {
                   width={3}
                   title="Explore Services"
                   description="From grooming to styling, browse professionals across categories."
-                  content={
-                    <div className="flex flex-col justify-between h-full">
-                      <div className="h-full">
-                        <p>One</p>
-                      </div>
-                      <div className="">
-                        <p>Box</p>
-                      </div>
-                    </div>
-                  }
+                  image="/imgs/exploreServices.png"
                 />
                 <SectionCard
                   width={3}
                   title="Schedule Easily"
                   description="Pick a pro, select your time, and confirm with one tap."
-                  content={
-                    <div>
-                      <p>One</p>
-                      <div>
-                        <p>Box</p>
-                      </div>
-                    </div>
-                  }
+                  image="/imgs/scheduleEasy.png"
                 />
                 <SectionCard
                   width={3}
                   title="Enjoy the Results"
                   description="Let your expert handle the rest—simple, smooth, and stress-free."
-                  content={
-                    <div>
-                      <p>One</p>
-                      <div>
-                        <p>Box</p>
-                      </div>
-                    </div>
-                  }
+                  image="/imgs/womenTogether.jpg"
+                  
                 />
                 {/* <div className="flex w-1/4 items-end justify-center">
                   <div className="h-full w-full flex items-end">
