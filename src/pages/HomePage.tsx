@@ -245,6 +245,7 @@ export const Home = () => {
                   image="/imgs/womenTogether.jpg"
                   
                 />
+                
                 {/* <div className="flex w-1/4 items-end justify-center">
                   <div className="h-full w-full flex items-end">
                     <a className="w-full bg-black text-white py-3 px-2 font-semibold rounded-lg shadow-lg text-sm text-center cursor-pointer">
@@ -253,13 +254,21 @@ export const Home = () => {
                   </div>
                 </div> */}
               </div>
+              <div className="w-full items-center justify-center flex">
+                <Link
+                    className="bg-linear-to-br from-amber-500 to-[#BF4E30] px-6 py-2 text-white rounded-full"
+                    to="/register"
+                  >
+                    Get Started
+                  </Link>
+              </div>
             </div>
           </>
         }
       />
 
       {/* Banner */}
-      <Section
+      {/* <Section
         content={
           <>
             <div className="bg-[#272727] rounded-lg text-white flex justify-between w-full gap-6 text-center py-12 px-12">
@@ -267,31 +276,26 @@ export const Home = () => {
             </div>
           </>
         }
-      />
+      /> */}
 
-      <Section content={<div> </div>} />
 
       {/* Book Appointment */}
-      <Section
+      {/* <Section
         backgroundColor=""
         content={
           <>
             <div className="py-16 text-center">
-              {/* Code Goes Here */}
               <div className="max-w-4xl mx-auto">
-                {/* Heading */}
                 <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-gray-900 mb-6">
                   Ready to Book Your{" "}
                   <span className="font-bold">Next Appointment?</span>
                 </h2>
 
-                {/* Subtitle */}
                 <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
                   Join thousands of satisfied clients who trust ChairShare for
                   their beauty needs
                 </p>
 
-                {/* CTA Buttons */}
                 <div className="flex w-full justify-center gap-3">
                   <Link
                     className="bg-linear-to-br from-amber-500 to-[#BF4E30] px-6 py-2 text-white rounded-full"
@@ -310,7 +314,7 @@ export const Home = () => {
             </div>
           </>
         }
-      />
+      /> */}
     </div>
   );
 };
