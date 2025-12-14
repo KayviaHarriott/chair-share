@@ -118,7 +118,7 @@ export const NavBar = () => {
         </div>
 
         <div className="border-t w-full pt-3 border-gray-300 flex items-center justify-center">
-          <div className=" max-w-[1200px] w-full flex gap-8  pb-3 px-4 ">
+          <div className="max-w-[1200px] w-full flex gap-8  pb-3 px-4 ">
             {categories.map((category) => (
               <div
                 key={category.name}
@@ -137,12 +137,13 @@ export const NavBar = () => {
      <div className="">
        {categories.map((category) => (
          hoveredCategory === category.name && (
-           <div key={category.name} className="absolute top-full left-0 w-full bg-white   border-gray-200 p-6 z-50 ">
-             <div className="flex gap-24  ">
+           <div key={category.name} className="absolute top-full left-0 w-full bg-white   border-gray-200 px-6 pt-2 pb-4 z-50 flex justify-center">
+            <div className="max-w-[1200px] w-full px-4"> 
+             <div className="flex gap-24 font-serif">
                {category.subcategories.map((subcategory, index) => (
                  <div key={index}>
                    <p className="pb-2 font-bold ">{subcategory.title}</p>
-                   <ul className="space-y-1 ">
+                   <ul className="space-y-1 text-gray-800">
                      {subcategory.items.map((item, itemIndex) => (
                        <li key={itemIndex} className="hover:text-amber-600 cursor-pointer">
                          {item}
@@ -151,7 +152,7 @@ export const NavBar = () => {
                    </ul>
                  </div>
                ))}
-             </div>
+             </div></div>
            </div>
          )
        ))}
