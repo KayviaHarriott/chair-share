@@ -145,11 +145,6 @@ export const NavBar = () => {
                   <img className="h-[50px]" src="./imgs/HorizontalLogo.png" />
                 </Link>
               </div>
-              <div className="w-1/3 flex items-center justify-center gap-6">
-                <Link className="hover:text-amber-600 cursor-pointer" to="/about">How it Works</Link>
-                <Link className="hover:text-amber-600 cursor-pointer" to="/merchants">Services</Link>
-                <Link className="hover:text-amber-600 cursor-pointer" to="/">Near Me</Link>
-              </div>
               <div className="w-1/3 flex justify-end items-center gap-6 ">
                 <Link className="hover:text-amber-600" to="/merchants">Sign In</Link>
                 <Link

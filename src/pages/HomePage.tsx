@@ -88,7 +88,7 @@ export const Home = () => {
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif mb-6">
                 <span className="text-slate-900">Book Your</span>
                 <br />
-                <span className="text-[#FF8500]">Perfect Chair</span>
+                <span className="text-[#F67600]">Perfect Chair</span>
               </h1>
 
               {/* Subtitle */}
@@ -150,10 +150,10 @@ export const Home = () => {
         }
       />
 
-      {/* Styling Images * How to Section */}
+      {/* Site Benefits */}
       <Section
         content={
-          <div className="mt-20 pb-10 flex justify-between">
+          <div className="mt-15 pb-10 flex justify-between">
             {[
               {
                 icon: "/icons/shieldIcon.png",
@@ -196,15 +196,17 @@ export const Home = () => {
         }
       />
 
+      {/* How To */}
       <Section
         backgroundColor=""
         content={
           <>
             <div className="py-12 ">
               <div className="pb-4 font-serif">
+                {/* <div className="h-1 bg-[#F67600] w-[80px] mb-2"></div> */}
                 <h2 className="text-2xl sm:text-2xl lg:text-3xl max-w-[500px] ">
                   <span>
-                    Finding a stylist near you shouldn't be that hard,
+                    Finding a stylist shouldn't be that hard,
                   </span>{" "}
                   <span className="text-[#F67600]">let's make it easier.</span>
                 </h2>
@@ -264,21 +266,19 @@ export const Home = () => {
           </>
         }
       />
-{/* Banner */}
+
+      {/* Banner */}
       <Section
         content={
           <>
             <div className="bg-[#272727] rounded-lg text-white flex justify-between w-full gap-6 text-center py-12 px-12">
-             <p>Text here</p>
+              <p>Text here</p>
             </div>
           </>
         }
       />
 
-      <Section content={<div> </div>}/>
-
-
-      
+      <Section content={<div> </div>} />
 
       {/* Book Appointment */}
       <Section
