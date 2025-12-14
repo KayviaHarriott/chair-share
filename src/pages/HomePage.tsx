@@ -153,7 +153,7 @@ export const Home = () => {
       {/* Site Benefits */}
       <Section
         content={
-          <div className="mt-15 pb-10 flex justify-between">
+          <div className="mt-15 pb-10 px-16 flex justify-between">
             {[
               {
                 icon: "/icons/shieldIcon.png",
@@ -201,14 +201,14 @@ export const Home = () => {
         backgroundColor=""
         content={
           <>
-            <div className="py-12 ">
-              <div className="pb-4 font-serif">
+            <div className="pt-12 pb-18 px-16 ">
+              <div className="pb-4 font-serif  flex items-center justify-center text-center">
                 {/* <div className="h-1 bg-[#F67600] w-[80px] mb-2"></div> */}
                 <h2 className="text-2xl sm:text-2xl lg:text-3xl max-w-[500px] ">
                   <span>
                     Finding a stylist shouldn't be that hard,
                   </span>{" "}
-                  <span className="text-[#F67600]">let's make it easier.</span>
+                  <span className="text-[#F67600] font-semibold">let's make it easier.</span>
                 </h2>
               </div>
 
