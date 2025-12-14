@@ -79,7 +79,7 @@ const categories = [
 ];
 
 export const NavBar = () => {
-  const [hoveredCategory, setHoveredCategory] = useState<string | null>("Hair");
+  const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
 
   return (
     <div>
@@ -92,9 +92,9 @@ export const NavBar = () => {
           <p className="text-sm">FAQs</p>
         </div>
       </div>
-      <nav className="shadow-sm/5 bg-white border-b border-gray-200 flex flex-col justify-center pt-4  items-center text-gray-800 ">
+      <nav className="shadow-sm/5 bg-white border-b border-gray-200 flex flex-col justify-center pt-4 items-center text-gray-800 ">
         <div className="max-w-[1200px] px-4 pb-2 w-full">
-          <div className="w-full flex justify-between items-center">
+          <div className="w-full flex justify-between items-center font-semibold">
             <div className="w-1/3 flex items-center gap-2 mb-1">
               <Link to="/">
                 <img className="h-[50px]" src="./imgs/HorizontalLogo.png" />
@@ -126,7 +126,7 @@ export const NavBar = () => {
                 onMouseEnter={() => setHoveredCategory(category.name)}
                 onMouseLeave={() => setHoveredCategory(null)}
               >
-                <button className=" text-md hover:text-amber-600 transition-colors">
+                <button className="font-semibold text-md hover:text-amber-600 transition-colors">
                   {category.name}
                 </button>
               </div>
