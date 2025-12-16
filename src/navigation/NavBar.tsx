@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { KeyboardArrowDownRounded } from "@mui/icons-material";
 // Categories data structure
 const categories = [
@@ -124,44 +124,16 @@ const categories = [
 
 export const NavBar = () => {
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
-  const [currentDateTime, setCurrentDateTime] = useState<string>("");
-
-  useEffect(() => {
-    const updateDateTime = () => {
-      const now = new Date();
-      const options: Intl.DateTimeFormatOptions = {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      };
-      const dateStr = now.toLocaleDateString("en-US", options);
-      const timeStr = now.toLocaleTimeString("en-US", {
-        hour: "numeric",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: true,
-      });
-      setCurrentDateTime(`${dateStr} — ${timeStr}`);
-    };
-
-    updateDateTime();
-    const interval = setInterval(updateDateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <div>
       <div className="bg-[#272727] text-gray-200 flex justify-center">
-        <div className="max-w-[1200px] w-full flex justify-between items-center gap-4 py-1 px-5 ">
-          <p className="text-sm">{currentDateTime}</p>
-          <div className="flex items-center gap-4">
-            <p className="text-sm">Become a Merchant</p>
-            <p className="mb-1">|</p>
-            <p className="text-sm">Contact Us</p>
-            <p className="mb-1">|</p>
-            <p className="text-sm">FAQs</p>
-          </div>
+        <div className="max-w-[1200px] w-full flex justify-end items-center gap-4 py-1 px-5 ">
+          <p className="text-sm">Become a Merchant</p>
+          <p className="mb-1">|</p>
+          <p className="text-sm">Contact Us</p>
+          <p className="mb-1">|</p>
+          <p className="text-sm">FAQs</p>
         </div>
       </div>
       <div className="relative" onMouseLeave={() => setHoveredCategory(null)}>
