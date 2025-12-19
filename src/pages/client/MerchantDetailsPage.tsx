@@ -663,42 +663,53 @@ export const MerchantDetailsPage = () => {
                       </div>
 
                       {/* Add-ons Section */}
-                      {expandedService === index && item.addOns && item.addOns.length > 0 && (
+                      {expandedService === index && (
                         <div className="px-3 pb-3 border-t border-gray-200">
-                          <h4 className="font-semibold text-gray-900 mt-3 mb-2 text-sm">
-                            Available Add-ons:
-                          </h4>
-                          <div className="space-y-2">
-                            {item.addOns.map((addOn, addOnIndex) => (
-                              <label
-                                key={addOnIndex}
-                                className="flex items-center justify-between p-2 border border-gray-200 rounded-lg hover:border-amber-300 cursor-pointer transition-all"
-                              >
-                                <div className="flex items-center gap-2">
-                                  <input
-                                    type="checkbox"
-                                    checked={selectedAddOns.some((a) => a.name === addOn.name)}
-                                    onChange={() => handleAddOnToggle(addOn)}
-                                    className="w-4 h-4 text-amber-600 rounded focus:ring-amber-500"
-                                  />
-                                  <span className="text-gray-900 text-sm">{addOn.name}</span>
-                                </div>
-                                <span className="font-semibold text-amber-600 text-sm">
-                                  +${addOn.price.toLocaleString()}
-                                </span>
-                              </label>
-                            ))}
-                          </div>
-                          {selectedAddOns.length > 0 && (
-                            <div className="mt-3 p-2 bg-amber-50 rounded-lg">
-                              <div className="flex justify-between items-center">
-                                <span className="font-semibold text-gray-900 text-sm">Total:</span>
-                                <span className="text-xl font-bold text-amber-600">
-                                  ${calculateTotal().toLocaleString()}
-                                </span>
+                          {item.addOns && item.addOns.length > 0 && (
+                            <>
+                              <h4 className="font-semibold text-gray-900 mt-3 mb-2 text-sm">
+                                Available Add-ons:
+                              </h4>
+                              <div className="space-y-2">
+                                {item.addOns.map((addOn, addOnIndex) => (
+                                  <label
+                                    key={addOnIndex}
+                                    className="flex items-center justify-between p-2 border border-gray-200 rounded-lg hover:border-amber-300 cursor-pointer transition-all"
+                                  >
+                                    <div className="flex items-center gap-2">
+                                      <input
+                                        type="checkbox"
+                                        checked={selectedAddOns.some((a) => a.name === addOn.name)}
+                                        onChange={() => handleAddOnToggle(addOn)}
+                                        className="w-4 h-4 text-amber-600 rounded focus:ring-amber-500"
+                                      />
+                                      <span className="text-gray-900 text-sm">{addOn.name}</span>
+                                    </div>
+                                    <span className="font-semibold text-amber-600 text-sm">
+                                      +${addOn.price.toLocaleString()}
+                                    </span>
+                                  </label>
+                                ))}
                               </div>
-                            </div>
+                            </>
                           )}
+                          
+                          {/* Total and Book Button */}
+                          <div className="mt-3 p-3 bg-amber-50 rounded-lg">
+                            <div className="flex items-center justify-between mb-3">
+                              <span className="font-semibold text-gray-900 text-sm">Total:</span>
+                              <span className="text-xl font-bold text-amber-600">
+                                ${calculateTotal().toLocaleString()}
+                              </span>
+                            </div>
+                            <button
+                              onClick={handleBookAppointment}
+                              className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-white px-4 py-2.5 rounded-lg font-semibold hover:from-amber-600 hover:to-amber-700 transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                            >
+                              <CalendarMonthRounded fontSize="small" />
+                              Book Now
+                            </button>
+                          </div>
                         </div>
                       )}
                     </div>
