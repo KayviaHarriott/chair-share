@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import {
   LocationOnRounded,
   StarRounded,
@@ -11,6 +11,9 @@ import {
   ChevronLeftRounded,
   ChevronRightRounded,
   CalendarMonthRounded,
+  MessageRounded,
+  HomeRounded,
+  NavigateNextRounded,
 } from "@mui/icons-material";
 
 // Temporary merchant data
@@ -203,6 +206,8 @@ const TEMP_MERCHANT_DATA = {
     "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=800",
     "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800",
     "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800",
+    "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800",
+    "https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800",
   ],
   reviews: [
     {
@@ -257,15 +262,18 @@ export const MerchantDetailsPage = () => {
   const { merchantId } = useParams();
   const [selectedCategory, setSelectedCategory] = useState("Braids");
   const [showBookingModal, setShowBookingModal] = useState(false);
+  const [showMessageModal, setShowMessageModal] = useState(false);
   const [selectedService, setSelectedService] = useState<any>(null);
   const [selectedAddOns, setSelectedAddOns] = useState<any[]>([]);
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
   const [bookingNotes, setBookingNotes] = useState("");
+  const [messageText, setMessageText] = useState("");
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [expandedService, setExpandedService] = useState<number | null>(null);
   const [currentWeekStart, setCurrentWeekStart] = useState(new Date());
+  const [portfolioScrollIndex, setPortfolioScrollIndex] = useState(0);
 
   const merchant = TEMP_MERCHANT_DATA;
   const currentServices = merchant.services.find(
@@ -332,6 +340,14 @@ export const MerchantDetailsPage = () => {
     setExpandedService(null);
   };
 
+  const handleSendMessage = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Message sent:", messageText);
+    alert("Message sent! (This is temporary - API integration pending)");
+    setShowMessageModal(false);
+    setMessageText("");
+  };
+
   const openLightbox = (index: number) => {
     setCurrentImageIndex(index);
     setLightboxOpen(true);
@@ -345,6 +361,19 @@ export const MerchantDetailsPage = () => {
     setCurrentImageIndex((prev) => 
       prev === 0 ? merchant.portfolio.length - 1 : prev - 1
     );
+  };
+
+  // Portfolio scroll functions
+  const scrollPortfolioNext = () => {
+    if (portfolioScrollIndex < merchant.portfolio.length - 3) {
+      setPortfolioScrollIndex(portfolioScrollIndex + 1);
+    }
+  };
+
+  const scrollPortfolioPrev = () => {
+    if (portfolioScrollIndex > 0) {
+      setPortfolioScrollIndex(portfolioScrollIndex - 1);
+    }
   };
 
   // Calendar functions
@@ -396,7 +425,7 @@ export const MerchantDetailsPage = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Cover Image as Background */}
       <div className="relative">
-        <div className="absolute inset-0 h-64 overflow-hidden">
+        <div className="absolute inset-0 h-48 overflow-hidden">
           <img
             src={merchant.coverImage}
             alt="Cover"
@@ -404,82 +433,103 @@ export const MerchantDetailsPage = () => {
           />
         </div>
         
-        <div className="relative max-w-7xl mx-auto px-4 pt-8">
+        <div className="relative max-w-7xl mx-auto px-4 pt-4 pb-6">
+          {/* Breadcrumbs */}
+          <nav className="flex items-center gap-2 text-sm mb-4">
+            <Link to="/" className="flex items-center text-gray-600 hover:text-amber-600 transition-colors">
+              <HomeRounded fontSize="small" />
+            </Link>
+            <NavigateNextRounded fontSize="small" className="text-gray-400" />
+            <Link to="/browse" className="text-gray-600 hover:text-amber-600 transition-colors">
+              Browse Merchants
+            </Link>
+            <NavigateNextRounded fontSize="small" className="text-gray-400" />
+            <span className="text-gray-900 font-medium">{merchant.name}</span>
+          </nav>
+
           {/* Profile Section - Left Column (1/3 width) */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             <div className="lg:col-span-1">
-              <div className="bg-white rounded-xl shadow-lg p-6 sticky top-6">
+              <div className="bg-white rounded-xl shadow-lg p-4 sticky top-4">
                 {/* Avatar */}
-                <div className="flex justify-center mb-4">
+                <div className="flex justify-center mb-3">
                   <img
                     src={merchant.avatar}
                     alt={merchant.name}
-                    className="w-32 h-32 rounded-full border-4 border-white shadow-lg"
+                    className="w-28 h-28 rounded-full border-4 border-white shadow-lg"
                   />
                 </div>
 
                 {/* Name & Specialty */}
-                <div className="text-center mb-4">
-                  <h1 className="text-2xl font-bold text-gray-900 mb-1">
+                <div className="text-center mb-3">
+                  <h1 className="text-xl font-bold text-gray-900 mb-1">
                     {merchant.name}
                   </h1>
-                  <p className="text-amber-600 font-medium mb-3">
+                  <p className="text-amber-600 font-medium text-sm mb-2">
                     {merchant.specialty}
                   </p>
                   
                   {/* Rating */}
-                  <div className="flex items-center justify-center gap-2 mb-4">
-                    <div className="flex items-center">
-                      <StarRounded className="text-amber-500" />
-                      <span className="font-bold text-lg ml-1">
-                        {merchant.rating}
-                      </span>
-                      <span className="text-gray-600 ml-1 text-sm">
-                        ({merchant.totalReviews} reviews)
-                      </span>
-                    </div>
+                  <div className="flex items-center justify-center gap-1 mb-3">
+                    <StarRounded className="text-amber-500" fontSize="small" />
+                    <span className="font-bold text-base">
+                      {merchant.rating}
+                    </span>
+                    <span className="text-gray-600 text-xs">
+                      ({merchant.totalReviews} reviews)
+                    </span>
                   </div>
                 </div>
 
                 {/* Bio */}
-                <p className="text-gray-700 text-sm mb-6 text-center">
+                <p className="text-gray-700 text-xs mb-4 text-center">
                   {merchant.bio}
                 </p>
 
                 {/* Contact Info */}
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-start gap-3">
-                    <LocationOnRounded className="text-amber-600 flex-shrink-0" fontSize="small" />
-                    <span className="text-sm text-gray-700">{merchant.location.address}, {merchant.location.city}</span>
+                <div className="space-y-2 mb-4">
+                  <div className="flex items-start gap-2">
+                    <LocationOnRounded className="text-amber-600 flex-shrink-0" sx={{ fontSize: 16 }} />
+                    <span className="text-xs text-gray-700">{merchant.location.address}, {merchant.location.city}</span>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <PhoneRounded className="text-amber-600" fontSize="small" />
-                    <span className="text-sm text-gray-700">{merchant.contact.phone}</span>
+                  <div className="flex items-center gap-2">
+                    <PhoneRounded className="text-amber-600" sx={{ fontSize: 16 }} />
+                    <span className="text-xs text-gray-700">{merchant.contact.phone}</span>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <EmailRounded className="text-amber-600" fontSize="small" />
-                    <span className="text-sm text-gray-700">{merchant.contact.email}</span>
+                  <div className="flex items-center gap-2">
+                    <EmailRounded className="text-amber-600" sx={{ fontSize: 16 }} />
+                    <span className="text-xs text-gray-700">{merchant.contact.email}</span>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <AccessTimeRounded className="text-amber-600 flex-shrink-0" fontSize="small" />
-                    <span className="text-sm text-gray-700">{merchant.hours}</span>
+                  <div className="flex items-start gap-2">
+                    <AccessTimeRounded className="text-amber-600 flex-shrink-0" sx={{ fontSize: 16 }} />
+                    <span className="text-xs text-gray-700">{merchant.hours}</span>
                   </div>
                 </div>
 
-                {/* Book Button */}
-                <button
-                  onClick={handleBookAppointment}
-                  className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-white px-6 py-3 rounded-full font-semibold hover:from-amber-600 hover:to-amber-700 transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
-                >
-                  <CalendarMonthRounded />
-                  Book Appointment
-                </button>
+                {/* Action Buttons */}
+                <div className="space-y-2 mb-4">
+                  <button
+                    onClick={handleBookAppointment}
+                    className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-white px-4 py-2.5 rounded-full font-semibold hover:from-amber-600 hover:to-amber-700 transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 text-sm"
+                  >
+                    <CalendarMonthRounded fontSize="small" />
+                    Book Appointment
+                  </button>
+                  
+                  <button
+                    onClick={() => setShowMessageModal(true)}
+                    className="w-full bg-white border-2 border-amber-500 text-amber-600 px-4 py-2.5 rounded-full font-semibold hover:bg-amber-50 transition-all flex items-center justify-center gap-2 text-sm"
+                  >
+                    <MessageRounded fontSize="small" />
+                    Message Stylist
+                  </button>
+                </div>
 
                 {/* Deposit Info */}
                 {merchant.depositPreference.required && (
-                  <div className="mt-6 p-4 bg-amber-50 border border-amber-200 rounded-lg">
+                  <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg">
                     <div className="flex items-start gap-2">
-                      <CheckCircleRounded className="text-amber-600 mt-0.5 flex-shrink-0" fontSize="small" />
+                      <CheckCircleRounded className="text-amber-600 mt-0.5 flex-shrink-0" sx={{ fontSize: 16 }} />
                       <div className="text-xs">
                         <p className="font-semibold text-gray-900 mb-1">
                           Deposit: {merchant.depositPreference.percentage}%
@@ -494,36 +544,63 @@ export const MerchantDetailsPage = () => {
 
             {/* Right Column (2/3 width) */}
             <div className="lg:col-span-2">
-              {/* Portfolio Gallery */}
-              <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              {/* Portfolio Gallery with Horizontal Scroll */}
+              <div className="bg-white rounded-xl shadow-lg p-4 mb-4">
+                <h2 className="text-xl font-bold text-gray-900 mb-3">
                   Portfolio
                 </h2>
-                <div className="grid grid-cols-3 gap-3">
-                  {merchant.portfolio.map((image, index) => (
-                    <div
-                      key={index}
-                      onClick={() => openLightbox(index)}
-                      className="aspect-square rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer"
+                <div className="relative">
+                  {/* Scroll Buttons */}
+                  {portfolioScrollIndex > 0 && (
+                    <button
+                      onClick={scrollPortfolioPrev}
+                      className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white rounded-full p-1 shadow-lg transition-all"
                     >
-                      <img
-                        src={image}
-                        alt={`Work ${index + 1}`}
-                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-                      />
+                      <ChevronLeftRounded className="text-amber-600" />
+                    </button>
+                  )}
+                  
+                  {portfolioScrollIndex < merchant.portfolio.length - 3 && (
+                    <button
+                      onClick={scrollPortfolioNext}
+                      className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white rounded-full p-1 shadow-lg transition-all"
+                    >
+                      <ChevronRightRounded className="text-amber-600" />
+                    </button>
+                  )}
+
+                  {/* Images Container */}
+                  <div className="overflow-hidden">
+                    <div 
+                      className="flex gap-2 transition-transform duration-300"
+                      style={{ transform: `translateX(-${portfolioScrollIndex * 33.33}%)` }}
+                    >
+                      {merchant.portfolio.map((image, index) => (
+                        <div
+                          key={index}
+                          onClick={() => openLightbox(index)}
+                          className="flex-shrink-0 w-[calc(33.33%-0.5rem)] aspect-square rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer"
+                        >
+                          <img
+                            src={image}
+                            alt={`Work ${index + 1}`}
+                            className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                          />
+                        </div>
+                      ))}
                     </div>
-                  ))}
+                  </div>
                 </div>
               </div>
 
               {/* Services Section */}
-              <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              <div className="bg-white rounded-xl shadow-lg p-4 mb-4">
+                <h2 className="text-xl font-bold text-gray-900 mb-3">
                   Services & Pricing
                 </h2>
 
                 {/* Category Tabs */}
-                <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
+                <div className="flex gap-2 mb-3 overflow-x-auto pb-2">
                   {merchant.services.map((service) => (
                     <button
                       key={service.category}
@@ -533,7 +610,7 @@ export const MerchantDetailsPage = () => {
                         setSelectedService(null);
                         setSelectedAddOns([]);
                       }}
-                      className={`px-4 py-2 rounded-full font-medium whitespace-nowrap transition-all ${
+                      className={`px-3 py-1.5 rounded-full font-medium whitespace-nowrap transition-all text-sm ${
                         selectedCategory === service.category
                           ? "bg-amber-500 text-white shadow-md"
                           : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -545,7 +622,7 @@ export const MerchantDetailsPage = () => {
                 </div>
 
                 {/* Service Items with Add-ons */}
-                <div className="space-y-3">
+                <div className="space-y-2">
                   {currentServices.map((item, index) => (
                     <div
                       key={index}
@@ -556,29 +633,29 @@ export const MerchantDetailsPage = () => {
                       }`}
                     >
                       <div
-                        className="p-4 cursor-pointer"
+                        className="p-3 cursor-pointer"
                         onClick={() => handleServiceSelect(item, index)}
                       >
                         <div className="flex justify-between items-start">
                           <div className="flex-1">
-                            <h3 className="font-semibold text-gray-900 text-lg">
+                            <h3 className="font-semibold text-gray-900 text-base">
                               {item.name}
                             </h3>
-                            <p className="text-gray-600 text-sm mt-1">
+                            <p className="text-gray-600 text-xs mt-1">
                               {item.description}
                             </p>
-                            <p className="text-gray-500 text-sm mt-1 flex items-center gap-1">
-                              <AccessTimeRounded fontSize="small" />
+                            <p className="text-gray-500 text-xs mt-1 flex items-center gap-1">
+                              <AccessTimeRounded sx={{ fontSize: 14 }} />
                               {item.duration}
                             </p>
                           </div>
                           <div className="text-right">
-                            <p className="text-2xl font-bold text-amber-600">
+                            <p className="text-xl font-bold text-amber-600">
                               ${item.price.toLocaleString()}
                             </p>
                             {item.addOns && item.addOns.length > 0 && (
                               <p className="text-xs text-gray-500 mt-1">
-                                + add-ons available
+                                + add-ons
                               </p>
                             )}
                           </div>
@@ -587,36 +664,36 @@ export const MerchantDetailsPage = () => {
 
                       {/* Add-ons Section */}
                       {expandedService === index && item.addOns && item.addOns.length > 0 && (
-                        <div className="px-4 pb-4 border-t border-gray-200">
-                          <h4 className="font-semibold text-gray-900 mt-4 mb-3">
+                        <div className="px-3 pb-3 border-t border-gray-200">
+                          <h4 className="font-semibold text-gray-900 mt-3 mb-2 text-sm">
                             Available Add-ons:
                           </h4>
                           <div className="space-y-2">
                             {item.addOns.map((addOn, addOnIndex) => (
                               <label
                                 key={addOnIndex}
-                                className="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:border-amber-300 cursor-pointer transition-all"
+                                className="flex items-center justify-between p-2 border border-gray-200 rounded-lg hover:border-amber-300 cursor-pointer transition-all"
                               >
-                                <div className="flex items-center gap-3">
+                                <div className="flex items-center gap-2">
                                   <input
                                     type="checkbox"
                                     checked={selectedAddOns.some((a) => a.name === addOn.name)}
                                     onChange={() => handleAddOnToggle(addOn)}
-                                    className="w-5 h-5 text-amber-600 rounded focus:ring-amber-500"
+                                    className="w-4 h-4 text-amber-600 rounded focus:ring-amber-500"
                                   />
-                                  <span className="text-gray-900">{addOn.name}</span>
+                                  <span className="text-gray-900 text-sm">{addOn.name}</span>
                                 </div>
-                                <span className="font-semibold text-amber-600">
+                                <span className="font-semibold text-amber-600 text-sm">
                                   +${addOn.price.toLocaleString()}
                                 </span>
                               </label>
                             ))}
                           </div>
                           {selectedAddOns.length > 0 && (
-                            <div className="mt-4 p-3 bg-amber-50 rounded-lg">
+                            <div className="mt-3 p-2 bg-amber-50 rounded-lg">
                               <div className="flex justify-between items-center">
-                                <span className="font-semibold text-gray-900">Total:</span>
-                                <span className="text-2xl font-bold text-amber-600">
+                                <span className="font-semibold text-gray-900 text-sm">Total:</span>
+                                <span className="text-xl font-bold text-amber-600">
                                   ${calculateTotal().toLocaleString()}
                                 </span>
                               </div>
@@ -632,29 +709,29 @@ export const MerchantDetailsPage = () => {
           </div>
 
           {/* Reviews Section - Full Width */}
-          <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+          <div className="bg-white rounded-xl shadow-lg p-4 mt-4">
+            <h2 className="text-xl font-bold text-gray-900 mb-3">
               Client Reviews
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {merchant.reviews.map((review) => (
-                <div key={review.id} className="border border-gray-200 rounded-lg p-4">
-                  <div className="flex gap-4">
+                <div key={review.id} className="border border-gray-200 rounded-lg p-3">
+                  <div className="flex gap-3">
                     <img
                       src={review.avatar}
                       alt={review.clientName}
-                      className="w-12 h-12 rounded-full flex-shrink-0"
+                      className="w-10 h-10 rounded-full flex-shrink-0"
                     />
                     <div className="flex-1">
-                      <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center justify-between mb-1">
                         <div>
-                          <p className="font-semibold text-gray-900">
+                          <p className="font-semibold text-gray-900 text-sm">
                             {review.clientName}
                           </p>
                           <p className="text-xs text-gray-500">{review.date}</p>
                         </div>
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-center gap-0.5">
                           {[...Array(5)].map((_, i) => (
                             <StarRounded
                               key={i}
@@ -663,15 +740,15 @@ export const MerchantDetailsPage = () => {
                                   ? "text-amber-500"
                                   : "text-gray-300"
                               }
-                              fontSize="small"
+                              sx={{ fontSize: 16 }}
                             />
                           ))}
                         </div>
                       </div>
-                      <p className="text-xs text-amber-600 font-medium mb-2">
+                      <p className="text-xs text-amber-600 font-medium mb-1">
                         {review.service}
                       </p>
-                      <p className="text-sm text-gray-700">{review.comment}</p>
+                      <p className="text-xs text-gray-700">{review.comment}</p>
                     </div>
                   </div>
                 </div>
@@ -680,6 +757,59 @@ export const MerchantDetailsPage = () => {
           </div>
         </div>
       </div>
+
+      {/* Message Modal */}
+      {showMessageModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-xl shadow-2xl max-w-lg w-full">
+            <div className="p-6">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-bold text-gray-900">
+                  Message {merchant.name}
+                </h2>
+                <button
+                  onClick={() => setShowMessageModal(false)}
+                  className="text-gray-400 hover:text-gray-600 text-2xl"
+                >
+                  ×
+                </button>
+              </div>
+
+              <form onSubmit={handleSendMessage} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Your Message
+                  </label>
+                  <textarea
+                    value={messageText}
+                    onChange={(e) => setMessageText(e.target.value)}
+                    rows={6}
+                    required
+                    placeholder="Type your message here..."
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent resize-none"
+                  />
+                </div>
+
+                <div className="flex gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setShowMessageModal(false)}
+                    className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="flex-1 px-6 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-lg font-semibold hover:from-amber-600 hover:to-amber-700 transition-all shadow-md"
+                  >
+                    Send Message
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Lightbox Modal */}
       {lightboxOpen && (
@@ -718,10 +848,10 @@ export const MerchantDetailsPage = () => {
         </div>
       )}
 
-      {/* Booking Modal with Calendar */}
+      {/* Booking Modal with Calendar - (Same as before, no changes needed) */}
       {showBookingModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50 overflow-y-auto">
+          <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full my-8">
             <div className="p-6">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-bold text-gray-900">
