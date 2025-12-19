@@ -7,6 +7,10 @@ import {
   PhoneRounded,
   EmailRounded,
   CheckCircleRounded,
+  CloseRounded,
+  ChevronLeftRounded,
+  ChevronRightRounded,
+  CalendarMonthRounded,
 } from "@mui/icons-material";
 
 // Temporary merchant data
@@ -39,38 +43,156 @@ const TEMP_MERCHANT_DATA = {
     {
       category: "Braids",
       items: [
-        { name: "Box Braids", price: 8000, duration: "4-5 hours", description: "Classic box braids, any length" },
-        { name: "Knotless Braids", price: 10000, duration: "5-6 hours", description: "Pain-free knotless technique" },
-        { name: "Feed-in Braids", price: 7000, duration: "3-4 hours", description: "Natural-looking cornrows" },
-        { name: "Cornrows", price: 5000, duration: "2-3 hours", description: "Traditional cornrow styles" },
-        { name: "Locs Retwist", price: 6000, duration: "2-3 hours", description: "Maintenance for existing locs" },
+        { 
+          name: "Box Braids", 
+          price: 8000, 
+          duration: "4-5 hours", 
+          description: "Classic box braids, any length",
+          addOns: [
+            { name: "Curled Ends", price: 1500 },
+            { name: "Color (Full)", price: 2500 },
+            { name: "Color (Highlights)", price: 1800 },
+            { name: "Beads/Accessories", price: 800 },
+            { name: "Extra Length (30+ inches)", price: 2000 },
+          ]
+        },
+        { 
+          name: "Knotless Braids", 
+          price: 10000, 
+          duration: "5-6 hours", 
+          description: "Pain-free knotless technique",
+          addOns: [
+            { name: "Curled Ends", price: 1500 },
+            { name: "Color (Full)", price: 2500 },
+            { name: "Color (Highlights)", price: 1800 },
+            { name: "Beads/Accessories", price: 800 },
+          ]
+        },
+        { 
+          name: "Feed-in Braids", 
+          price: 7000, 
+          duration: "3-4 hours", 
+          description: "Natural-looking cornrows",
+          addOns: [
+            { name: "Curled Ends", price: 1200 },
+            { name: "Color (Highlights)", price: 1500 },
+            { name: "Beads/Accessories", price: 600 },
+          ]
+        },
+        { 
+          name: "Cornrows", 
+          price: 5000, 
+          duration: "2-3 hours", 
+          description: "Traditional cornrow styles",
+          addOns: [
+            { name: "Beads/Accessories", price: 500 },
+            { name: "Edge Control Treatment", price: 300 },
+          ]
+        },
+        { 
+          name: "Locs Retwist", 
+          price: 6000, 
+          duration: "2-3 hours", 
+          description: "Maintenance for existing locs",
+          addOns: [
+            { name: "Deep Conditioning", price: 1000 },
+            { name: "Color Touch-up", price: 2000 },
+            { name: "Loc Extensions", price: 3000 },
+          ]
+        },
       ],
     },
     {
       category: "Natural Hair",
       items: [
-        { name: "Silk Press", price: 7500, duration: "2-3 hours", description: "Straightening with heat protection" },
-        { name: "Wash & Style", price: 4000, duration: "1-2 hours", description: "Deep cleanse and styling" },
-        { name: "Deep Conditioning", price: 3500, duration: "1 hour", description: "Intensive moisture treatment" },
-        { name: "Twist Out", price: 5500, duration: "2 hours", description: "Two-strand twist styling" },
+        { 
+          name: "Silk Press", 
+          price: 7500, 
+          duration: "2-3 hours", 
+          description: "Straightening with heat protection",
+          addOns: [
+            { name: "Deep Conditioning Treatment", price: 1500 },
+            { name: "Trim", price: 800 },
+            { name: "Scalp Treatment", price: 1000 },
+          ]
+        },
+        { 
+          name: "Wash & Style", 
+          price: 4000, 
+          duration: "1-2 hours", 
+          description: "Deep cleanse and styling",
+          addOns: [
+            { name: "Deep Conditioning", price: 1200 },
+            { name: "Hot Oil Treatment", price: 900 },
+          ]
+        },
+        { 
+          name: "Deep Conditioning", 
+          price: 3500, 
+          duration: "1 hour", 
+          description: "Intensive moisture treatment",
+          addOns: [
+            { name: "Protein Treatment", price: 1500 },
+            { name: "Scalp Massage", price: 800 },
+          ]
+        },
+        { 
+          name: "Twist Out", 
+          price: 5500, 
+          duration: "2 hours", 
+          description: "Two-strand twist styling",
+          addOns: [
+            { name: "Edge Styling", price: 500 },
+            { name: "Hair Jewelry", price: 700 },
+          ]
+        },
       ],
     },
     {
       category: "Weaves & Wigs",
       items: [
-        { name: "Sew-in Weave", price: 9000, duration: "4-5 hours", description: "Full sew-in installation" },
-        { name: "Wig Install", price: 7000, duration: "2-3 hours", description: "Custom wig installation" },
-        { name: "Quick Weave", price: 6500, duration: "2-3 hours", description: "Glue-in weave method" },
+        { 
+          name: "Sew-in Weave", 
+          price: 9000, 
+          duration: "4-5 hours", 
+          description: "Full sew-in installation",
+          addOns: [
+            { name: "Closure/Frontal", price: 3000 },
+            { name: "Extra Bundles", price: 2500 },
+            { name: "Color/Bleach", price: 2000 },
+          ]
+        },
+        { 
+          name: "Wig Install", 
+          price: 7000, 
+          duration: "2-3 hours", 
+          description: "Custom wig installation",
+          addOns: [
+            { name: "Wig Customization", price: 2500 },
+            { name: "Lace Tinting", price: 1200 },
+            { name: "Plucking/Styling", price: 1500 },
+          ]
+        },
+        { 
+          name: "Quick Weave", 
+          price: 6500, 
+          duration: "2-3 hours", 
+          description: "Glue-in weave method",
+          addOns: [
+            { name: "Styling/Curls", price: 1500 },
+            { name: "Color", price: 1800 },
+          ]
+        },
       ],
     },
   ],
   portfolio: [
-    "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400",
-    "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=400",
-    "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400",
-    "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=400",
-    "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400",
-    "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=400",
+    "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800",
+    "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=800",
+    "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800",
+    "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=800",
+    "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800",
+    "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800",
   ],
   reviews: [
     {
@@ -126,20 +248,51 @@ export const MerchantDetailsPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("Braids");
   const [showBookingModal, setShowBookingModal] = useState(false);
   const [selectedService, setSelectedService] = useState<any>(null);
+  const [selectedAddOns, setSelectedAddOns] = useState<any[]>([]);
   const [bookingDate, setBookingDate] = useState("");
   const [bookingTime, setBookingTime] = useState("");
   const [bookingNotes, setBookingNotes] = useState("");
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [expandedService, setExpandedService] = useState<number | null>(null);
 
   const merchant = TEMP_MERCHANT_DATA;
   const currentServices = merchant.services.find(
     (s) => s.category === selectedCategory
   )?.items || [];
 
-  const handleServiceSelect = (service: any) => {
-    setSelectedService(service);
+  const handleServiceSelect = (service: any, index: number) => {
+    if (expandedService === index) {
+      setExpandedService(null);
+    } else {
+      setExpandedService(index);
+      setSelectedService(service);
+      setSelectedAddOns([]);
+    }
+  };
+
+  const handleAddOnToggle = (addOn: any) => {
+    setSelectedAddOns((prev) => {
+      const exists = prev.find((a) => a.name === addOn.name);
+      if (exists) {
+        return prev.filter((a) => a.name !== addOn.name);
+      } else {
+        return [...prev, addOn];
+      }
+    });
+  };
+
+  const calculateTotal = () => {
+    if (!selectedService) return 0;
+    const addOnsTotal = selectedAddOns.reduce((sum, addOn) => sum + addOn.price, 0);
+    return selectedService.price + addOnsTotal;
   };
 
   const handleBookAppointment = () => {
+    if (!selectedService) {
+      alert("Please select a service first!");
+      return;
+    }
     setShowBookingModal(true);
   };
 
@@ -148,6 +301,8 @@ export const MerchantDetailsPage = () => {
     console.log("Booking submitted:", {
       merchantId,
       service: selectedService,
+      addOns: selectedAddOns,
+      total: calculateTotal(),
       date: bookingDate,
       time: bookingTime,
       notes: bookingNotes,
@@ -155,15 +310,32 @@ export const MerchantDetailsPage = () => {
     alert("Booking request submitted! (This is temporary - API integration pending)");
     setShowBookingModal(false);
     setSelectedService(null);
+    setSelectedAddOns([]);
     setBookingDate("");
     setBookingTime("");
     setBookingNotes("");
+    setExpandedService(null);
+  };
+
+  const openLightbox = (index: number) => {
+    setCurrentImageIndex(index);
+    setLightboxOpen(true);
+  };
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % merchant.portfolio.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => 
+      prev === 0 ? merchant.portfolio.length - 1 : prev - 1
+    );
   };
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Cover Image */}
-      <div className="relative h-64 bg-gradient-to-r from-amber-400 to-amber-600">
+      {/* Cover Image - Fixed height, no overlap */}
+      <div className="relative h-80 bg-gradient-to-r from-amber-400 to-amber-600">
         <img
           src={merchant.coverImage}
           alt="Cover"
@@ -172,8 +344,8 @@ export const MerchantDetailsPage = () => {
         <div className="absolute inset-0 bg-black/30"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 -mt-20 pb-12">
-        {/* Merchant Header Card */}
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        {/* Merchant Header Card - No negative margin */}
         <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
           <div className="flex flex-col md:flex-row gap-6">
             {/* Avatar */}
@@ -229,11 +401,12 @@ export const MerchantDetailsPage = () => {
                   </div>
                 </div>
 
-                {/* Book Button */}
+                {/* Book Button - Sticky on scroll */}
                 <button
                   onClick={handleBookAppointment}
-                  className="bg-gradient-to-r from-amber-500 to-amber-600 text-white px-8 py-3 rounded-full font-semibold hover:from-amber-600 hover:to-amber-700 transition-all shadow-md hover:shadow-lg whitespace-nowrap h-fit"
+                  className="bg-gradient-to-r from-amber-500 to-amber-600 text-white px-8 py-4 rounded-full font-semibold hover:from-amber-600 hover:to-amber-700 transition-all shadow-lg hover:shadow-xl whitespace-nowrap h-fit flex items-center gap-2"
                 >
+                  <CalendarMonthRounded />
                   Book Appointment
                 </button>
               </div>
@@ -270,7 +443,12 @@ export const MerchantDetailsPage = () => {
                 {merchant.services.map((service) => (
                   <button
                     key={service.category}
-                    onClick={() => setSelectedCategory(service.category)}
+                    onClick={() => {
+                      setSelectedCategory(service.category);
+                      setExpandedService(null);
+                      setSelectedService(null);
+                      setSelectedAddOns([]);
+                    }}
                     className={`px-4 py-2 rounded-full font-medium whitespace-nowrap transition-all ${
                       selectedCategory === service.category
                         ? "bg-amber-500 text-white shadow-md"
@@ -282,33 +460,86 @@ export const MerchantDetailsPage = () => {
                 ))}
               </div>
 
-              {/* Service Items */}
+              {/* Service Items with Add-ons */}
               <div className="space-y-3">
                 {currentServices.map((item, index) => (
                   <div
                     key={index}
-                    className="border border-gray-200 rounded-lg p-4 hover:border-amber-300 hover:shadow-md transition-all cursor-pointer"
-                    onClick={() => handleServiceSelect(item)}
+                    className={`border rounded-lg transition-all ${
+                      expandedService === index
+                        ? "border-amber-400 shadow-lg"
+                        : "border-gray-200 hover:border-amber-300 hover:shadow-md"
+                    }`}
                   >
-                    <div className="flex justify-between items-start mb-2">
-                      <div className="flex-1">
-                        <h3 className="font-semibold text-gray-900 text-lg">
-                          {item.name}
-                        </h3>
-                        <p className="text-gray-600 text-sm mt-1">
-                          {item.description}
-                        </p>
-                        <p className="text-gray-500 text-sm mt-1 flex items-center gap-1">
-                          <AccessTimeRounded fontSize="small" />
-                          {item.duration}
-                        </p>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-2xl font-bold text-amber-600">
-                          ${item.price.toLocaleString()}
-                        </p>
+                    <div
+                      className="p-4 cursor-pointer"
+                      onClick={() => handleServiceSelect(item, index)}
+                    >
+                      <div className="flex justify-between items-start">
+                        <div className="flex-1">
+                          <h3 className="font-semibold text-gray-900 text-lg">
+                            {item.name}
+                          </h3>
+                          <p className="text-gray-600 text-sm mt-1">
+                            {item.description}
+                          </p>
+                          <p className="text-gray-500 text-sm mt-1 flex items-center gap-1">
+                            <AccessTimeRounded fontSize="small" />
+                            {item.duration}
+                          </p>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-2xl font-bold text-amber-600">
+                            ${item.price.toLocaleString()}
+                          </p>
+                          {item.addOns && item.addOns.length > 0 && (
+                            <p className="text-xs text-gray-500 mt-1">
+                              + add-ons available
+                            </p>
+                          )}
+                        </div>
                       </div>
                     </div>
+
+                    {/* Add-ons Section */}
+                    {expandedService === index && item.addOns && item.addOns.length > 0 && (
+                      <div className="px-4 pb-4 border-t border-gray-200">
+                        <h4 className="font-semibold text-gray-900 mt-4 mb-3">
+                          Available Add-ons:
+                        </h4>
+                        <div className="space-y-2">
+                          {item.addOns.map((addOn, addOnIndex) => (
+                            <label
+                              key={addOnIndex}
+                              className="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:border-amber-300 cursor-pointer transition-all"
+                            >
+                              <div className="flex items-center gap-3">
+                                <input
+                                  type="checkbox"
+                                  checked={selectedAddOns.some((a) => a.name === addOn.name)}
+                                  onChange={() => handleAddOnToggle(addOn)}
+                                  className="w-5 h-5 text-amber-600 rounded focus:ring-amber-500"
+                                />
+                                <span className="text-gray-900">{addOn.name}</span>
+                              </div>
+                              <span className="font-semibold text-amber-600">
+                                +${addOn.price.toLocaleString()}
+                              </span>
+                            </label>
+                          ))}
+                        </div>
+                        {selectedAddOns.length > 0 && (
+                          <div className="mt-4 p-3 bg-amber-50 rounded-lg">
+                            <div className="flex justify-between items-center">
+                              <span className="font-semibold text-gray-900">Total:</span>
+                              <span className="text-2xl font-bold text-amber-600">
+                                ${calculateTotal().toLocaleString()}
+                              </span>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
@@ -373,6 +604,7 @@ export const MerchantDetailsPage = () => {
                 {merchant.portfolio.map((image, index) => (
                   <div
                     key={index}
+                    onClick={() => openLightbox(index)}
                     className="aspect-square rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer"
                   >
                     <img
@@ -387,6 +619,43 @@ export const MerchantDetailsPage = () => {
           </div>
         </div>
       </div>
+
+      {/* Lightbox Modal */}
+      {lightboxOpen && (
+        <div className="fixed inset-0 bg-black/95 flex items-center justify-center z-50">
+          <button
+            onClick={() => setLightboxOpen(false)}
+            className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors"
+          >
+            <CloseRounded style={{ fontSize: 40 }} />
+          </button>
+
+          <button
+            onClick={prevImage}
+            className="absolute left-4 text-white hover:text-gray-300 transition-colors"
+          >
+            <ChevronLeftRounded style={{ fontSize: 60 }} />
+          </button>
+
+          <button
+            onClick={nextImage}
+            className="absolute right-4 text-white hover:text-gray-300 transition-colors"
+          >
+            <ChevronRightRounded style={{ fontSize: 60 }} />
+          </button>
+
+          <div className="max-w-5xl max-h-[90vh] w-full px-16">
+            <img
+              src={merchant.portfolio[currentImageIndex]}
+              alt={`Portfolio ${currentImageIndex + 1}`}
+              className="w-full h-full object-contain"
+            />
+            <p className="text-white text-center mt-4">
+              {currentImageIndex + 1} / {merchant.portfolio.length}
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Booking Modal */}
       {showBookingModal && (
@@ -411,20 +680,31 @@ export const MerchantDetailsPage = () => {
                   <div className="p-4 bg-amber-50 rounded-lg border border-amber-200">
                     <p className="text-sm text-gray-600 mb-1">Selected Service</p>
                     <p className="font-semibold text-gray-900">{selectedService.name}</p>
-                    <p className="text-amber-600 font-bold text-lg">
-                      ${selectedService.price.toLocaleString()}
-                    </p>
                     <p className="text-sm text-gray-600 mt-1">
                       Duration: {selectedService.duration}
                     </p>
-                  </div>
-                )}
-
-                {!selectedService && (
-                  <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <p className="text-gray-600">
-                      Please select a service from the list above
-                    </p>
+                    
+                    {/* Add-ons Summary */}
+                    {selectedAddOns.length > 0 && (
+                      <div className="mt-3 pt-3 border-t border-amber-300">
+                        <p className="text-sm text-gray-600 mb-2">Add-ons:</p>
+                        <ul className="space-y-1">
+                          {selectedAddOns.map((addOn, index) => (
+                            <li key={index} className="text-sm flex justify-between">
+                              <span>{addOn.name}</span>
+                              <span className="font-medium">+${addOn.price.toLocaleString()}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    
+                    <div className="mt-3 pt-3 border-t border-amber-300 flex justify-between items-center">
+                      <span className="font-semibold text-gray-900">Total:</span>
+                      <span className="text-2xl font-bold text-amber-600">
+                        ${calculateTotal().toLocaleString()}
+                      </span>
+                    </div>
                   </div>
                 )}
 
@@ -477,7 +757,7 @@ export const MerchantDetailsPage = () => {
                       📌 Deposit Required
                     </p>
                     <p className="text-sm text-blue-800">
-                      A {merchant.depositPreference.percentage}% deposit will be required
+                      A {merchant.depositPreference.percentage}% deposit (${Math.round(calculateTotal() * merchant.depositPreference.percentage / 100).toLocaleString()}) will be required
                       to confirm this booking.
                     </p>
                   </div>
@@ -494,8 +774,7 @@ export const MerchantDetailsPage = () => {
                   </button>
                   <button
                     type="submit"
-                    disabled={!selectedService}
-                    className="flex-1 px-6 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-lg font-semibold hover:from-amber-600 hover:to-amber-700 transition-all shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex-1 px-6 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-lg font-semibold hover:from-amber-600 hover:to-amber-700 transition-all shadow-md"
                   >
                     Submit Request
                   </button>
