@@ -39,6 +39,16 @@ const TEMP_MERCHANT_DATA = {
     notes: "Deposit required to secure appointment. Non-refundable for cancellations within 24 hours.",
   },
   bio: "Specializing in protective styles and natural hair care for over 10 years. Your hair is my passion!",
+  availableSlots: {
+    // Format: "YYYY-MM-DD": ["HH:MM", ...]
+    "2024-12-20": ["09:00", "10:00", "11:00", "14:00", "15:00"],
+    "2024-12-21": ["09:00", "10:00", "13:00", "14:00", "15:00", "16:00"],
+    "2024-12-22": ["10:00", "11:00", "14:00", "15:00"],
+    "2024-12-23": ["09:00", "11:00", "13:00", "15:00"],
+    "2024-12-24": ["09:00", "10:00", "11:00"],
+    "2024-12-27": ["09:00", "10:00", "11:00", "13:00", "14:00", "15:00"],
+    "2024-12-28": ["09:00", "10:00", "13:00", "14:00"],
+  },
   services: [
     {
       category: "Braids",
@@ -249,12 +259,13 @@ export const MerchantDetailsPage = () => {
   const [showBookingModal, setShowBookingModal] = useState(false);
   const [selectedService, setSelectedService] = useState<any>(null);
   const [selectedAddOns, setSelectedAddOns] = useState<any[]>([]);
-  const [bookingDate, setBookingDate] = useState("");
-  const [bookingTime, setBookingTime] = useState("");
+  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedTime, setSelectedTime] = useState("");
   const [bookingNotes, setBookingNotes] = useState("");
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [expandedService, setExpandedService] = useState<number | null>(null);
+  const [currentWeekStart, setCurrentWeekStart] = useState(new Date());
 
   const merchant = TEMP_MERCHANT_DATA;
   const currentServices = merchant.services.find(
@@ -298,21 +309,25 @@ export const MerchantDetailsPage = () => {
 
   const handleSubmitBooking = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!selectedDate || !selectedTime) {
+      alert("Please select a date and time slot!");
+      return;
+    }
     console.log("Booking submitted:", {
       merchantId,
       service: selectedService,
       addOns: selectedAddOns,
       total: calculateTotal(),
-      date: bookingDate,
-      time: bookingTime,
+      date: selectedDate,
+      time: selectedTime,
       notes: bookingNotes,
     });
     alert("Booking request submitted! (This is temporary - API integration pending)");
     setShowBookingModal(false);
     setSelectedService(null);
     setSelectedAddOns([]);
-    setBookingDate("");
-    setBookingTime("");
+    setSelectedDate("");
+    setSelectedTime("");
     setBookingNotes("");
     setExpandedService(null);
   };
@@ -332,289 +347,335 @@ export const MerchantDetailsPage = () => {
     );
   };
 
+  // Calendar functions
+  const getWeekDays = () => {
+    const days = [];
+    const start = new Date(currentWeekStart);
+    for (let i = 0; i < 7; i++) {
+      const day = new Date(start);
+      day.setDate(start.getDate() + i);
+      days.push(day);
+    }
+    return days;
+  };
+
+  const nextWeek = () => {
+    const next = new Date(currentWeekStart);
+    next.setDate(next.getDate() + 7);
+    setCurrentWeekStart(next);
+    setSelectedDate("");
+    setSelectedTime("");
+  };
+
+  const prevWeek = () => {
+    const prev = new Date(currentWeekStart);
+    prev.setDate(prev.getDate() - 7);
+    setCurrentWeekStart(prev);
+    setSelectedDate("");
+    setSelectedTime("");
+  };
+
+  const formatDateKey = (date: Date) => {
+    return date.toISOString().split("T")[0];
+  };
+
+  const getAvailableSlots = (date: Date) => {
+    const dateKey = formatDateKey(date);
+    return merchant.availableSlots[dateKey] || [];
+  };
+
+  const formatTime = (time: string) => {
+    const [hours, minutes] = time.split(":");
+    const hour = parseInt(hours);
+    const ampm = hour >= 12 ? "PM" : "AM";
+    const displayHour = hour > 12 ? hour - 12 : hour === 0 ? 12 : hour;
+    return `${displayHour}:${minutes} ${ampm}`;
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Cover Image - Fixed height, no overlap */}
-      <div className="relative h-80 bg-gradient-to-r from-amber-400 to-amber-600">
-        <img
-          src={merchant.coverImage}
-          alt="Cover"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/30"></div>
-      </div>
+      {/* Cover Image as Background */}
+      <div className="relative">
+        <div className="absolute inset-0 h-64 overflow-hidden">
+          <img
+            src={merchant.coverImage}
+            alt="Cover"
+            className="w-full h-full object-cover blur-sm opacity-30"
+          />
+        </div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 pt-8">
+          {/* Profile Section - Left Column (1/3 width) */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="lg:col-span-1">
+              <div className="bg-white rounded-xl shadow-lg p-6 sticky top-6">
+                {/* Avatar */}
+                <div className="flex justify-center mb-4">
+                  <img
+                    src={merchant.avatar}
+                    alt={merchant.name}
+                    className="w-32 h-32 rounded-full border-4 border-white shadow-lg"
+                  />
+                </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        {/* Merchant Header Card - No negative margin */}
-        <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
-          <div className="flex flex-col md:flex-row gap-6">
-            {/* Avatar */}
-            <div className="flex-shrink-0">
-              <img
-                src={merchant.avatar}
-                alt={merchant.name}
-                className="w-32 h-32 rounded-full border-4 border-white shadow-lg"
-              />
-            </div>
-
-            {/* Info */}
-            <div className="flex-1">
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-                <div>
-                  <h1 className="text-3xl font-bold text-gray-900 mb-2">
+                {/* Name & Specialty */}
+                <div className="text-center mb-4">
+                  <h1 className="text-2xl font-bold text-gray-900 mb-1">
                     {merchant.name}
                   </h1>
                   <p className="text-amber-600 font-medium mb-3">
                     {merchant.specialty}
                   </p>
-                  <div className="flex items-center gap-2 mb-3">
+                  
+                  {/* Rating */}
+                  <div className="flex items-center justify-center gap-2 mb-4">
                     <div className="flex items-center">
                       <StarRounded className="text-amber-500" />
                       <span className="font-bold text-lg ml-1">
                         {merchant.rating}
                       </span>
-                      <span className="text-gray-600 ml-1">
+                      <span className="text-gray-600 ml-1 text-sm">
                         ({merchant.totalReviews} reviews)
                       </span>
                     </div>
                   </div>
-                  <p className="text-gray-700 mb-4 max-w-2xl">{merchant.bio}</p>
-                  
-                  {/* Contact Info */}
-                  <div className="space-y-2 text-sm text-gray-600">
-                    <div className="flex items-center gap-2">
-                      <LocationOnRounded className="text-amber-600" fontSize="small" />
-                      <span>{merchant.location.address}, {merchant.location.city}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <PhoneRounded className="text-amber-600" fontSize="small" />
-                      <span>{merchant.contact.phone}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <EmailRounded className="text-amber-600" fontSize="small" />
-                      <span>{merchant.contact.email}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <AccessTimeRounded className="text-amber-600" fontSize="small" />
-                      <span>{merchant.hours}</span>
-                    </div>
+                </div>
+
+                {/* Bio */}
+                <p className="text-gray-700 text-sm mb-6 text-center">
+                  {merchant.bio}
+                </p>
+
+                {/* Contact Info */}
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-start gap-3">
+                    <LocationOnRounded className="text-amber-600 flex-shrink-0" fontSize="small" />
+                    <span className="text-sm text-gray-700">{merchant.location.address}, {merchant.location.city}</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <PhoneRounded className="text-amber-600" fontSize="small" />
+                    <span className="text-sm text-gray-700">{merchant.contact.phone}</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <EmailRounded className="text-amber-600" fontSize="small" />
+                    <span className="text-sm text-gray-700">{merchant.contact.email}</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <AccessTimeRounded className="text-amber-600 flex-shrink-0" fontSize="small" />
+                    <span className="text-sm text-gray-700">{merchant.hours}</span>
                   </div>
                 </div>
 
-                {/* Book Button - Sticky on scroll */}
+                {/* Book Button */}
                 <button
                   onClick={handleBookAppointment}
-                  className="bg-gradient-to-r from-amber-500 to-amber-600 text-white px-8 py-4 rounded-full font-semibold hover:from-amber-600 hover:to-amber-700 transition-all shadow-lg hover:shadow-xl whitespace-nowrap h-fit flex items-center gap-2"
+                  className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-white px-6 py-3 rounded-full font-semibold hover:from-amber-600 hover:to-amber-700 transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
                 >
                   <CalendarMonthRounded />
                   Book Appointment
                 </button>
+
+                {/* Deposit Info */}
+                {merchant.depositPreference.required && (
+                  <div className="mt-6 p-4 bg-amber-50 border border-amber-200 rounded-lg">
+                    <div className="flex items-start gap-2">
+                      <CheckCircleRounded className="text-amber-600 mt-0.5 flex-shrink-0" fontSize="small" />
+                      <div className="text-xs">
+                        <p className="font-semibold text-gray-900 mb-1">
+                          Deposit: {merchant.depositPreference.percentage}%
+                        </p>
+                        <p className="text-gray-700">{merchant.depositPreference.notes}</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
-          </div>
 
-          {/* Deposit Info */}
-          {merchant.depositPreference.required && (
-            <div className="mt-6 p-4 bg-amber-50 border border-amber-200 rounded-lg">
-              <div className="flex items-start gap-2">
-                <CheckCircleRounded className="text-amber-600 mt-0.5" fontSize="small" />
-                <div className="text-sm">
-                  <p className="font-semibold text-gray-900 mb-1">
-                    Deposit Required: {merchant.depositPreference.percentage}%
-                  </p>
-                  <p className="text-gray-700">{merchant.depositPreference.notes}</p>
+            {/* Right Column (2/3 width) */}
+            <div className="lg:col-span-2">
+              {/* Portfolio Gallery */}
+              <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                  Portfolio
+                </h2>
+                <div className="grid grid-cols-3 gap-3">
+                  {merchant.portfolio.map((image, index) => (
+                    <div
+                      key={index}
+                      onClick={() => openLightbox(index)}
+                      className="aspect-square rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer"
+                    >
+                      <img
+                        src={image}
+                        alt={`Work ${index + 1}`}
+                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Services Section */}
+              <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                  Services & Pricing
+                </h2>
+
+                {/* Category Tabs */}
+                <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
+                  {merchant.services.map((service) => (
+                    <button
+                      key={service.category}
+                      onClick={() => {
+                        setSelectedCategory(service.category);
+                        setExpandedService(null);
+                        setSelectedService(null);
+                        setSelectedAddOns([]);
+                      }}
+                      className={`px-4 py-2 rounded-full font-medium whitespace-nowrap transition-all ${
+                        selectedCategory === service.category
+                          ? "bg-amber-500 text-white shadow-md"
+                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      }`}
+                    >
+                      {service.category}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Service Items with Add-ons */}
+                <div className="space-y-3">
+                  {currentServices.map((item, index) => (
+                    <div
+                      key={index}
+                      className={`border rounded-lg transition-all ${
+                        expandedService === index
+                          ? "border-amber-400 shadow-lg"
+                          : "border-gray-200 hover:border-amber-300 hover:shadow-md"
+                      }`}
+                    >
+                      <div
+                        className="p-4 cursor-pointer"
+                        onClick={() => handleServiceSelect(item, index)}
+                      >
+                        <div className="flex justify-between items-start">
+                          <div className="flex-1">
+                            <h3 className="font-semibold text-gray-900 text-lg">
+                              {item.name}
+                            </h3>
+                            <p className="text-gray-600 text-sm mt-1">
+                              {item.description}
+                            </p>
+                            <p className="text-gray-500 text-sm mt-1 flex items-center gap-1">
+                              <AccessTimeRounded fontSize="small" />
+                              {item.duration}
+                            </p>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-2xl font-bold text-amber-600">
+                              ${item.price.toLocaleString()}
+                            </p>
+                            {item.addOns && item.addOns.length > 0 && (
+                              <p className="text-xs text-gray-500 mt-1">
+                                + add-ons available
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Add-ons Section */}
+                      {expandedService === index && item.addOns && item.addOns.length > 0 && (
+                        <div className="px-4 pb-4 border-t border-gray-200">
+                          <h4 className="font-semibold text-gray-900 mt-4 mb-3">
+                            Available Add-ons:
+                          </h4>
+                          <div className="space-y-2">
+                            {item.addOns.map((addOn, addOnIndex) => (
+                              <label
+                                key={addOnIndex}
+                                className="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:border-amber-300 cursor-pointer transition-all"
+                              >
+                                <div className="flex items-center gap-3">
+                                  <input
+                                    type="checkbox"
+                                    checked={selectedAddOns.some((a) => a.name === addOn.name)}
+                                    onChange={() => handleAddOnToggle(addOn)}
+                                    className="w-5 h-5 text-amber-600 rounded focus:ring-amber-500"
+                                  />
+                                  <span className="text-gray-900">{addOn.name}</span>
+                                </div>
+                                <span className="font-semibold text-amber-600">
+                                  +${addOn.price.toLocaleString()}
+                                </span>
+                              </label>
+                            ))}
+                          </div>
+                          {selectedAddOns.length > 0 && (
+                            <div className="mt-4 p-3 bg-amber-50 rounded-lg">
+                              <div className="flex justify-between items-center">
+                                <span className="font-semibold text-gray-900">Total:</span>
+                                <span className="text-2xl font-bold text-amber-600">
+                                  ${calculateTotal().toLocaleString()}
+                                </span>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
-          )}
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Left Column - Services */}
-          <div className="lg:col-span-2">
-            {/* Services Section */}
-            <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                Services & Pricing
-              </h2>
-
-              {/* Category Tabs */}
-              <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
-                {merchant.services.map((service) => (
-                  <button
-                    key={service.category}
-                    onClick={() => {
-                      setSelectedCategory(service.category);
-                      setExpandedService(null);
-                      setSelectedService(null);
-                      setSelectedAddOns([]);
-                    }}
-                    className={`px-4 py-2 rounded-full font-medium whitespace-nowrap transition-all ${
-                      selectedCategory === service.category
-                        ? "bg-amber-500 text-white shadow-md"
-                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                    }`}
-                  >
-                    {service.category}
-                  </button>
-                ))}
-              </div>
-
-              {/* Service Items with Add-ons */}
-              <div className="space-y-3">
-                {currentServices.map((item, index) => (
-                  <div
-                    key={index}
-                    className={`border rounded-lg transition-all ${
-                      expandedService === index
-                        ? "border-amber-400 shadow-lg"
-                        : "border-gray-200 hover:border-amber-300 hover:shadow-md"
-                    }`}
-                  >
-                    <div
-                      className="p-4 cursor-pointer"
-                      onClick={() => handleServiceSelect(item, index)}
-                    >
-                      <div className="flex justify-between items-start">
-                        <div className="flex-1">
-                          <h3 className="font-semibold text-gray-900 text-lg">
-                            {item.name}
-                          </h3>
-                          <p className="text-gray-600 text-sm mt-1">
-                            {item.description}
-                          </p>
-                          <p className="text-gray-500 text-sm mt-1 flex items-center gap-1">
-                            <AccessTimeRounded fontSize="small" />
-                            {item.duration}
-                          </p>
-                        </div>
-                        <div className="text-right">
-                          <p className="text-2xl font-bold text-amber-600">
-                            ${item.price.toLocaleString()}
-                          </p>
-                          {item.addOns && item.addOns.length > 0 && (
-                            <p className="text-xs text-gray-500 mt-1">
-                              + add-ons available
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Add-ons Section */}
-                    {expandedService === index && item.addOns && item.addOns.length > 0 && (
-                      <div className="px-4 pb-4 border-t border-gray-200">
-                        <h4 className="font-semibold text-gray-900 mt-4 mb-3">
-                          Available Add-ons:
-                        </h4>
-                        <div className="space-y-2">
-                          {item.addOns.map((addOn, addOnIndex) => (
-                            <label
-                              key={addOnIndex}
-                              className="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:border-amber-300 cursor-pointer transition-all"
-                            >
-                              <div className="flex items-center gap-3">
-                                <input
-                                  type="checkbox"
-                                  checked={selectedAddOns.some((a) => a.name === addOn.name)}
-                                  onChange={() => handleAddOnToggle(addOn)}
-                                  className="w-5 h-5 text-amber-600 rounded focus:ring-amber-500"
-                                />
-                                <span className="text-gray-900">{addOn.name}</span>
-                              </div>
-                              <span className="font-semibold text-amber-600">
-                                +${addOn.price.toLocaleString()}
-                              </span>
-                            </label>
-                          ))}
-                        </div>
-                        {selectedAddOns.length > 0 && (
-                          <div className="mt-4 p-3 bg-amber-50 rounded-lg">
-                            <div className="flex justify-between items-center">
-                              <span className="font-semibold text-gray-900">Total:</span>
-                              <span className="text-2xl font-bold text-amber-600">
-                                ${calculateTotal().toLocaleString()}
-                              </span>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Reviews Section */}
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                Client Reviews
-              </h2>
-
-              <div className="space-y-6">
-                {merchant.reviews.map((review) => (
-                  <div key={review.id} className="border-b border-gray-200 pb-6 last:border-0 last:pb-0">
-                    <div className="flex gap-4">
-                      <img
-                        src={review.avatar}
-                        alt={review.clientName}
-                        className="w-12 h-12 rounded-full"
-                      />
-                      <div className="flex-1">
-                        <div className="flex items-center justify-between mb-2">
-                          <div>
-                            <p className="font-semibold text-gray-900">
-                              {review.clientName}
-                            </p>
-                            <p className="text-sm text-gray-500">{review.date}</p>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            {[...Array(5)].map((_, i) => (
-                              <StarRounded
-                                key={i}
-                                className={
-                                  i < review.rating
-                                    ? "text-amber-500"
-                                    : "text-gray-300"
-                                }
-                                fontSize="small"
-                              />
-                            ))}
-                          </div>
-                        </div>
-                        <p className="text-sm text-amber-600 font-medium mb-2">
-                          {review.service}
-                        </p>
-                        <p className="text-gray-700">{review.comment}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
 
-          {/* Right Column - Portfolio */}
-          <div className="lg:col-span-1">
-            <div className="bg-white rounded-xl shadow-lg p-6 sticky top-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                Portfolio
-              </h2>
-              <div className="grid grid-cols-2 gap-3">
-                {merchant.portfolio.map((image, index) => (
-                  <div
-                    key={index}
-                    onClick={() => openLightbox(index)}
-                    className="aspect-square rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer"
-                  >
+          {/* Reviews Section - Full Width */}
+          <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              Client Reviews
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {merchant.reviews.map((review) => (
+                <div key={review.id} className="border border-gray-200 rounded-lg p-4">
+                  <div className="flex gap-4">
                     <img
-                      src={image}
-                      alt={`Work ${index + 1}`}
-                      className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                      src={review.avatar}
+                      alt={review.clientName}
+                      className="w-12 h-12 rounded-full flex-shrink-0"
                     />
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between mb-2">
+                        <div>
+                          <p className="font-semibold text-gray-900">
+                            {review.clientName}
+                          </p>
+                          <p className="text-xs text-gray-500">{review.date}</p>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          {[...Array(5)].map((_, i) => (
+                            <StarRounded
+                              key={i}
+                              className={
+                                i < review.rating
+                                  ? "text-amber-500"
+                                  : "text-gray-300"
+                              }
+                              fontSize="small"
+                            />
+                          ))}
+                        </div>
+                      </div>
+                      <p className="text-xs text-amber-600 font-medium mb-2">
+                        {review.service}
+                      </p>
+                      <p className="text-sm text-gray-700">{review.comment}</p>
+                    </div>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -657,10 +718,10 @@ export const MerchantDetailsPage = () => {
         </div>
       )}
 
-      {/* Booking Modal */}
+      {/* Booking Modal with Calendar */}
       {showBookingModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-bold text-gray-900">
@@ -674,7 +735,7 @@ export const MerchantDetailsPage = () => {
                 </button>
               </div>
 
-              <form onSubmit={handleSubmitBooking} className="space-y-4">
+              <form onSubmit={handleSubmitBooking} className="space-y-6">
                 {/* Selected Service */}
                 {selectedService && (
                   <div className="p-4 bg-amber-50 rounded-lg border border-amber-200">
@@ -708,32 +769,97 @@ export const MerchantDetailsPage = () => {
                   </div>
                 )}
 
-                {/* Date */}
+                {/* Calendar View */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Preferred Date
+                  <label className="block text-sm font-medium text-gray-700 mb-3">
+                    Select Date & Time
                   </label>
-                  <input
-                    type="date"
-                    value={bookingDate}
-                    onChange={(e) => setBookingDate(e.target.value)}
-                    required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                  />
-                </div>
+                  
+                  {/* Week Navigation */}
+                  <div className="flex items-center justify-between mb-4">
+                    <button
+                      type="button"
+                      onClick={prevWeek}
+                      className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                    >
+                      <ChevronLeftRounded />
+                    </button>
+                    <span className="font-semibold text-gray-900">
+                      {getWeekDays()[0].toLocaleDateString("en-US", { month: "long", year: "numeric" })}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={nextWeek}
+                      className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                    >
+                      <ChevronRightRounded />
+                    </button>
+                  </div>
 
-                {/* Time */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Preferred Time
-                  </label>
-                  <input
-                    type="time"
-                    value={bookingTime}
-                    onChange={(e) => setBookingTime(e.target.value)}
-                    required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                  />
+                  {/* Calendar Grid */}
+                  <div className="grid grid-cols-7 gap-2">
+                    {getWeekDays().map((day, index) => {
+                      const dateKey = formatDateKey(day);
+                      const slots = getAvailableSlots(day);
+                      const isSelected = selectedDate === dateKey;
+                      const isPast = day < new Date(new Date().setHours(0, 0, 0, 0));
+                      
+                      return (
+                        <div key={index} className="text-center">
+                          <div className="text-xs text-gray-600 mb-2">
+                            {day.toLocaleDateString("en-US", { weekday: "short" })}
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              if (!isPast && slots.length > 0) {
+                                setSelectedDate(dateKey);
+                                setSelectedTime("");
+                              }
+                            }}
+                            disabled={isPast || slots.length === 0}
+                            className={`w-full aspect-square rounded-lg font-semibold text-sm transition-all ${
+                              isSelected
+                                ? "bg-amber-500 text-white shadow-md"
+                                : slots.length > 0 && !isPast
+                                ? "bg-white border-2 border-gray-300 hover:border-amber-400 text-gray-900"
+                                : "bg-gray-100 text-gray-400 cursor-not-allowed"
+                            }`}
+                          >
+                            {day.getDate()}
+                          </button>
+                          <div className="text-xs text-gray-500 mt-1">
+                            {slots.length > 0 && !isPast ? `${slots.length} slots` : "N/A"}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Time Slots */}
+                  {selectedDate && (
+                    <div className="mt-6">
+                      <p className="text-sm font-medium text-gray-700 mb-3">
+                        Available Times:
+                      </p>
+                      <div className="grid grid-cols-4 gap-2">
+                        {getAvailableSlots(new Date(selectedDate)).map((time, index) => (
+                          <button
+                            key={index}
+                            type="button"
+                            onClick={() => setSelectedTime(time)}
+                            className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
+                              selectedTime === time
+                                ? "bg-amber-500 text-white shadow-md"
+                                : "bg-white border border-gray-300 hover:border-amber-400 text-gray-900"
+                            }`}
+                          >
+                            {formatTime(time)}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Notes */}
@@ -774,9 +900,10 @@ export const MerchantDetailsPage = () => {
                   </button>
                   <button
                     type="submit"
-                    className="flex-1 px-6 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-lg font-semibold hover:from-amber-600 hover:to-amber-700 transition-all shadow-md"
+                    disabled={!selectedDate || !selectedTime}
+                    className="flex-1 px-6 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-lg font-semibold hover:from-amber-600 hover:to-amber-700 transition-all shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Submit Request
+                    Confirm Booking
                   </button>
                 </div>
               </form>
