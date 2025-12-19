@@ -11,8 +11,6 @@ import {
   CancelRounded,
   AccessTimeRounded,
   AttachMoneyRounded,
-  TrendingUpRounded,
-  ImageRounded,
   AddPhotoAlternateRounded,
   EditRounded,
   DeleteRounded,
@@ -34,8 +32,6 @@ const MERCHANT_DATA = {
   bio: "Specializing in protective styles and natural hair care for over 10 years. Your hair is my passion!",
   rating: 4.8,
   totalReviews: 127,
-  totalEarnings: 45600,
-  thisMonthEarnings: 8900,
   totalAppointments: 234,
   pendingAppointments: 8,
 };
@@ -153,23 +149,26 @@ const MESSAGES_DATA = [
   },
 ];
 
+const BANK_ACCOUNTS_DATA = [
+  {
+    id: 1,
+    bankName: "Scotiabank",
+    accountName: "Lisa Johnson",
+    accountNumber: "****5678",
+    accountType: "Savings",
+    primary: true,
+  },
+  {
+    id: 2,
+    bankName: "NCB (National Commercial Bank)",
+    accountName: "Lisa Johnson",
+    accountNumber: "****9012",
+    accountType: "Checking",
+    primary: false,
+  },
+];
+
 const STATS_DATA = [
-  {
-    label: "Total Earnings",
-    value: `$${MERCHANT_DATA.totalEarnings.toLocaleString()}`,
-    change: "+12.5%",
-    icon: AttachMoneyRounded,
-    color: "text-green-600",
-    bgColor: "bg-green-50",
-  },
-  {
-    label: "This Month",
-    value: `$${MERCHANT_DATA.thisMonthEarnings.toLocaleString()}`,
-    change: "+8.3%",
-    icon: TrendingUpRounded,
-    color: "text-blue-600",
-    bgColor: "bg-blue-50",
-  },
   {
     label: "Total Bookings",
     value: MERCHANT_DATA.totalAppointments,
@@ -179,12 +178,28 @@ const STATS_DATA = [
     bgColor: "bg-purple-50",
   },
   {
-    label: "Pending",
+    label: "Pending Requests",
     value: MERCHANT_DATA.pendingAppointments,
     change: "",
     icon: AccessTimeRounded,
     color: "text-amber-600",
     bgColor: "bg-amber-50",
+  },
+  {
+    label: "Total Reviews",
+    value: MERCHANT_DATA.totalReviews,
+    change: "+8.2%",
+    icon: StarRounded,
+    color: "text-yellow-600",
+    bgColor: "bg-yellow-50",
+  },
+  {
+    label: "Average Rating",
+    value: MERCHANT_DATA.rating,
+    change: "+0.2",
+    icon: StarRounded,
+    color: "text-green-600",
+    bgColor: "bg-green-50",
   },
 ];
 
@@ -197,6 +212,16 @@ export const MerchantDashboard = () => {
   const [replyText, setReplyText] = useState("");
   const [editMode, setEditMode] = useState(false);
   const [profileData, setProfileData] = useState(MERCHANT_DATA);
+  const [bankAccounts, setBankAccounts] = useState(BANK_ACCOUNTS_DATA);
+  const [showAddBankModal, setShowAddBankModal] = useState(false);
+  const [showEditBankModal, setShowEditBankModal] = useState(false);
+  const [selectedBank, setSelectedBank] = useState<any>(null);
+  const [newBankData, setNewBankData] = useState({
+    bankName: "",
+    accountName: "",
+    accountNumber: "",
+    accountType: "Savings",
+  });
 
   const handleAppointmentAction = (appointment: any, action: "confirm" | "reject") => {
     console.log(`${action} appointment:`, appointment);
@@ -852,6 +877,111 @@ export const MerchantDashboard = () => {
                 pending)
               </p>
             </div>
+
+            {/* Bank Account Management */}
+            <div className="bg-white rounded-xl shadow-sm p-6">
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h2 className="text-xl font-bold text-gray-900">
+                    Bank Accounts for Payments
+                  </h2>
+                  <p className="text-sm text-gray-600 mt-1">
+                    Add your bank accounts for clients to transfer payments
+                  </p>
+                </div>
+                <button
+                  onClick={() => setShowAddBankModal(true)}
+                  className="flex items-center gap-2 px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition-colors"
+                >
+                  <AttachMoneyRounded fontSize="small" />
+                  Add Account
+                </button>
+              </div>
+
+              {bankAccounts.length > 0 ? (
+                <div className="space-y-3">
+                  {bankAccounts.map((account) => (
+                    <div
+                      key={account.id}
+                      className="border border-gray-200 rounded-lg p-4 hover:border-amber-300 transition-all"
+                    >
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-3 mb-2">
+                            <h3 className="font-bold text-gray-900 text-lg">
+                              {account.bankName}
+                            </h3>
+                            {account.primary && (
+                              <span className="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded-full font-medium">
+                                Primary
+                              </span>
+                            )}
+                          </div>
+                          <div className="space-y-1 text-sm">
+                            <p className="text-gray-700">
+                              <span className="font-medium">Account Name:</span>{" "}
+                              {account.accountName}
+                            </p>
+                            <p className="text-gray-700">
+                              <span className="font-medium">Account Number:</span>{" "}
+                              {account.accountNumber}
+                            </p>
+                            <p className="text-gray-700">
+                              <span className="font-medium">Account Type:</span>{" "}
+                              {account.accountType}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex gap-2">
+                          <button
+                            onClick={() => {
+                              setSelectedBank(account);
+                              setShowEditBankModal(true);
+                            }}
+                            className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+                          >
+                            <EditRounded fontSize="small" />
+                          </button>
+                          <button
+                            onClick={() => {
+                              if (
+                                window.confirm(
+                                  "Are you sure you want to delete this bank account?"
+                                )
+                              ) {
+                                setBankAccounts(
+                                  bankAccounts.filter((b) => b.id !== account.id)
+                                );
+                                alert("Bank account deleted!");
+                              }
+                            }}
+                            className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                          >
+                            <DeleteRounded fontSize="small" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-8 border-2 border-dashed border-gray-300 rounded-lg">
+                  <AttachMoneyRounded
+                    className="text-gray-400 mx-auto mb-3"
+                    style={{ fontSize: 48 }}
+                  />
+                  <p className="text-gray-600 mb-4">
+                    No bank accounts added yet
+                  </p>
+                  <button
+                    onClick={() => setShowAddBankModal(true)}
+                    className="px-6 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition-colors"
+                  >
+                    Add Your First Account
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         )}
       </div>
@@ -1076,6 +1206,249 @@ export const MerchantDashboard = () => {
                   </button>
                 </div>
               </form>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Add Bank Account Modal */}
+      {showAddBankModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-xl shadow-2xl max-w-lg w-full">
+            <div className="p-6">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold text-gray-900">
+                  Add Bank Account
+                </h2>
+                <button
+                  onClick={() => {
+                    setShowAddBankModal(false);
+                    setNewBankData({
+                      bankName: "",
+                      accountName: "",
+                      accountNumber: "",
+                      accountType: "Savings",
+                    });
+                  }}
+                  className="text-gray-400 hover:text-gray-600 text-2xl"
+                >
+                  ×
+                </button>
+              </div>
+
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const newAccount = {
+                    id: bankAccounts.length + 1,
+                    ...newBankData,
+                    accountNumber: `****${newBankData.accountNumber.slice(-4)}`,
+                    primary: bankAccounts.length === 0,
+                  };
+                  setBankAccounts([...bankAccounts, newAccount]);
+                  setShowAddBankModal(false);
+                  setNewBankData({
+                    bankName: "",
+                    accountName: "",
+                    accountNumber: "",
+                    accountType: "Savings",
+                  });
+                  alert("Bank account added successfully!");
+                }}
+                className="space-y-4"
+              >
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Bank Name *
+                  </label>
+                  <select
+                    value={newBankData.bankName}
+                    onChange={(e) =>
+                      setNewBankData({ ...newBankData, bankName: e.target.value })
+                    }
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  >
+                    <option value="">Select a bank</option>
+                    <option value="Scotiabank">Scotiabank</option>
+                    <option value="NCB (National Commercial Bank)">
+                      NCB (National Commercial Bank)
+                    </option>
+                    <option value="JN Bank">JN Bank</option>
+                    <option value="First Caribbean International Bank">
+                      First Caribbean International Bank
+                    </option>
+                    <option value="CIBC FirstCaribbean">CIBC FirstCaribbean</option>
+                    <option value="Sagicor Bank">Sagicor Bank</option>
+                    <option value="Bank of Nova Scotia">Bank of Nova Scotia</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Account Name *
+                  </label>
+                  <input
+                    type="text"
+                    value={newBankData.accountName}
+                    onChange={(e) =>
+                      setNewBankData({ ...newBankData, accountName: e.target.value })
+                    }
+                    required
+                    placeholder="e.g., Lisa Johnson"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Account Number *
+                  </label>
+                  <input
+                    type="text"
+                    value={newBankData.accountNumber}
+                    onChange={(e) =>
+                      setNewBankData({
+                        ...newBankData,
+                        accountNumber: e.target.value,
+                      })
+                    }
+                    required
+                    placeholder="Enter full account number"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  />
+                  <p className="text-xs text-gray-500 mt-1">
+                    Only last 4 digits will be displayed publicly
+                  </p>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Account Type *
+                  </label>
+                  <select
+                    value={newBankData.accountType}
+                    onChange={(e) =>
+                      setNewBankData({ ...newBankData, accountType: e.target.value })
+                    }
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  >
+                    <option value="Savings">Savings</option>
+                    <option value="Checking">Checking</option>
+                    <option value="Current">Current</option>
+                  </select>
+                </div>
+
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <p className="text-sm text-blue-900">
+                    <strong>Note:</strong> This information will be shared with
+                    clients so they can make bank transfers for deposits and payments.
+                  </p>
+                </div>
+
+                <div className="flex gap-3 pt-4">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setShowAddBankModal(false);
+                      setNewBankData({
+                        bankName: "",
+                        accountName: "",
+                        accountNumber: "",
+                        accountType: "Savings",
+                      });
+                    }}
+                    className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="flex-1 px-6 py-3 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition-colors"
+                  >
+                    Add Account
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Bank Account Modal */}
+      {showEditBankModal && selectedBank && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-xl shadow-2xl max-w-lg w-full">
+            <div className="p-6">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold text-gray-900">
+                  Edit Bank Account
+                </h2>
+                <button
+                  onClick={() => {
+                    setShowEditBankModal(false);
+                    setSelectedBank(null);
+                  }}
+                  className="text-gray-400 hover:text-gray-600 text-2xl"
+                >
+                  ×
+                </button>
+              </div>
+
+              <div className="space-y-4">
+                <div className="bg-gray-50 rounded-lg p-4">
+                  <p className="text-sm text-gray-700 mb-2">
+                    <strong>Bank:</strong> {selectedBank.bankName}
+                  </p>
+                  <p className="text-sm text-gray-700 mb-2">
+                    <strong>Account Name:</strong> {selectedBank.accountName}
+                  </p>
+                  <p className="text-sm text-gray-700 mb-2">
+                    <strong>Account Number:</strong> {selectedBank.accountNumber}
+                  </p>
+                  <p className="text-sm text-gray-700">
+                    <strong>Account Type:</strong> {selectedBank.accountType}
+                  </p>
+                </div>
+
+                {!selectedBank.primary && (
+                  <button
+                    onClick={() => {
+                      setBankAccounts(
+                        bankAccounts.map((acc) => ({
+                          ...acc,
+                          primary: acc.id === selectedBank.id,
+                        }))
+                      );
+                      setShowEditBankModal(false);
+                      setSelectedBank(null);
+                      alert("Primary account updated!");
+                    }}
+                    className="w-full px-6 py-3 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition-colors"
+                  >
+                    Set as Primary Account
+                  </button>
+                )}
+
+                <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+                  <p className="text-sm text-amber-900">
+                    <strong>Primary Account:</strong> This account will be shown first
+                    to clients when they need to make payments.
+                  </p>
+                </div>
+
+                <button
+                  onClick={() => {
+                    setShowEditBankModal(false);
+                    setSelectedBank(null);
+                  }}
+                  className="w-full px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  Close
+                </button>
+              </div>
             </div>
           </div>
         </div>
