@@ -142,7 +142,7 @@ export const NavBar = () => {
             <div className="w-full flex justify-between items-center">
               <div className="w-1/3 flex items-center gap-2 mb-1">
                 <Link to="/">
-                  <img className="h-[50px]" src="./imgs/HorizontalLogo.png" />
+                  <img className="h-[50px]" src="/imgs/HorizontalLogo.png" />
                 </Link>
               </div>
               <div className="w-1/3 flex justify-end items-center gap-6 ">
