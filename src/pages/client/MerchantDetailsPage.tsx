@@ -813,29 +813,41 @@ export const MerchantDetailsPage = () => {
 
       {/* Lightbox Modal */}
       {lightboxOpen && (
-        <div className="fixed inset-0 bg-black/95 flex items-center justify-center z-50">
+        <div 
+          className="fixed inset-0 bg-black/95 flex items-center justify-center z-50"
+          onClick={() => setLightboxOpen(false)}
+        >
           <button
             onClick={() => setLightboxOpen(false)}
-            className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors"
+            className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors z-10"
           >
             <CloseRounded style={{ fontSize: 40 }} />
           </button>
 
           <button
-            onClick={prevImage}
-            className="absolute left-4 text-white hover:text-gray-300 transition-colors"
+            onClick={(e) => {
+              e.stopPropagation();
+              prevImage();
+            }}
+            className="absolute left-4 text-white hover:text-gray-300 transition-colors z-10"
           >
             <ChevronLeftRounded style={{ fontSize: 60 }} />
           </button>
 
           <button
-            onClick={nextImage}
-            className="absolute right-4 text-white hover:text-gray-300 transition-colors"
+            onClick={(e) => {
+              e.stopPropagation();
+              nextImage();
+            }}
+            className="absolute right-4 text-white hover:text-gray-300 transition-colors z-10"
           >
             <ChevronRightRounded style={{ fontSize: 60 }} />
           </button>
 
-          <div className="max-w-5xl max-h-[90vh] w-full px-16">
+          <div 
+            className="max-w-5xl max-h-[90vh] w-full px-16"
+            onClick={(e) => e.stopPropagation()}
+          >
             <img
               src={merchant.portfolio[currentImageIndex]}
               alt={`Portfolio ${currentImageIndex + 1}`}
