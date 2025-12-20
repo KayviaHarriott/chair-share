@@ -42,7 +42,7 @@ const hideNavBar = hiddenPaths.includes(location.pathname);
   return (
     <>
     {!hideNavBar && (
-        <div className="sticky top-0 z-50">
+        <div className="sticky top-0 z-99">
           <NavBar />
         </div>
       )}
