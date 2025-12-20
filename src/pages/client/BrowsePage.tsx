@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import {
   SearchRounded,
-  FilterListRounded,
+  // FilterListRounded,
   StarRounded,
   LocationOnRounded,
   TuneRounded,
