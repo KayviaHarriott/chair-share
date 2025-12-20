@@ -300,7 +300,7 @@ export const NavBar = () => {
             mobileMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
-          <div className="p-4 pt-20">
+          <div className="p-4 ">
             {/* Auth Buttons */}
             <div className="flex flex-col gap-3 mb-6 pb-6 border-b border-gray-200">
               <Link
