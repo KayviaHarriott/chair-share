@@ -408,10 +408,13 @@ export const MerchantDetailsPage = () => {
     return date.toISOString().split("T")[0];
   };
 
-  const getAvailableSlots = (date: Date) => {
-    const dateKey = formatDateKey(date);
-    return merchant.availableSlots[dateKey] || [];
-  };
+  type DateKey = keyof typeof merchant.availableSlots;
+
+const getAvailableSlots = (date: Date): string[] => {
+  const dateKey = formatDateKey(date) as DateKey;
+  return merchant.availableSlots[dateKey] ?? [];
+};
+
 
   const formatTime = (time: string) => {
     const [hours, minutes] = time.split(":");
