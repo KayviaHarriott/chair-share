@@ -291,12 +291,12 @@ export const NavBar = () => {
 
         {/* Mobile Menu Overlay */}
         {mobileMenuOpen && (
-          <div className="fixed inset-0 bg-black/50 z-40" onClick={() => setMobileMenuOpen(false)} />
+          <div className="fixed inset-0 bg-black/50 z-[9998]" onClick={() => setMobileMenuOpen(false)} />
         )}
 
         {/* Mobile Menu Drawer */}
         <div
-          className={`fixed top-0 right-0 h-screen w-80 bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out overflow-y-auto ${
+          className={`fixed top-0 right-0 h-screen w-80 bg-white shadow-2xl z-[9999] transform transition-transform duration-300 ease-in-out overflow-y-auto ${
             mobileMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
