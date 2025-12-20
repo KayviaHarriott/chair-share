@@ -35,7 +35,7 @@ function App() {
    const location = useLocation()
 
   // Hide NavBar on the /updates page
-  const hiddenPaths = ["/updates", "/login", "/register"];
+  const hiddenPaths = ["/updates"] // "/login", "/register"];
 
 const hideNavBar = hiddenPaths.includes(location.pathname);
 
