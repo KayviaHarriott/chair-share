@@ -60,45 +60,45 @@ export const Home = () => {
   }, [placeholderText, isTyping, currentPhraseIndex, searchValue, phrases]);
 
   return (
-    <div className="bg-white ">
+    <div className="bg-white">
       {/* Header/CTA */}
       <Section
         backgroundColor=""
         content={
           <>
-            <div className="flex gap-2 pt-14 -mt-8 opacity-12">
+            {/* Background Images - Hidden on mobile, visible on desktop */}
+            <div className="hidden lg:flex gap-2 pt-14 -mt-8 opacity-12">
               <div className="h-full w-1/3 flex flex-col gap-2">
-                {/* <img className=" h-[300px] w-1/3" src="/imgs/image_1.png"/> */}
                 <div className="h-[300px] shadow-lg shadow-gray-300 bg-cover grayscale-60 rounded-2xl bg-[url(/imgs/image_1.png)]"></div>
-                <div className="h-[200px] bg- bg-cover grayscale-60 rounded-2xl bg-no-repeat bg-[url(/imgs/image_6.png)]"></div>
+                <div className="h-[200px] bg-cover grayscale-60 rounded-2xl bg-no-repeat bg-[url(/imgs/image_6.png)]"></div>
               </div>
 
               <div className="h-full w-1/3 flex flex-col gap-2">
-                <div className="h-[200px] shadow-lg shadow-gray-300  bg-cover grayscale-60  bg-center rounded-2xl bg-no-repeat bg-[url(/imgs/image_5.png)]"></div>
-                <div className="h-[300px] bg-cover grayscale-60  rounded-2xl bg-no-repeat bg-[url(/imgs/image_4.png)]"></div>
+                <div className="h-[200px] shadow-lg shadow-gray-300 bg-cover grayscale-60 bg-center rounded-2xl bg-no-repeat bg-[url(/imgs/image_5.png)]"></div>
+                <div className="h-[300px] bg-cover grayscale-60 rounded-2xl bg-no-repeat bg-[url(/imgs/image_4.png)]"></div>
               </div>
 
               <div className="h-full w-1/3">
-                <div className="h-[508px]  bg-cover grayscale-60  rounded-2xl bg-no-repeat bg-[url(/imgs/image_2.png)]"></div>
+                <div className="h-[508px] bg-cover grayscale-60 rounded-2xl bg-no-repeat bg-[url(/imgs/image_2.png)]"></div>
               </div>
             </div>
 
-            <div className="max-w-4xl mx-auto text-center pt-14 relative -mt-130 z-10">
+            <div className="max-w-4xl mx-auto text-center pt-8 lg:pt-14 relative lg:-mt-130 z-10 px-4">
               {/* Heading */}
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif mb-2">
+              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif mb-2">
                 <span className="text-slate-900">Book Your</span>
                 <br />
                 <span className="text-[#F67600]">Perfect Chair</span>
               </h1>
 
               {/* Subtitle */}
-              <p className="text-lg sm:text-lg text-slate-800 mb-12 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-lg text-slate-800 mb-8 lg:mb-12 max-w-2xl mx-auto leading-relaxed">
                 Discover and book top-rated beauty professionals in your area.
                 Seamless scheduling, premium service, elevated experience.
               </p>
 
               {/* Search Bar */}
-              <div className="bg-white rounded-2xl shadow-xl shadow-[#FCECCD]/40 p-4 mb-8 max-w-3xl mx-auto">
+              <div className="bg-white rounded-2xl shadow-xl shadow-[#FCECCD]/40 p-3 lg:p-4 mb-8 max-w-3xl mx-auto">
                 <div className="flex flex-col sm:flex-row gap-3 items-center">
                   <div className="relative flex-1 w-full">
                     <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
@@ -121,10 +121,10 @@ export const Home = () => {
                       value={searchValue}
                       onChange={(e) => setSearchValue(e.target.value)}
                       placeholder={placeholderText}
-                      className="w-full pl-12 pr-4 py-4 text-slate-700 placeholder-slate-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-all"
+                      className="w-full pl-12 pr-4 py-3 lg:py-4 text-slate-700 placeholder-slate-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-all"
                     />
                   </div>
-                  <button className="w-full font-serif sm:w-auto px-8 py-4 bg-[#FF8500] hover:bg-amber-600 text-white  rounded-xl shadow-lg/5 hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2">
+                  <button className="w-full font-serif sm:w-auto px-8 py-3 lg:py-4 bg-[#FF8500] hover:bg-amber-600 text-white rounded-xl shadow-lg/5 hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2">
                     Search
                   </button>
                 </div>
@@ -153,58 +153,53 @@ export const Home = () => {
       {/* Site Benefits */}
       <Section
         content={
-          <div className="mt-30 pb-8 px-16 flex justify-between">
-            {[
-              {
-                icon: "/icons/shieldIcon.png",
-                alt: "shield icon",
-                title: "Vetted Beauty Professionals",
-                description: "Every stylist is verified before joining",
-              },
-              { title: "" },
-              {
-                icon: "/icons/starIcon.png",
-                alt: "star icon",
-                title: "Trusted Services",
-                description: "Backed by real portfolios and client reviews",
-              },
-              { title: "" },
-              {
-                icon: "/icons/privacyIcon.png",
-                alt: "lock icon",
-                title: "Secure Bookings",
-                description: "Clear pricing and transparent availability",
-              },
-            ].map((item, index) => (
-              <div key={index} className="">
-                {item.title ? (
-                  <div className="flex gap-3">
-                    <img className="h-10" src={item.icon} />
-                    <div className="">
-                      <p className="font-bold">{item.title}</p>
-                      <p className="text-sm text-slate-600">
-                        {item.description}
-                      </p>
-                    </div>
+          <div className="mt-12 lg:mt-30 pb-8 px-4 sm:px-8 lg:px-16">
+            <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-6 md:gap-4">
+              {[
+                {
+                  icon: "/icons/shieldIcon.png",
+                  alt: "shield icon",
+                  title: "Vetted Beauty Professionals",
+                  description: "Every stylist is verified before joining",
+                },
+                {
+                  icon: "/icons/starIcon.png",
+                  alt: "star icon",
+                  title: "Trusted Services",
+                  description: "Backed by real portfolios and client reviews",
+                },
+                {
+                  icon: "/icons/privacyIcon.png",
+                  alt: "lock icon",
+                  title: "Secure Bookings",
+                  description: "Clear pricing and transparent availability",
+                },
+              ].map((item, index) => (
+                <div key={index} className="flex gap-3 items-start max-w-xs md:max-w-none text-center md:text-left">
+                  <img className="h-10 flex-shrink-0" src={item.icon} alt={item.alt} />
+                  <div>
+                    <p className="font-bold text-sm lg:text-base">{item.title}</p>
+                    <p className="text-xs lg:text-sm text-slate-600">
+                      {item.description}
+                    </p>
                   </div>
-                ) : (
-                  <div className="border-l h-full border-slate-200"></div>
-                )}
-              </div>
-            ))}
+                </div>
+              ))}
+            </div>
           </div>
         }
       />
 
       <Section
         content={
-          <div className="w-full flex items-center justify-center py-8">
-            <hr className="mt-3 h-0.5 border-t-0 w-22 bg-black opacity-25 dark:bg-white/10" />
+          <div className="w-full flex items-center justify-center py-6 lg:py-8 px-4">
+            <hr className="mt-3 h-0.5 border-t-0 w-16 lg:w-22 bg-black opacity-25 dark:bg-white/10" />
             <img
-              className="h-16 -mb-4 opacity-25"
+              className="h-12 lg:h-16 -mb-4 opacity-25 mx-4"
               src="/icons/scissorsIcon.png"
+              alt="Scissors"
             />
-            <hr className="mt-3 h-0.5 border-t-0 w-22 bg-black opacity-25 dark:bg-white/10" />
+            <hr className="mt-3 h-0.5 border-t-0 w-16 lg:w-22 bg-black opacity-25 dark:bg-white/10" />
           </div>
         }
       />
@@ -214,10 +209,9 @@ export const Home = () => {
         backgroundColor=""
         content={
           <>
-            <div className="pt-5 pb-18 px-16 ">
-              <div className="pb-4 font-serif flex flex-col items-center justify-center text-center">
-                {/* <div className="h-1 bg-[#F67600] w-[80px] mb-2"></div> */}
-                <h2 className="text-2xl sm:text-2xl lg:text-3xl max-w-[500px] ">
+            <div className="pt-5 pb-12 lg:pb-18 px-4 sm:px-8 lg:px-16">
+              <div className="pb-6 lg:pb-4 font-serif flex flex-col items-center justify-center text-center">
+                <h2 className="text-xl sm:text-2xl lg:text-3xl max-w-[500px] px-4">
                   <span>Finding a stylist shouldn't be hard,</span>{" "}
                   <span className="text-[#F67600] font-semibold">
                     we make it easier.
@@ -225,7 +219,7 @@ export const Home = () => {
                 </h2>
               </div>
 
-              <div className="flex w-full gap-4">
+              <div className="flex flex-col lg:flex-row w-full gap-4 lg:gap-4">
                 <SectionCard
                   width={3}
                   title="Explore Services"
@@ -243,24 +237,16 @@ export const Home = () => {
                   title="Enjoy the Results"
                   description="Let your expert handle the rest—simple, smooth, and stress-free."
                   image="/imgs/womenTogether.jpg"
-                  
                 />
-                
-                {/* <div className="flex w-1/4 items-end justify-center">
-                  <div className="h-full w-full flex items-end">
-                    <a className="w-full bg-black text-white py-3 px-2 font-semibold rounded-lg shadow-lg text-sm text-center cursor-pointer">
-                      Sign Up Today
-                    </a>
-                  </div>
-                </div> */}
               </div>
-              <div className="w-full items-center justify-center flex">
+              
+              <div className="w-full items-center justify-center flex mt-6 lg:mt-8">
                 <Link
-                    className="bg-linear-to-br from-amber-500 to-[#BF4E30] px-6 py-2 text-white rounded-full"
-                    to="/register"
-                  >
-                    Get Started
-                  </Link>
+                  className="bg-gradient-to-br from-amber-500 to-[#BF4E30] px-8 py-3 text-white rounded-full font-semibold hover:from-amber-600 hover:to-[#A0432A] transition-all shadow-lg"
+                  to="/register"
+                >
+                  Get Started
+                </Link>
               </div>
             </div>
           </>
@@ -277,7 +263,6 @@ export const Home = () => {
           </>
         }
       /> */}
-
 
       {/* Book Appointment */}
       {/* <Section
