@@ -151,17 +151,17 @@ export const NavBar = () => {
 
   return (
     <div>
-      {/* Top Bar */}
-      <div className="bg-[#272727] text-gray-200 flex justify-center">
+      {/* Top Bar - Hidden on mobile */}
+      <div className="bg-[#272727] text-gray-200 hidden lg:flex justify-center">
         <div className="max-w-[1200px] w-full flex justify-end items-center gap-4 py-1 px-5">
-          <Link to="/merchants" className="text-sm hover:text-amber-400 transition-colors hidden sm:block">
+          <Link to="/merchants" className="text-sm hover:text-amber-400 transition-colors">
             Become a Merchant
           </Link>
-          <p className="mb-1 hidden sm:block">|</p>
-          <Link to="/contact" className="text-sm hover:text-amber-400 transition-colors hidden sm:block">
+          <p className="mb-1">|</p>
+          <Link to="/contact" className="text-sm hover:text-amber-400 transition-colors">
             Contact Us
           </Link>
-          <p className="mb-1 hidden sm:block">|</p>
+          <p className="mb-1">|</p>
           <Link to="/faqs" className="text-sm hover:text-amber-400 transition-colors">
             FAQs
           </Link>
@@ -269,7 +269,7 @@ export const NavBar = () => {
       </div>
 
       {/* Mobile Navigation */}
-      <nav className="lg:hidden bg-white border-b border-gray-200 shadow-sm">
+      <nav className="lg:hidden bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50">
         <div className="flex justify-between items-center px-4 py-3">
           {/* Logo */}
           <Link to="/" onClick={() => setMobileMenuOpen(false)}>
@@ -291,16 +291,16 @@ export const NavBar = () => {
 
         {/* Mobile Menu Overlay */}
         {mobileMenuOpen && (
-          <div className="fixed inset-0 bg-black/50 z-40 top-[57px]" onClick={() => setMobileMenuOpen(false)} />
+          <div className="fixed inset-0 bg-black/50 z-40" onClick={() => setMobileMenuOpen(false)} />
         )}
 
         {/* Mobile Menu Drawer */}
         <div
-          className={`fixed top-[57px] right-0 h-[calc(100vh-57px)] w-80 bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out overflow-y-auto ${
+          className={`fixed top-0 right-0 h-screen w-80 bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out overflow-y-auto ${
             mobileMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
-          <div className="p-4">
+          <div className="p-4 pt-20">
             {/* Auth Buttons */}
             <div className="flex flex-col gap-3 mb-6 pb-6 border-b border-gray-200">
               <Link
