@@ -1,10 +1,11 @@
 // Update History - Add new updates to the top of this array
 import { UPDATES } from "../assets/UpdatesData";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const Updates = () => {
   const [selectedFilter, setSelectedFilter] = useState<string>("all");
-  
+
   // Filter buttons configuration
   const filters = [
     { id: "all", label: "All Updates", icon: "📋" },
@@ -13,7 +14,7 @@ export const Updates = () => {
     { id: "improvement", label: "Improvements", icon: "⚡" },
     { id: "maintenance", label: "Maintenance", icon: "🔧" },
   ];
-  
+
   const getTypeColor = (type: string) => {
     switch (type) {
       case "feature":
@@ -40,7 +41,9 @@ export const Updates = () => {
 
   // Sort updates by date (newest first) and filter by type
   const sortedUpdates = [...UPDATES]
-    .filter((update) => selectedFilter === "all" || update.type === selectedFilter)
+    .filter(
+      (update) => selectedFilter === "all" || update.type === selectedFilter
+    )
     .sort((a, b) => {
       return new Date(b.date).getTime() - new Date(a.date).getTime();
     });
@@ -54,7 +57,8 @@ export const Updates = () => {
             Project Updates
           </h1>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Stay informed about the latest features, improvements, and fixes to our system.
+            Stay informed about the latest features, improvements, and fixes to
+            our system.
           </p>
         </div>
 
@@ -131,7 +135,8 @@ export const Updates = () => {
                         update.type
                       )} w-fit`}
                     >
-                      {update.type.charAt(0).toUpperCase() + update.type.slice(1)}
+                      {update.type.charAt(0).toUpperCase() +
+                        update.type.slice(1)}
                     </span>
                   </div>
 
@@ -141,21 +146,46 @@ export const Updates = () => {
                   </h2>
 
                   {/* Description */}
-                  <p className="text-slate-600 leading-relaxed">
+                  <p className="text-slate-600 leading-relaxed whitespace-pre-line">
                     {update.description}
                   </p>
+
+                  {update.links && (
+                    <div className="mt-4 flex flex-wrap gap-3">
+                      {update.links.map((link) => (
+                        <a
+                          key={link.path}
+                          href={link.path}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="
+    inline-flex items-center
+    rounded-md border border-slate-200
+    bg-slate-50 px-3 py-1.5
+    text-sm font-medium text-slate-700
+    hover:bg-blue-100 hover:text-blue-700
+    transition-colors
+  "
+                        >
+                          {link.label}
+                        </a>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 {/* Decorative accent */}
-                <div className={`h-1 ${
-                  update.type === "feature"
-                    ? "bg-blue-500"
-                    : update.type === "bugfix"
-                    ? "bg-red-500"
-                    : update.type === "improvement"
-                    ? "bg-green-500"
-                    : "bg-yellow-500"
-                }`} />
+                <div
+                  className={`h-1 ${
+                    update.type === "feature"
+                      ? "bg-blue-500"
+                      : update.type === "bugfix"
+                      ? "bg-red-500"
+                      : update.type === "improvement"
+                      ? "bg-green-500"
+                      : "bg-yellow-500"
+                  }`}
+                />
               </div>
             ))}
           </div>
@@ -178,7 +208,9 @@ export const Updates = () => {
               />
             </svg>
             <h3 className="text-xl font-semibold text-slate-900 mb-2">
-              {selectedFilter === "all" ? "No updates yet" : `No ${selectedFilter} updates`}
+              {selectedFilter === "all"
+                ? "No updates yet"
+                : `No ${selectedFilter} updates`}
             </h3>
             <p className="text-slate-600">
               {selectedFilter === "all"
@@ -190,4 +222,4 @@ export const Updates = () => {
       </div>
     </div>
   );
-}
+};

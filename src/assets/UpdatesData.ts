@@ -1,26 +1,32 @@
 export const UPDATES = [
-    {
+  {
+    date: "2025-12-20",
+    title: "Core Application Routes Added",
+    description: `New application routes and pages have been created and are now accessible:
+
+• Home Page – /
+• Browse Page – /browse
+• Merchant Details – /merchant/:merchantId
+• Merchant Dashboard – /merchant/dashboard
+
+These routes establish the main navigation structure of the platform.`,
+
+    type: "feature",
+    links: [
+      { label: "Home", path: "/" },
+      { label: "Browse", path: "/browse" },
+      { label: "Merchant Details (Test)", path: "/merchant/123" },
+      { label: "Merchant Dashboard", path: "/merchant/dashboard" },
+
+      // { label: "FAQs", path: "/faqs" },
+
+      // { label: "Admin Dashboard", path: "/admin/dashboard" },
+    ],
+  },
+  {
     date: "2025-12-11",
     title: "Development Website Launch",
-    description: "Initial system launch url.",
-    type: "feature" // feature, bugfix, improvement, maintenance
+    description: "Initial system launch URL.",
+    type: "feature",
   },
-//   {
-//     date: "2024-12-11",
-//     title: "System Launch",
-//     description: "Initial system launch with core features implemented.",
-//     type: "feature" // feature, bugfix, improvement, maintenance
-//   },
-//   {
-//     date: "2025-12-10",
-//     title: "Performance Improvements",
-//     description: "Optimized database queries and improved page load times by 40%.",
-//     type: "improvement"
-//   },
-//   {
-//     date: "2024-12-09",
-//     title: "Bug Fix: Login Issue",
-//     description: "Resolved an issue where some users were unable to log in on mobile devices.",
-//     type: "bugfix"
-//   },
-]; 
+];

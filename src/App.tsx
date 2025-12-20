@@ -52,7 +52,7 @@ const hideNavBar = hiddenPaths.includes(location.pathname);
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/updates" element={<Updates />} />
         <Route path="/login" element={<LogInPage />} />
-        <Route path="/faqs" element={<FAQsPage />} />
+        {/* <Route path="/faqs" element={<FAQsPage />} /> */}
         <Route path="/auth/forgot-password" element={<ForgotPasswordPage />} />
 
         {/* Client routes */}
@@ -66,7 +66,7 @@ const hideNavBar = hiddenPaths.includes(location.pathname);
         <Route path="/merchant/onboarding" element={<OnboardingPage />} />
 
         {/* Admin routes */}
-        <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+        {/* <Route path="/admin/dashboard" element={<AdminDashboardPage />} /> */}
         <Route path="/admin/book-monitor" element={<BookMonitorPage />} />
         <Route path="/admin/categories" element={<CategoryManagementPage />} />
         <Route path="/admin/merchant-approvals" element={<MerchantApprovalPage />} />
