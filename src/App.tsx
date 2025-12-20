@@ -6,7 +6,7 @@ import { NavBar } from './navigation/NavBar'
 import { Footer } from './navigation/Footer'
 
 // Admin pages
-import { AdminDashboardPage } from './pages/admin/AdminDashboardPage'
+// import { AdminDashboardPage } from './pages/admin/AdminDashboardPage'
 import { BookMonitorPage } from './pages/admin/BookMonitorPage'
 import { CategoryManagementPage } from './pages/admin/CategoryManagementPage'
 import { MerchantApprovalPage } from './pages/admin/MerchantApprovalPage'
@@ -28,7 +28,7 @@ import { OnboardingPage } from './pages/merchant/OnboardingPage'
 
 // Errors
 import { NotFoundPage } from './pages/errors/NotFoundPage'
-import { FAQsPage } from './pages/general/FAQsPage'
+// import { FAQsPage } from './pages/general/FAQsPage'
 
 
 function App() {

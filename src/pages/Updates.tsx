@@ -1,7 +1,7 @@
 // Update History - Add new updates to the top of this array
 import { UPDATES } from "../assets/UpdatesData";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 export const Updates = () => {
   const [selectedFilter, setSelectedFilter] = useState<string>("all");

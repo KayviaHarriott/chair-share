@@ -19,12 +19,12 @@ export const Home = () => {
   ];
 
   // Popular searches
-  const popularSearches = [
-    { icon: "✂️", label: "Hair Styling" },
-    { icon: "💅", label: "Manicure" },
-    { icon: "💈", label: "Barbershop" },
-    { icon: "💄", label: "Makeup Artist" },
-  ];
+  // const popularSearches = [
+  //   { icon: "✂️", label: "Hair Styling" },
+  //   { icon: "💅", label: "Manicure" },
+  //   { icon: "💈", label: "Barbershop" },
+  //   { icon: "💄", label: "Makeup Artist" },
+  // ];
 
   // Typing animation effect
   useEffect(() => {
