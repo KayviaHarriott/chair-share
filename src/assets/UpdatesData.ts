@@ -1,6 +1,18 @@
 export const UPDATES = [
   {
     date: "2025-12-20",
+    title: "Mobile Navigation Menu Updated",
+    description: `The mobile navigation menu has been redesigned to improve usability and visual clarity on smaller screens.
+
+• Improved layout and spacing for mobile devices
+• Clearer navigation structure for primary pages
+• Smoother interaction and touch-friendly design
+
+This update enhances the overall mobile browsing experience.`,
+    type: "improvement",
+  },
+  {
+    date: "2025-12-20",
     title: "Core Application Routes Added",
     description: `New application routes and pages have been created and are now accessible:
 
