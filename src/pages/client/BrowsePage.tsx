@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import {
   SearchRounded,
   FilterListRounded,
@@ -218,6 +218,7 @@ const PRICE_RANGES = [
 ];
 
 export const BrowsePage = () => {
+  const [searchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedParish, setSelectedParish] = useState("All Locations");
@@ -226,6 +227,14 @@ export const BrowsePage = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
+
+  // Handle URL search params
+  useEffect(() => {
+    const searchParam = searchParams.get("search");
+    if (searchParam) {
+      setSearchQuery(searchParam);
+    }
+  }, [searchParams]);
 
   // Filter merchants
   const filteredMerchants = MERCHANTS_DATA.filter((merchant) => {

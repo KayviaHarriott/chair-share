@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { KeyboardArrowDownRounded } from "@mui/icons-material";
 // Categories data structure
@@ -124,6 +124,12 @@ const categories = [
 
 export const NavBar = () => {
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
+  const navigate = useNavigate();
+
+  const handleItemClick = (item: string) => {
+    navigate(`/browse?search=${encodeURIComponent(item)}`);
+    setHoveredCategory(null);
+  };
 
   return (
     <div>
@@ -165,7 +171,14 @@ export const NavBar = () => {
                   className="relative"
                   onMouseEnter={() => setHoveredCategory(category.name)}
                 >
-                  <button className="hover:text-amber-600 transition-colors flex items-center mt-3 cursor-pointer">
+                  <button 
+                    onClick={() => {
+                      if (!category.subcategories) {
+                        handleItemClick(category.name);
+                      }
+                    }}
+                    className="hover:text-amber-600 transition-colors flex items-center mt-3 cursor-pointer"
+                  >
                     {category.name}
 
                     {/* Only show arrow if subcategories exist */}
@@ -193,11 +206,17 @@ export const NavBar = () => {
                       <div className="flex gap-24">
                         {category.subcategories.map((subcategory, index) => (
                           <div key={index}>
-                            <p className="pb-2 font-bold">{subcategory.title}</p>
+                            <p 
+                              onClick={() => handleItemClick(subcategory.title)}
+                              className="pb-2 font-bold hover:text-amber-600 cursor-pointer"
+                            >
+                              {subcategory.title}
+                            </p>
                             <ul className="space-y-1 text-gray-800">
                               {subcategory.items.map((item, itemIndex) => (
                                 <li
                                   key={itemIndex}
+                                  onClick={() => handleItemClick(item)}
                                   className="hover:text-amber-600 cursor-pointer"
                                 >
                                   {item}
