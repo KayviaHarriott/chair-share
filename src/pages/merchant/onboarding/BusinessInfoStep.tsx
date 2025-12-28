@@ -3,11 +3,12 @@ import {
   Box,
   TextField,
   Button,
-  Grid,
   MenuItem,
   Typography,
 } from '@mui/material';
-import { MerchantProfile } from '../../../types/merchant';
+import { Grid } from '../../../components/Grid';
+;
+import type { MerchantProfile } from '../../../types/merchant';
 
 interface BusinessInfoStepProps {
   data: Partial<MerchantProfile>;

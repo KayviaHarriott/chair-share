@@ -5,7 +5,6 @@ import {
   Typography,
   Button,
   Chip,
-  Grid,
   Card,
   CardContent,
   CardActions,
@@ -18,13 +17,14 @@ import {
   Tab,
   Divider,
 } from '@mui/material';
+import { Grid } from '../Grid';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import PersonIcon from '@mui/icons-material/Person';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
-import { Appointment } from '../../types/merchant';
+import type { Appointment } from '../../types/merchant';
 
 // Mock appointments data - replace with actual data from your backend
 const mockAppointments: Appointment[] = [
@@ -92,7 +92,7 @@ interface AppointmentsManagementProps {
   merchantId?: string;
 }
 
-export const AppointmentsManagement = ({ merchantId = '1' }: AppointmentsManagementProps) => {
+export const AppointmentsManagement = (_props: AppointmentsManagementProps) => {
   const [appointments, setAppointments] = useState<Appointment[]>(mockAppointments);
   const [selectedAppointment, setSelectedAppointment] = useState<Appointment | null>(null);
   const [actionDialog, setActionDialog] = useState<'accept' | 'decline' | null>(null);

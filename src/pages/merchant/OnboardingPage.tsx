@@ -4,7 +4,6 @@ import {
   Stepper,
   Step,
   StepLabel,
-  Button,
   Typography,
   Container,
   Paper,
@@ -14,7 +13,7 @@ import { ServicesStep } from './onboarding/ServicesStep';
 import { WorkingHoursStep } from './onboarding/WorkingHoursStep';
 import { PortfolioStep } from './onboarding/PortfolioStep';
 import { ReviewStep } from './onboarding/ReviewStep';
-import { MerchantProfile, Service, WorkingHours, PortfolioImage } from '../../types/merchant';
+import type { MerchantProfile, Service, WorkingHours, PortfolioImage } from '../../types/merchant';
 
 const steps = ['Business Info', 'Services & Pricing', 'Working Hours', 'Portfolio', 'Review'];
 

@@ -4,7 +4,6 @@ import {
   Button,
   Typography,
   Paper,
-  Grid,
   IconButton,
   TextField,
   Card,
@@ -12,9 +11,11 @@ import {
   CardContent,
   CardActions,
 } from '@mui/material';
+import { Grid } from '../../../components/Grid';
+;
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
-import { PortfolioImage } from '../../../types/merchant';
+import type { PortfolioImage } from '../../../types/merchant';
 
 interface PortfolioStepProps {
   portfolio: PortfolioImage[];

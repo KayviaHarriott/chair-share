@@ -3,13 +3,14 @@ import {
   Button,
   Typography,
   Paper,
-  Grid,
   Divider,
   Chip,
   Card,
   CardMedia,
 } from '@mui/material';
-import { MerchantProfile } from '../../../types/merchant';
+import { Grid } from '../../../components/Grid';
+;
+import type { MerchantProfile } from '../../../types/merchant';
 
 interface ReviewStepProps {
   data: MerchantProfile;

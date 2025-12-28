@@ -5,7 +5,6 @@ import {
   TextField,
   Typography,
   Paper,
-  Grid,
   IconButton,
   Dialog,
   DialogTitle,
@@ -17,10 +16,12 @@ import {
   ListItemSecondaryAction,
   Chip,
 } from '@mui/material';
+import { Grid } from '../../../components/Grid';
+;
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
-import { Service } from '../../../types/merchant';
+import type { Service } from '../../../types/merchant';
 
 interface ServicesStepProps {
   services: Service[];

@@ -4,12 +4,13 @@ import {
   Button,
   Typography,
   Paper,
-  Grid,
   Switch,
   FormControlLabel,
   TextField,
 } from '@mui/material';
-import { WorkingHours, DaySchedule } from '../../../types/merchant';
+import { Grid } from '../../../components/Grid';
+;
+import type { WorkingHours } from '../../../types/merchant';
 
 interface WorkingHoursStepProps {
   workingHours: WorkingHours;

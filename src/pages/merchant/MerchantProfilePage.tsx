@@ -5,7 +5,6 @@ import {
   Paper,
   Typography,
   Button,
-  Grid,
   Avatar,
   Chip,
   Divider,
@@ -15,8 +14,10 @@ import {
   Tab,
   Tabs,
 } from '@mui/material';
+import { Grid } from '../../components/Grid';
+;
 import EditIcon from '@mui/icons-material/Edit';
-import { MerchantProfile } from '../../types/merchant';
+import type { MerchantProfile } from '../../types/merchant';
 
 // Mock data - replace with actual data from your backend
 const mockMerchantData: MerchantProfile = {
