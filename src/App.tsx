@@ -23,7 +23,6 @@ import { BookingRequestPage } from './pages/client/BookingRequestPage'
 
 // Merchant pages
 import { MerchantDashboard } from './pages/merchant/MerchantDashboard'
-import { MerchantProfilePage } from './pages/merchant/MerchantProfilePage'
 import { OnboardingPage } from './pages/merchant/OnboardingPageStyled'
 
 // Errors
@@ -62,7 +61,6 @@ const hideNavBar = hiddenPaths.includes(location.pathname);
 
         {/* Merchant routes */}
         <Route path="/merchant/dashboard" element={<MerchantDashboard />} />
-        <Route path="/merchant/profile" element={<MerchantProfilePage />} />
         <Route path="/merchant/onboarding" element={<OnboardingPage />} />
 
         {/* Admin routes */}

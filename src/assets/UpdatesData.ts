@@ -15,7 +15,6 @@ export const UPDATES = [
 📱 New Routes:
 • Client Sign Up – /register
 • Merchant Onboarding – /merchant/onboarding
-• Merchant Profile – /merchant/profile
 • Merchant Dashboard – /merchant/dashboard
 
 🎨 Design:
@@ -29,7 +28,6 @@ After submission, applications are reviewed within 1-2 business days, and mercha
     links: [
       { label: "Become a Merchant", path: "/merchant/onboarding" },
       { label: "Client Sign Up", path: "/register" },
-      { label: "Merchant Profile", path: "/merchant/profile" },
       { label: "Merchant Dashboard", path: "/merchant/dashboard" },
     ],
   },
@@ -70,7 +68,6 @@ This system streamlines communication between merchants and clients, making book
     type: "feature",
     links: [
       { label: "Merchant Dashboard", path: "/merchant/dashboard" },
-      { label: "Merchant Profile", path: "/merchant/profile" },
     ],
   },
   {
