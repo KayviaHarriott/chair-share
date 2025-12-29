@@ -284,6 +284,8 @@ export const MerchantDetailsPage = () => {
   const [expandedService, setExpandedService] = useState<number | null>(null);
   const [currentWeekStart, setCurrentWeekStart] = useState(new Date());
   const [portfolioScrollIndex, setPortfolioScrollIndex] = useState(0);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [bookingConfirmationData, setBookingConfirmationData] = useState<any>(null);
 
   const merchant = TEMP_MERCHANT_DATA;
   const currentServices = merchant.services.find(
@@ -331,17 +333,28 @@ export const MerchantDetailsPage = () => {
       alert("Please select a date and time slot!");
       return;
     }
-    console.log("Booking submitted:", {
+    
+    // Store booking data for confirmation modal
+    const bookingData = {
       merchantId,
+      merchantName: merchant.name,
       service: selectedService,
       addOns: selectedAddOns,
       total: calculateTotal(),
+      deposit: Math.round(calculateTotal() * merchant.depositPreference.percentage / 100),
       date: selectedDate,
       time: selectedTime,
       notes: bookingNotes,
-    });
-    alert("Booking request submitted! (This is temporary - API integration pending)");
+    };
+    
+    console.log("Booking submitted:", bookingData);
+    
+    // Close booking modal and show confirmation
     setShowBookingModal(false);
+    setBookingConfirmationData(bookingData);
+    setShowConfirmationModal(true);
+    
+    // Reset form
     setSelectedService(null);
     setSelectedAddOns([]);
     setSelectedDate("");
@@ -1073,6 +1086,131 @@ const getAvailableSlots = (date: Date): string[] => {
                   </button>
                 </div>
               </form>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Booking Confirmation Modal */}
+      {showConfirmationModal && bookingConfirmationData && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden">
+            {/* Success Header */}
+            <div className="bg-gradient-to-r from-green-500 to-emerald-600 p-6 text-center">
+              <div className="mx-auto w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4">
+                <CheckCircleRounded className="text-green-500" style={{ fontSize: 48 }} />
+              </div>
+              <h2 className="text-2xl font-bold text-white mb-2">
+                Booking Confirmed!
+              </h2>
+              <p className="text-green-50 text-sm">
+                Your appointment request has been submitted
+              </p>
+            </div>
+
+            {/* Booking Details */}
+            <div className="p-6 space-y-4">
+              {/* Merchant Info */}
+              <div className="flex items-center gap-3 pb-4 border-b border-gray-200">
+                <img
+                  src={merchant.avatar}
+                  alt={merchant.name}
+                  className="w-12 h-12 rounded-full object-cover"
+                />
+                <div>
+                  <p className="font-semibold text-gray-900">{bookingConfirmationData.merchantName}</p>
+                  <p className="text-sm text-gray-600">{merchant.location.address}</p>
+                </div>
+              </div>
+
+              {/* Service Details */}
+              <div>
+                <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">Service</p>
+                <p className="font-semibold text-gray-900">{bookingConfirmationData.service.name}</p>
+                <p className="text-sm text-gray-600">{bookingConfirmationData.service.duration}</p>
+                
+                {bookingConfirmationData.addOns.length > 0 && (
+                  <div className="mt-2 pt-2 border-t border-gray-100">
+                    <p className="text-xs text-gray-500 mb-1">Add-ons:</p>
+                    <ul className="space-y-1">
+                      {bookingConfirmationData.addOns.map((addOn: any, idx: number) => (
+                        <li key={idx} className="text-sm text-gray-700 flex justify-between">
+                          <span>{addOn.name}</span>
+                          <span className="text-gray-500">+${addOn.price.toLocaleString()}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+
+              {/* Date & Time */}
+              <div className="flex gap-4">
+                <div className="flex-1">
+                  <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">Date</p>
+                  <p className="font-semibold text-gray-900">
+                    {new Date(bookingConfirmationData.date).toLocaleDateString("en-US", {
+                      weekday: "short",
+                      month: "short",
+                      day: "numeric",
+                      year: "numeric"
+                    })}
+                  </p>
+                </div>
+                <div className="flex-1">
+                  <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">Time</p>
+                  <p className="font-semibold text-gray-900">{formatTime(bookingConfirmationData.time)}</p>
+                </div>
+              </div>
+
+              {/* Notes */}
+              {bookingConfirmationData.notes && (
+                <div>
+                  <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">Notes</p>
+                  <p className="text-sm text-gray-700 bg-gray-50 p-3 rounded-lg">{bookingConfirmationData.notes}</p>
+                </div>
+              )}
+
+              {/* Pricing */}
+              <div className="pt-4 border-t-2 border-gray-200">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-gray-700">Service Total</span>
+                  <span className="font-semibold text-gray-900">${bookingConfirmationData.total.toLocaleString()}</span>
+                </div>
+                {merchant.depositPreference.required && (
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-gray-600">
+                      Deposit Required ({merchant.depositPreference.percentage}%)
+                    </span>
+                    <span className="font-semibold text-amber-600">
+                      ${bookingConfirmationData.deposit.toLocaleString()}
+                    </span>
+                  </div>
+                )}
+              </div>
+
+              {/* Next Steps */}
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <p className="text-sm font-medium text-blue-900 mb-2">📋 Next Steps:</p>
+                <ul className="text-sm text-blue-800 space-y-1">
+                  <li>• The merchant will review your request</li>
+                  <li>• You'll receive a confirmation email shortly</li>
+                  <li>• Check your dashboard for booking status</li>
+                  {merchant.depositPreference.required && (
+                    <li>• Payment link will be sent upon approval</li>
+                  )}
+                </ul>
+              </div>
+            </div>
+
+            {/* Actions */}
+            <div className="p-6 bg-gray-50 border-t border-gray-200 flex gap-3">
+              <button
+                onClick={() => setShowConfirmationModal(false)}
+                className="flex-1 px-6 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-lg font-semibold hover:from-amber-600 hover:to-amber-700 transition-all shadow-md"
+              >
+                Done
+              </button>
             </div>
           </div>
         </div>
