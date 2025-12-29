@@ -797,7 +797,7 @@ const getAvailableSlots = (date: Date): string[] => {
 
       {/* Message Modal */}
       {showMessageModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-[10000]">
           <div className="bg-white rounded-xl shadow-2xl max-w-lg w-full">
             <div className="p-6">
               <div className="flex justify-between items-center mb-4">
@@ -851,7 +851,7 @@ const getAvailableSlots = (date: Date): string[] => {
       {/* Lightbox Modal */}
       {lightboxOpen && (
         <div 
-          className="fixed inset-0 bg-black/95 flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black/95 flex items-center justify-center z-[10000]"
           onClick={() => setLightboxOpen(false)}
         >
           <button
@@ -899,7 +899,7 @@ const getAvailableSlots = (date: Date): string[] => {
 
       {/* Booking Modal with Calendar - (Same as before, no changes needed) */}
       {showBookingModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50 overflow-y-auto">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-[10000] overflow-y-auto">
           <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full my-8">
             <div className="p-6">
               <div className="flex justify-between items-center mb-6">
@@ -1093,7 +1093,7 @@ const getAvailableSlots = (date: Date): string[] => {
 
       {/* Booking Confirmation Modal */}
       {showConfirmationModal && bookingConfirmationData && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-[10000]">
           <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full overflow-hidden">
             {/* Desktop: Horizontal Layout | Mobile: Vertical Layout */}
             <div className="flex flex-col md:flex-row">

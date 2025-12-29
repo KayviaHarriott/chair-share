@@ -379,7 +379,7 @@ export const MerchantApprovalPage = () => {
 
       {/* Details Modal */}
       {showDetails && selectedMerchant && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-[10000]">
           <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6">
               {/* Header */}

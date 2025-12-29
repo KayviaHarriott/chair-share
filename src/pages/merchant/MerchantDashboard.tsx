@@ -1340,7 +1340,7 @@ export const MerchantDashboard = () => {
 
       {/* Appointment Detail Modal */}
       {showAppointmentModal && selectedAppointment && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-[10000]">
           <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6">
               <div className="flex justify-between items-center mb-6">
@@ -1491,7 +1491,7 @@ export const MerchantDashboard = () => {
 
       {/* Message Modal */}
       {showMessageModal && selectedMessage && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-[10000]">
           <div className="bg-white rounded-xl shadow-2xl max-w-lg w-full">
             <div className="p-6">
               <div className="flex justify-between items-center mb-6">
@@ -1565,7 +1565,7 @@ export const MerchantDashboard = () => {
 
       {/* Add Bank Account Modal */}
       {showAddBankModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-[10000]">
           <div className="bg-white rounded-xl shadow-2xl max-w-lg w-full">
             <div className="p-6">
               <div className="flex justify-between items-center mb-6">
@@ -1731,7 +1731,7 @@ export const MerchantDashboard = () => {
 
       {/* Edit Bank Account Modal */}
       {showEditBankModal && selectedBank && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-[10000]">
           <div className="bg-white rounded-xl shadow-2xl max-w-lg w-full">
             <div className="p-6">
               <div className="flex justify-between items-center mb-6">
