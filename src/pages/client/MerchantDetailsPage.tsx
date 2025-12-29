@@ -1103,10 +1103,10 @@ const getAvailableSlots = (date: Date): string[] => {
                   <CheckCircleRounded className="text-green-500" style={{ fontSize: 56 }} />
                 </div>
                 <h2 className="text-3xl font-bold text-white mb-3">
-                  Booking Confirmed!
+                  Appointment Requested!
                 </h2>
                 <p className="text-green-50 text-base">
-                  Your appointment request has been submitted successfully
+                  Your appointment request has been sent to the merchant
                 </p>
                 
                 {/* Merchant Info */}
