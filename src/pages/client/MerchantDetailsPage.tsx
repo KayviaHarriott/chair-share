@@ -459,7 +459,7 @@ const getAvailableSlots = (date: Date): string[] => {
           />
         </div>
         
-        <div className="relative max-w-7xl mx-auto px-4 pt-4 pb-6">
+        <div className="relative max-w-[1200px] mx-auto px-4 pt-4 pb-6">
           {/* Breadcrumbs */}
           <nav className="flex items-center gap-2 text-sm mb-4">
             <Link to="/" className="flex items-center text-gray-600 hover:text-amber-600 transition-colors">

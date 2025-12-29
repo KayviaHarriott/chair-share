@@ -201,7 +201,7 @@ export const AdminDashboardPage = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <div className="bg-gradient-to-r from-amber-600 to-orange-600 text-white shadow-lg">
-        <div className="max-w-7xl mx-auto px-6 py-6">
+        <div className="max-w-[1200px] mx-auto px-6 py-6">
           <div className="flex justify-between items-center">
             <div>
               <h1 className="text-3xl font-bold">Admin Dashboard</h1>
@@ -232,7 +232,7 @@ export const AdminDashboardPage = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-8">
+      <div className="max-w-[1200px] mx-auto px-6 py-8">
         {/* Navigation Tabs */}
         <div className="bg-white rounded-lg shadow-sm mb-6 p-2 flex gap-2 overflow-x-auto">
           {[
