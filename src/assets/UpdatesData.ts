@@ -2,15 +2,18 @@ export const UPDATES = [
   {
     date: "2025-12-29",
     title: "Merchant Onboarding System Launched",
-    description: `Complete merchant onboarding system is now live! Beauty professionals can now register and create their business profiles through a beautiful, step-by-step process.
+    description: `Complete merchant onboarding system is now live! Beauty professionals can now register and create their business profiles through a streamlined 3-step process.
 
 ✨ Features:
-• 5-step guided onboarding wizard
-• Business information and contact details
-• Services and pricing management
-• Weekly schedule and availability
-• Portfolio image uploads (up to 6 images)
-• Application review and submission
+• Step 1: Business information (name, contact, Jamaica location)
+• Step 2: Professional certifications & documents upload
+• Step 3: Review and submit
+
+📄 Certification Types Supported:
+• Professional licenses (Cosmetology, Barber, Esthetician, etc.)
+• Government IDs (Driver's License, National ID, Passport)
+• Business certificates (Registration, Health & Safety)
+• Multiple documents can be uploaded per application
 
 📱 New Routes:
 • Client Sign Up – /register
@@ -23,7 +26,7 @@ export const UPDATES = [
 • Mobile-responsive design
 • Success confirmation screen
 
-After submission, applications are reviewed within 1-2 business days, and merchants receive email notifications.`,
+After submission, applications are reviewed within 1-2 business days, and merchants receive email notifications. Services, pricing, hours, and portfolio can be set up later in the dashboard.`,
     type: "feature",
     links: [
       { label: "Become a Merchant", path: "/merchant/onboarding" },
