@@ -13,11 +13,21 @@ export interface MerchantProfile {
   zipCode: string;
   businessType: string;
   description: string;
+  certifications: Certification[];
   portfolio: PortfolioImage[];
   services: Service[];
   workingHours: WorkingHours;
   status: 'pending' | 'approved' | 'rejected';
   createdAt?: Date;
+}
+
+export interface Certification {
+  id: string;
+  type: string;
+  file: string;
+  fileName: string;
+  fileSize: number;
+  uploadedAt: Date;
 }
 
 export interface Service {

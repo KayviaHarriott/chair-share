@@ -1,15 +1,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BusinessInfoStep } from './onboarding/BusinessInfoStep';
-import { ServicesStep } from './onboarding/ServicesStep';
-import { WorkingHoursStep } from './onboarding/WorkingHoursStep';
-import { PortfolioStep } from './onboarding/PortfolioStep';
+import { CertificationStep, type Certification } from './onboarding/CertificationStep';
 import { ReviewStep } from './onboarding/ReviewStep';
-import type { MerchantProfile, Service, WorkingHours, PortfolioImage } from '../../types/merchant';
+import type { MerchantProfile } from '../../types/merchant';
 
-const steps = ['Business Info', 'Services & Pricing', 'Working Hours', 'Portfolio', 'Review'];
+const steps = ['Business Info', 'Certifications', 'Review'];
 
-const defaultWorkingHours: WorkingHours = {
+const defaultWorkingHours = {
   monday: { isOpen: true, openTime: '09:00', closeTime: '17:00' },
   tuesday: { isOpen: true, openTime: '09:00', closeTime: '17:00' },
   wednesday: { isOpen: true, openTime: '09:00', closeTime: '17:00' },
@@ -34,6 +32,7 @@ export const OnboardingPage = () => {
     zipCode: '',
     businessType: '',
     description: '',
+    certifications: [],
     services: [],
     workingHours: defaultWorkingHours,
     portfolio: [],
@@ -54,16 +53,8 @@ export const OnboardingPage = () => {
     setMerchantData((prev) => ({ ...prev, ...data }));
   };
 
-  const updateServices = (services: Service[]) => {
-    setMerchantData((prev) => ({ ...prev, services }));
-  };
-
-  const updateWorkingHours = (workingHours: WorkingHours) => {
-    setMerchantData((prev) => ({ ...prev, workingHours }));
-  };
-
-  const updatePortfolio = (portfolio: PortfolioImage[]) => {
-    setMerchantData((prev) => ({ ...prev, portfolio }));
+  const updateCertifications = (certifications: Certification[]) => {
+    setMerchantData((prev) => ({ ...prev, certifications }));
   };
 
   const handleSubmit = () => {
@@ -84,32 +75,14 @@ export const OnboardingPage = () => {
         );
       case 1:
         return (
-          <ServicesStep
-            services={merchantData.services || []}
-            onUpdate={updateServices}
+          <CertificationStep
+            certifications={merchantData.certifications || []}
+            onUpdate={updateCertifications}
             onNext={handleNext}
             onBack={handleBack}
           />
         );
       case 2:
-        return (
-          <WorkingHoursStep
-            workingHours={merchantData.workingHours || defaultWorkingHours}
-            onUpdate={updateWorkingHours}
-            onNext={handleNext}
-            onBack={handleBack}
-          />
-        );
-      case 3:
-        return (
-          <PortfolioStep
-            portfolio={merchantData.portfolio || []}
-            onUpdate={updatePortfolio}
-            onNext={handleNext}
-            onBack={handleBack}
-          />
-        );
-      case 4:
         return (
           <ReviewStep
             data={merchantData as MerchantProfile}

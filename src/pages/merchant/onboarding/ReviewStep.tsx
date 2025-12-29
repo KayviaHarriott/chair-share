@@ -98,6 +98,34 @@ export const ReviewStep = ({ data, onBack, onSubmit }: ReviewStepProps) => {
         </Grid>
       </Paper>
 
+      {/* Certifications */}
+      <Paper sx={{ p: 3, mb: 3 }}>
+        <Typography variant="h6" gutterBottom color="primary">
+          Certifications & Documents
+        </Typography>
+        <Divider sx={{ mb: 2 }} />
+        {data.certifications && data.certifications.length > 0 ? (
+          <Grid container spacing={2}>
+            {data.certifications.map((cert) => (
+              <Grid item xs={12} key={cert.id}>
+                <Box sx={{ p: 2, bgcolor: 'grey.50', borderRadius: 1 }}>
+                  <Typography variant="subtitle2" fontWeight="medium">
+                    {cert.type}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {cert.fileName}
+                  </Typography>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+        ) : (
+          <Typography variant="body2" color="text.secondary">
+            No certifications uploaded
+          </Typography>
+        )}
+      </Paper>
+
       {/* Services */}
       <Paper sx={{ p: 3, mb: 3 }}>
         <Typography variant="h6" gutterBottom color="primary">

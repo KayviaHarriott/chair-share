@@ -33,6 +33,7 @@ const mockMerchantData: MerchantProfile = {
   zipCode: '',
   businessType: 'Salon & Spa',
   description: 'Premium hair and beauty services with over 10 years of experience.',
+  certifications: [],
   portfolio: [
     { id: '1', url: 'https://via.placeholder.com/300', caption: 'Haircut & Style', order: 0 },
     { id: '2', url: 'https://via.placeholder.com/300', caption: 'Color Treatment', order: 1 },
