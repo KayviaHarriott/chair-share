@@ -29,6 +29,8 @@ After submission, applications are reviewed within 1-2 business days, and mercha
     links: [
       { label: "Become a Merchant", path: "/merchant/onboarding" },
       { label: "Client Sign Up", path: "/register" },
+      { label: "Merchant Profile", path: "/merchant/profile" },
+      { label: "Merchant Dashboard", path: "/merchant/dashboard" },
     ],
   },
   {
@@ -46,8 +48,9 @@ After submission, applications are reviewed within 1-2 business days, and mercha
 The new design matches the site's amber/orange color scheme and provides a premium user experience.`,
     type: "improvement",
     links: [
-      { label: "Sign Up", path: "/register" },
+      { label: "Client Sign Up", path: "/register" },
       { label: "Log In", path: "/login" },
+      { label: "Become a Merchant", path: "/merchant/onboarding" },
     ],
   },
   {
@@ -67,6 +70,7 @@ This system streamlines communication between merchants and clients, making book
     type: "feature",
     links: [
       { label: "Merchant Dashboard", path: "/merchant/dashboard" },
+      { label: "Merchant Profile", path: "/merchant/profile" },
     ],
   },
   {
