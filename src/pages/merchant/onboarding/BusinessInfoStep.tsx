@@ -2,10 +2,7 @@ import { useState } from 'react';
 import {
   Box,
   TextField,
-  Button,
   MenuItem,
-  Typography,
-  Alert,
 } from '@mui/material';
 import { Grid } from '../../../components/Grid';
 import type { MerchantProfile } from '../../../types/merchant';
@@ -153,12 +150,12 @@ export const BusinessInfoStep = ({ data, onUpdate, onNext }: BusinessInfoStepPro
 
   return (
     <Box>
-      <Typography variant="h6" gutterBottom>
-        Business Information
-      </Typography>
-      <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-        Tell us about your business
-      </Typography>
+      <div className="mb-6">
+        <h2 className="text-3xl font-bold text-gray-900 mb-2">Business Information</h2>
+        <p className="text-gray-600">
+          Tell us about your business
+        </p>
+      </div>
 
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
@@ -231,15 +228,15 @@ export const BusinessInfoStep = ({ data, onUpdate, onNext }: BusinessInfoStepPro
         {/* Show message if country not supported */}
         {isUnsupportedCountry && (
           <Grid item xs={12}>
-            <Alert severity="warning">
-              <Typography variant="body2">
-                <strong>We're currently not operating in {formData.country}.</strong>
-              </Typography>
-              <Typography variant="body2" sx={{ mt: 1 }}>
+            <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg">
+              <p className="text-sm font-semibold text-amber-800 mb-2">
+                We're currently not operating in {formData.country}.
+              </p>
+              <p className="text-sm text-gray-700">
                 Chair Share is currently only available in Jamaica. We're working hard to expand to other countries soon! 
                 Please check back later or select Jamaica if you operate there.
-              </Typography>
-            </Alert>
+              </p>
+            </div>
           </Grid>
         )}
 
@@ -324,15 +321,15 @@ export const BusinessInfoStep = ({ data, onUpdate, onNext }: BusinessInfoStepPro
         </Grid>
       </Grid>
 
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 3 }}>
-        <Button 
-          variant="contained" 
+      <div className="flex justify-end mt-8">
+        <button
           onClick={handleNext}
           disabled={isUnsupportedCountry}
+          className="px-8 py-3 bg-gradient-to-br from-amber-500 to-[#BF4E30] hover:from-amber-600 hover:to-[#A0432A] text-white font-semibold rounded-lg shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Next
-        </Button>
-      </Box>
+          Next →
+        </button>
+      </div>
     </Box>
   );
 };
