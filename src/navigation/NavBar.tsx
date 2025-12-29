@@ -5,7 +5,17 @@ import {
   MenuRounded,
   CloseRounded,
   KeyboardArrowRightRounded,
+  PersonRounded,
+  NotificationsRounded,
+  LogoutRounded,
 } from "@mui/icons-material";
+
+interface NavBarProps {
+  isSignedIn?: boolean;
+  userType?: "client" | "merchant" | "admin";
+  userName?: string;
+  userAvatar?: string;
+}
 
 // Categories data structure
 const categories = [
@@ -128,12 +138,13 @@ const categories = [
   },
 ];
 
-export const NavBar = () => {
+export const NavBar = ({ isSignedIn = false, userType, userName = "User", userAvatar }: NavBarProps = {}) => {
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileExpandedCategory, setMobileExpandedCategory] = useState<
     string | null
   >(null);
+  const [showUserMenu, setShowUserMenu] = useState(false);
   const navigate = useNavigate();
 
   const handleItemClick = (item: string) => {
@@ -182,15 +193,108 @@ export const NavBar = () => {
                 </Link>
               </div>
               <div className="flex justify-end items-center gap-6">
-                <Link className="hover:text-amber-600" to="/merchants">
-                  Sign In
-                </Link>
-                <Link
-                  className="bg-gradient-to-br from-amber-500 to-[#BF4E30] px-6 py-2 text-white rounded-full hover:from-amber-600 hover:to-[#A0432A] transition-all"
-                  to="/register"
-                >
-                  Get Started
-                </Link>
+                {isSignedIn ? (
+                  <>
+                    {/* Notifications */}
+                    <button className="relative p-2 hover:bg-gray-100 rounded-full transition-colors">
+                      <NotificationsRounded className="text-gray-700" />
+                      <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                    </button>
+                    
+                    {/* User Menu */}
+                    <div className="relative">
+                      <button 
+                        onClick={() => setShowUserMenu(!showUserMenu)}
+                        className="flex items-center gap-2 hover:bg-gray-50 rounded-full p-1 pr-3 transition-colors"
+                      >
+                        <img 
+                          src={userAvatar || "https://i.pravatar.cc/40?img=1"} 
+                          alt={userName} 
+                          className="w-9 h-9 rounded-full border-2 border-amber-500"
+                        />
+                        <span className="font-medium text-gray-800">{userName}</span>
+                        <KeyboardArrowDownRounded className="text-gray-600" />
+                      </button>
+                      
+                      {/* Dropdown Menu */}
+                      {showUserMenu && (
+                        <>
+                          <div 
+                            className="fixed inset-0 z-10" 
+                            onClick={() => setShowUserMenu(false)}
+                          />
+                          <div className="absolute right-0 top-full mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-20">
+                            {userType === "merchant" && (
+                              <>
+                                <Link 
+                                  to="/merchant/dashboard" 
+                                  className="block px-4 py-2 hover:bg-gray-50 text-gray-800"
+                                  onClick={() => setShowUserMenu(false)}
+                                >
+                                  <div className="flex items-center gap-2">
+                                    <PersonRounded fontSize="small" />
+                                    <span>Dashboard</span>
+                                  </div>
+                                </Link>
+                                <div className="border-t border-gray-200 my-2" />
+                              </>
+                            )}
+                            {userType === "admin" && (
+                              <>
+                                <Link 
+                                  to="/admin/merchant-approvals" 
+                                  className="block px-4 py-2 hover:bg-gray-50 text-gray-800"
+                                  onClick={() => setShowUserMenu(false)}
+                                >
+                                  Admin Panel
+                                </Link>
+                                <div className="border-t border-gray-200 my-2" />
+                              </>
+                            )}
+                            <Link 
+                              to="/profile" 
+                              className="block px-4 py-2 hover:bg-gray-50 text-gray-800"
+                              onClick={() => setShowUserMenu(false)}
+                            >
+                              My Profile
+                            </Link>
+                            <Link 
+                              to="/settings" 
+                              className="block px-4 py-2 hover:bg-gray-50 text-gray-800"
+                              onClick={() => setShowUserMenu(false)}
+                            >
+                              Settings
+                            </Link>
+                            <div className="border-t border-gray-200 my-2" />
+                            <button 
+                              onClick={() => {
+                                setShowUserMenu(false);
+                                // Add logout logic here
+                                navigate('/');
+                              }}
+                              className="w-full text-left px-4 py-2 hover:bg-red-50 text-red-600 flex items-center gap-2"
+                            >
+                              <LogoutRounded fontSize="small" />
+                              <span>Logout</span>
+                            </button>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <Link className="hover:text-amber-600" to="/merchants">
+                      Sign In
+                    </Link>
+                    <Link
+                      className="bg-gradient-to-br from-amber-500 to-[#BF4E30] px-6 py-2 text-white rounded-full hover:from-amber-600 hover:to-[#A0432A] transition-all"
+                      to="/register"
+                    >
+                      Get Started
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </div>

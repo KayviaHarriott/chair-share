@@ -38,11 +38,25 @@ function App() {
 
 const hideNavBar = hiddenPaths.includes(location.pathname);
 
+  // Determine if user is signed in based on route
+  const isMerchantRoute = location.pathname.startsWith("/merchant") && !location.pathname.includes("/onboarding");
+  const isAdminRoute = location.pathname.startsWith("/admin");
+  const isSignedIn = isMerchantRoute || isAdminRoute;
+  
+  const userType = isMerchantRoute ? "merchant" : isAdminRoute ? "admin" : "client";
+  const userName = isMerchantRoute ? "Lisa" : isAdminRoute ? "Admin" : "User";
+  const userAvatar = isMerchantRoute ? "https://i.pravatar.cc/150?img=1" : undefined;
+
   return (
     <>
     {!hideNavBar && (
         <div className="sticky top-0 z-99">
-          <NavBar />
+          <NavBar 
+            isSignedIn={isSignedIn}
+            userType={userType}
+            userName={userName}
+            userAvatar={userAvatar}
+          />
         </div>
       )}
       <Routes>
