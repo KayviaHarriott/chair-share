@@ -171,21 +171,6 @@ export const BookingRequestPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="bg-[#272727] text-gray-200 hidden lg:flex justify-center">
-        <div className="max-w-[1200px] w-full flex items-center gap-4 py-1 px-4">
-          <Link to="/merchant/onboarding" className="text-sm hover:text-amber-400 transition-colors">
-            Become a Merchant
-          </Link>
-          <p className="mb-1">|</p>
-          <Link to="/contact" className="text-sm hover:text-amber-400 transition-colors">
-            Contact Us
-          </Link>
-          <p className="mb-1">|</p>
-          <Link to="/faqs" className="text-sm hover:text-amber-400 transition-colors">
-            FAQs
-          </Link>
-        </div>
-      </div>
       {/* Header */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-[1200px] mx-auto px-4 py-6">
