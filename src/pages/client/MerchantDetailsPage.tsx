@@ -1094,123 +1094,128 @@ const getAvailableSlots = (date: Date): string[] => {
       {/* Booking Confirmation Modal */}
       {showConfirmationModal && bookingConfirmationData && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden">
-            {/* Success Header */}
-            <div className="bg-gradient-to-r from-green-500 to-emerald-600 p-6 text-center">
-              <div className="mx-auto w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4">
-                <CheckCircleRounded className="text-green-500" style={{ fontSize: 48 }} />
-              </div>
-              <h2 className="text-2xl font-bold text-white mb-2">
-                Booking Confirmed!
-              </h2>
-              <p className="text-green-50 text-sm">
-                Your appointment request has been submitted
-              </p>
-            </div>
-
-            {/* Booking Details */}
-            <div className="p-6 space-y-4">
-              {/* Merchant Info */}
-              <div className="flex items-center gap-3 pb-4 border-b border-gray-200">
-                <img
-                  src={merchant.avatar}
-                  alt={merchant.name}
-                  className="w-12 h-12 rounded-full object-cover"
-                />
-                <div>
-                  <p className="font-semibold text-gray-900">{bookingConfirmationData.merchantName}</p>
-                  <p className="text-sm text-gray-600">{merchant.location.address}</p>
+          <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full overflow-hidden">
+            {/* Desktop: Horizontal Layout | Mobile: Vertical Layout */}
+            <div className="flex flex-col md:flex-row">
+              {/* Left Side - Success Header (Desktop) / Top (Mobile) */}
+              <div className="bg-gradient-to-br from-green-500 to-emerald-600 p-8 md:p-10 text-center md:w-2/5 flex flex-col items-center justify-center">
+                <div className="mx-auto w-20 h-20 bg-white rounded-full flex items-center justify-center mb-6">
+                  <CheckCircleRounded className="text-green-500" style={{ fontSize: 56 }} />
+                </div>
+                <h2 className="text-3xl font-bold text-white mb-3">
+                  Booking Confirmed!
+                </h2>
+                <p className="text-green-50 text-base">
+                  Your appointment request has been submitted successfully
+                </p>
+                
+                {/* Merchant Info */}
+                <div className="mt-8 pt-6 border-t border-green-400/30 w-full">
+                  <div className="flex items-center gap-3 justify-center">
+                    <img
+                      src={merchant.avatar}
+                      alt={merchant.name}
+                      className="w-14 h-14 rounded-full object-cover border-2 border-white shadow-lg"
+                    />
+                    <div className="text-left">
+                      <p className="font-semibold text-white text-lg">{bookingConfirmationData.merchantName}</p>
+                      <p className="text-sm text-green-50">{merchant.location.address}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              {/* Service Details */}
-              <div>
-                <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">Service</p>
-                <p className="font-semibold text-gray-900">{bookingConfirmationData.service.name}</p>
-                <p className="text-sm text-gray-600">{bookingConfirmationData.service.duration}</p>
-                
-                {bookingConfirmationData.addOns.length > 0 && (
-                  <div className="mt-2 pt-2 border-t border-gray-100">
-                    <p className="text-xs text-gray-500 mb-1">Add-ons:</p>
-                    <ul className="space-y-1">
-                      {bookingConfirmationData.addOns.map((addOn: any, idx: number) => (
-                        <li key={idx} className="text-sm text-gray-700 flex justify-between">
-                          <span>{addOn.name}</span>
-                          <span className="text-gray-500">+${addOn.price.toLocaleString()}</span>
-                        </li>
-                      ))}
+              {/* Right Side - Booking Details (Desktop) / Bottom (Mobile) */}
+              <div className="md:w-3/5 flex flex-col">
+                <div className="p-6 md:p-8 space-y-5 flex-1 overflow-y-auto max-h-[70vh]">
+                  {/* Service Details */}
+                  <div>
+                    <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Service</p>
+                    <p className="text-lg font-bold text-gray-900">{bookingConfirmationData.service.name}</p>
+                    <p className="text-sm text-gray-600 mt-1">{bookingConfirmationData.service.duration}</p>
+                    
+                    {bookingConfirmationData.addOns.length > 0 && (
+                      <div className="mt-3 pt-3 border-t border-gray-200">
+                        <p className="text-xs font-medium text-gray-500 mb-2">Add-ons:</p>
+                        <ul className="space-y-1.5">
+                          {bookingConfirmationData.addOns.map((addOn: any, idx: number) => (
+                            <li key={idx} className="text-sm text-gray-700 flex justify-between">
+                              <span>{addOn.name}</span>
+                              <span className="text-gray-600 font-medium">+${addOn.price.toLocaleString()}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Date & Time */}
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Date</p>
+                      <p className="font-semibold text-gray-900">
+                        {new Date(bookingConfirmationData.date).toLocaleDateString("en-US", {
+                          weekday: "short",
+                          month: "short",
+                          day: "numeric",
+                          year: "numeric"
+                        })}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Time</p>
+                      <p className="font-semibold text-gray-900">{formatTime(bookingConfirmationData.time)}</p>
+                    </div>
+                  </div>
+
+                  {/* Notes */}
+                  {bookingConfirmationData.notes && (
+                    <div>
+                      <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Notes</p>
+                      <p className="text-sm text-gray-700 bg-gray-50 p-3 rounded-lg leading-relaxed">
+                        {bookingConfirmationData.notes}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Pricing */}
+                  <div className="pt-4 border-t-2 border-gray-200">
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-gray-700 font-medium">Service Total</span>
+                      <span className="text-xl font-bold text-gray-900">${bookingConfirmationData.total.toLocaleString()}</span>
+                    </div>
+                    {merchant.depositPreference.required && (
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-gray-600">
+                          Deposit Required ({merchant.depositPreference.percentage}%)
+                        </span>
+                        <span className="text-lg font-bold text-amber-600">
+                          ${bookingConfirmationData.deposit.toLocaleString()}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Next Steps */}
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <p className="text-sm font-semibold text-blue-900 mb-2.5">📋 Next Steps:</p>
+                    <ul className="text-sm text-blue-800 space-y-1.5">
+                      <li>• The merchant will review your request</li>
+                      <li>• You'll receive a confirmation email shortly</li>
                     </ul>
                   </div>
-                )}
-              </div>
-
-              {/* Date & Time */}
-              <div className="flex gap-4">
-                <div className="flex-1">
-                  <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">Date</p>
-                  <p className="font-semibold text-gray-900">
-                    {new Date(bookingConfirmationData.date).toLocaleDateString("en-US", {
-                      weekday: "short",
-                      month: "short",
-                      day: "numeric",
-                      year: "numeric"
-                    })}
-                  </p>
                 </div>
-                <div className="flex-1">
-                  <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">Time</p>
-                  <p className="font-semibold text-gray-900">{formatTime(bookingConfirmationData.time)}</p>
+
+                {/* Actions */}
+                <div className="p-6 bg-gray-50 border-t border-gray-200">
+                  <button
+                    onClick={() => setShowConfirmationModal(false)}
+                    className="w-full px-6 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-lg font-semibold hover:from-amber-600 hover:to-amber-700 transition-all shadow-md"
+                  >
+                    Done
+                  </button>
                 </div>
               </div>
-
-              {/* Notes */}
-              {bookingConfirmationData.notes && (
-                <div>
-                  <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">Notes</p>
-                  <p className="text-sm text-gray-700 bg-gray-50 p-3 rounded-lg">{bookingConfirmationData.notes}</p>
-                </div>
-              )}
-
-              {/* Pricing */}
-              <div className="pt-4 border-t-2 border-gray-200">
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-gray-700">Service Total</span>
-                  <span className="font-semibold text-gray-900">${bookingConfirmationData.total.toLocaleString()}</span>
-                </div>
-                {merchant.depositPreference.required && (
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-gray-600">
-                      Deposit Required ({merchant.depositPreference.percentage}%)
-                    </span>
-                    <span className="font-semibold text-amber-600">
-                      ${bookingConfirmationData.deposit.toLocaleString()}
-                    </span>
-                  </div>
-                )}
-              </div>
-
-              {/* Next Steps */}
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                <p className="text-sm font-medium text-blue-900 mb-2">📋 Next Steps:</p>
-                <ul className="text-sm text-blue-800 space-y-1">
-                  <li>• The merchant will review your request</li>
-                  <li>• You'll receive a confirmation email shortly</li>
-                  <li>• Check your dashboard for booking status</li>
-                  {merchant.depositPreference.required && (
-                    <li>• Payment link will be sent upon approval</li>
-                  )}
-                </ul>
-              </div>
-            </div>
-
-            {/* Actions */}
-            <div className="p-6 bg-gray-50 border-t border-gray-200 flex gap-3">
-              <button
-                onClick={() => setShowConfirmationModal(false)}
-                className="flex-1 px-6 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-lg font-semibold hover:from-amber-600 hover:to-amber-700 transition-all shadow-md"
-              >
-                Done
-              </button>
             </div>
           </div>
         </div>
