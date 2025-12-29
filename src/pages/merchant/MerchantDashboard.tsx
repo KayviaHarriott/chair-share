@@ -250,6 +250,17 @@ export const MerchantDashboard = () => {
     duration: "",
     description: ""
   });
+  
+  // Working hours state
+  const [workingHours, setWorkingHours] = useState([
+    { day: "Monday", isOpen: true, openTime: "09:00", closeTime: "18:00" },
+    { day: "Tuesday", isOpen: true, openTime: "09:00", closeTime: "18:00" },
+    { day: "Wednesday", isOpen: true, openTime: "09:00", closeTime: "18:00" },
+    { day: "Thursday", isOpen: true, openTime: "09:00", closeTime: "18:00" },
+    { day: "Friday", isOpen: true, openTime: "09:00", closeTime: "18:00" },
+    { day: "Saturday", isOpen: true, openTime: "10:00", closeTime: "16:00" },
+    { day: "Sunday", isOpen: false, openTime: "09:00", closeTime: "18:00" },
+  ]);
 
   const handleAppointmentAction = (appointment: any, action: "confirm" | "reject") => {
     console.log(`${action} appointment:`, appointment);
@@ -271,6 +282,30 @@ export const MerchantDashboard = () => {
     console.log("Profile updated:", profileData);
     alert("Profile updated! (API integration pending)");
     setEditMode(false);
+  };
+  
+  const handleWorkingHoursToggle = (index: number) => {
+    const updated = [...workingHours];
+    updated[index].isOpen = !updated[index].isOpen;
+    setWorkingHours(updated);
+  };
+  
+  const handleWorkingHoursTimeChange = (index: number, field: 'openTime' | 'closeTime', value: string) => {
+    const updated = [...workingHours];
+    updated[index][field] = value;
+    setWorkingHours(updated);
+  };
+  
+  const handleCopyToAllDays = () => {
+    const monday = workingHours[0];
+    const updated = workingHours.map(day => ({
+      ...day,
+      isOpen: monday.isOpen,
+      openTime: monday.openTime,
+      closeTime: monday.closeTime
+    }));
+    setWorkingHours(updated);
+    alert("Monday's hours copied to all days!");
   };
 
   const getStatusColor = (status: string) => {
@@ -865,15 +900,7 @@ export const MerchantDashboard = () => {
               </div>
 
               <div className="space-y-3">
-                {[
-                  { day: "Monday", isOpen: true, openTime: "09:00", closeTime: "18:00" },
-                  { day: "Tuesday", isOpen: true, openTime: "09:00", closeTime: "18:00" },
-                  { day: "Wednesday", isOpen: true, openTime: "09:00", closeTime: "18:00" },
-                  { day: "Thursday", isOpen: true, openTime: "09:00", closeTime: "18:00" },
-                  { day: "Friday", isOpen: true, openTime: "09:00", closeTime: "18:00" },
-                  { day: "Saturday", isOpen: true, openTime: "10:00", closeTime: "16:00" },
-                  { day: "Sunday", isOpen: false, openTime: "09:00", closeTime: "18:00" },
-                ].map((schedule, idx) => (
+                {workingHours.map((schedule, idx) => (
                   <div key={idx} className="flex items-center gap-4 p-4 border border-gray-200 rounded-lg hover:border-amber-300 transition-colors">
                     <div className="w-32">
                       <p className="font-medium text-gray-900">{schedule.day}</p>
@@ -883,7 +910,8 @@ export const MerchantDashboard = () => {
                       <label className="relative inline-flex items-center cursor-pointer">
                         <input 
                           type="checkbox" 
-                          checked={schedule.isOpen} 
+                          checked={schedule.isOpen}
+                          onChange={() => handleWorkingHoursToggle(idx)}
                           className="sr-only peer"
                           disabled={!editMode}
                         />
@@ -901,6 +929,7 @@ export const MerchantDashboard = () => {
                           <input
                             type="time"
                             value={schedule.openTime}
+                            onChange={(e) => handleWorkingHoursTimeChange(idx, 'openTime', e.target.value)}
                             disabled={!editMode}
                             className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent disabled:bg-gray-50 text-sm"
                           />
@@ -911,6 +940,7 @@ export const MerchantDashboard = () => {
                           <input
                             type="time"
                             value={schedule.closeTime}
+                            onChange={(e) => handleWorkingHoursTimeChange(idx, 'closeTime', e.target.value)}
                             disabled={!editMode}
                             className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent disabled:bg-gray-50 text-sm"
                           />
@@ -924,9 +954,10 @@ export const MerchantDashboard = () => {
               {editMode && (
                 <div className="mt-4 flex justify-end">
                   <button 
+                    onClick={handleCopyToAllDays}
                     className="px-4 py-2 text-amber-600 hover:bg-amber-50 rounded-lg transition-colors text-sm font-medium"
                   >
-                    Copy to All Days
+                    Copy Monday to All Days
                   </button>
                 </div>
               )}
