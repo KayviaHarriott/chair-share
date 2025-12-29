@@ -13,7 +13,7 @@ import { MerchantApprovalPage } from './pages/admin/MerchantApprovalPage'
 
 // Auth pages
 import { LogInPage } from './pages/auth/LogInPage'
-import { RegisterPage } from './pages/auth/RegisterPage'
+import { ClientSignUpPage } from './pages/auth/ClientSignUpPage'
 import { ForgotPasswordPage } from './pages/auth/ForgotPasswordPage'
 
 // Client pages
@@ -24,7 +24,7 @@ import { BookingRequestPage } from './pages/client/BookingRequestPage'
 // Merchant pages
 import { MerchantDashboard } from './pages/merchant/MerchantDashboard'
 import { MerchantProfilePage } from './pages/merchant/MerchantProfilePage'
-import { OnboardingPage } from './pages/merchant/OnboardingPage'
+import { OnboardingPage } from './pages/merchant/OnboardingPageStyled'
 
 // Errors
 import { NotFoundPage } from './pages/errors/NotFoundPage'
@@ -34,8 +34,8 @@ import { NotFoundPage } from './pages/errors/NotFoundPage'
 function App() {
    const location = useLocation()
 
-  // Hide NavBar on the /updates page
-  const hiddenPaths = ["/updates"] // "/login", "/register"];
+  // Hide NavBar on the /updates page and auth pages
+  const hiddenPaths = ["/updates", "/register", "/merchant/onboarding"]; // "/login", "/register"];
 
 const hideNavBar = hiddenPaths.includes(location.pathname);
 
@@ -49,7 +49,7 @@ const hideNavBar = hiddenPaths.includes(location.pathname);
       <Routes>
         {/* Public routes */}
         <Route path="/" element={<Home />} />
-        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/register" element={<ClientSignUpPage />} />
         <Route path="/updates" element={<Updates />} />
         <Route path="/login" element={<LogInPage />} />
         {/* <Route path="/faqs" element={<FAQsPage />} /> */}

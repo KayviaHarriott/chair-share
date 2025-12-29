@@ -154,7 +154,7 @@ export const NavBar = () => {
       {/* Top Bar - Hidden on mobile */}
       <div className="bg-[#272727] text-gray-200 hidden lg:flex justify-center">
         <div className="max-w-[1200px] w-full flex justify-end items-center gap-4 py-1 px-5">
-          <Link to="/merchants" className="text-sm hover:text-amber-400 transition-colors">
+          <Link to="/merchant/onboarding" className="text-sm hover:text-amber-400 transition-colors">
             Become a Merchant
           </Link>
           <p className="mb-1">|</p>
@@ -383,7 +383,7 @@ export const NavBar = () => {
             {/* Bottom Links */}
             <div className="mt-6 pt-6 border-t border-gray-200 space-y-3">
               <Link
-                to="/merchants"
+                to="/merchant/onboarding"
                 onClick={() => setMobileMenuOpen(false)}
                 className="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-600 rounded-lg transition-colors"
               >
