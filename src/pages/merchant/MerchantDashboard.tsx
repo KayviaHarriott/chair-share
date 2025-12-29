@@ -907,17 +907,21 @@ export const MerchantDashboard = () => {
                     </div>
                     
                     <div className="flex items-center gap-2">
-                      <label className="relative inline-flex items-center cursor-pointer">
-                        <input 
-                          type="checkbox" 
-                          checked={schedule.isOpen}
-                          onChange={() => handleWorkingHoursToggle(idx)}
-                          className="sr-only peer"
-                          disabled={!editMode}
+                      <button
+                        type="button"
+                        onClick={() => editMode && handleWorkingHoursToggle(idx)}
+                        disabled={!editMode}
+                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 ${
+                          schedule.isOpen ? 'bg-amber-500' : 'bg-gray-300'
+                        } ${!editMode ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'}`}
+                      >
+                        <span
+                          className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform duration-200 ${
+                            schedule.isOpen ? 'translate-x-6' : 'translate-x-1'
+                          }`}
                         />
-                        <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-amber-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-500"></div>
-                      </label>
-                      <span className="text-sm text-gray-600">
+                      </button>
+                      <span className="text-sm text-gray-600 font-medium">
                         {schedule.isOpen ? "Open" : "Closed"}
                       </span>
                     </div>
