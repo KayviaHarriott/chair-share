@@ -15,6 +15,7 @@ import {
   EditRounded,
   DeleteRounded,
   SendRounded,
+  SaveRounded,
 } from "@mui/icons-material";
 
 // Temporary merchant data
@@ -211,6 +212,7 @@ export const MerchantDashboard = () => {
   const [showMessageModal, setShowMessageModal] = useState(false);
   const [replyText, setReplyText] = useState("");
   const [editMode, setEditMode] = useState(false);
+  const [editWorkingHoursMode, setEditWorkingHoursMode] = useState(false);
   const [profileData, setProfileData] = useState(MERCHANT_DATA);
   const [bankAccounts, setBankAccounts] = useState(BANK_ACCOUNTS_DATA);
   const [showAddBankModal, setShowAddBankModal] = useState(false);
@@ -897,6 +899,34 @@ export const MerchantDashboard = () => {
                 <h2 className="text-xl font-bold text-gray-900">
                   Working Hours & Availability
                 </h2>
+                {!editWorkingHoursMode ? (
+                  <button
+                    onClick={() => setEditWorkingHoursMode(true)}
+                    className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-lg hover:from-amber-600 hover:to-amber-700 transition-all shadow-md"
+                  >
+                    <EditRounded fontSize="small" />
+                    Edit Working Hours
+                  </button>
+                ) : (
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => setEditWorkingHoursMode(false)}
+                      className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={() => {
+                        handleSaveProfile();
+                        setEditWorkingHoursMode(false);
+                      }}
+                      className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-lg hover:from-amber-600 hover:to-amber-700 transition-all shadow-md"
+                    >
+                      <SaveRounded fontSize="small" />
+                      Save Changes
+                    </button>
+                  </div>
+                )}
               </div>
 
               <div className="space-y-3">
@@ -909,11 +939,11 @@ export const MerchantDashboard = () => {
                     <div className="flex items-center gap-2">
                       <button
                         type="button"
-                        onClick={() => editMode && handleWorkingHoursToggle(idx)}
-                        disabled={!editMode}
+                        onClick={() => editWorkingHoursMode && handleWorkingHoursToggle(idx)}
+                        disabled={!editWorkingHoursMode}
                         className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 ${
                           schedule.isOpen ? 'bg-amber-500' : 'bg-gray-300'
-                        } ${!editMode ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'}`}
+                        } ${!editWorkingHoursMode ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'}`}
                       >
                         <span
                           className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform duration-200 ${
@@ -934,7 +964,7 @@ export const MerchantDashboard = () => {
                             type="time"
                             value={schedule.openTime}
                             onChange={(e) => handleWorkingHoursTimeChange(idx, 'openTime', e.target.value)}
-                            disabled={!editMode}
+                            disabled={!editWorkingHoursMode}
                             className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent disabled:bg-gray-50 text-sm"
                           />
                         </div>
@@ -945,7 +975,7 @@ export const MerchantDashboard = () => {
                             type="time"
                             value={schedule.closeTime}
                             onChange={(e) => handleWorkingHoursTimeChange(idx, 'closeTime', e.target.value)}
-                            disabled={!editMode}
+                            disabled={!editWorkingHoursMode}
                             className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent disabled:bg-gray-50 text-sm"
                           />
                         </div>
@@ -955,7 +985,7 @@ export const MerchantDashboard = () => {
                 ))}
               </div>
 
-              {editMode && (
+              {editWorkingHoursMode && (
                 <div className="mt-4 flex justify-end">
                   <button 
                     onClick={handleCopyToAllDays}
