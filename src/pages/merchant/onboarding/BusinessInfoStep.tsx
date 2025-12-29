@@ -5,9 +5,9 @@ import {
   Button,
   MenuItem,
   Typography,
+  Alert,
 } from '@mui/material';
 import { Grid } from '../../../components/Grid';
-;
 import type { MerchantProfile } from '../../../types/merchant';
 
 interface BusinessInfoStepProps {
@@ -30,12 +30,39 @@ const businessTypes = [
   'Other',
 ];
 
+const countries = [
+  'Jamaica',
+  'United States',
+  'Canada',
+  'United Kingdom',
+  'Other',
+];
+
+// Jamaica parishes
+const jamaicaParishes = [
+  'Kingston',
+  'St. Andrew',
+  'St. Thomas',
+  'Portland',
+  'St. Mary',
+  'St. Ann',
+  'Trelawny',
+  'St. James',
+  'Hanover',
+  'Westmoreland',
+  'St. Elizabeth',
+  'Manchester',
+  'Clarendon',
+  'St. Catherine',
+];
+
 export const BusinessInfoStep = ({ data, onUpdate, onNext }: BusinessInfoStepProps) => {
   const [formData, setFormData] = useState({
     businessName: data.businessName || '',
     ownerName: data.ownerName || '',
     email: data.email || '',
     phone: data.phone || '',
+    country: data.country || '',
     address: data.address || '',
     city: data.city || '',
     state: data.state || '',
@@ -47,7 +74,22 @@ export const BusinessInfoStep = ({ data, onUpdate, onNext }: BusinessInfoStepPro
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleChange = (field: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [field]: event.target.value });
+    const value = event.target.value;
+    
+    // If changing country, reset address fields
+    if (field === 'country') {
+      setFormData({
+        ...formData,
+        country: value,
+        address: '',
+        city: '',
+        state: '',
+        zipCode: '',
+      });
+    } else {
+      setFormData({ ...formData, [field]: value });
+    }
+    
     if (errors[field]) {
       setErrors({ ...errors, [field]: '' });
     }
@@ -70,18 +112,23 @@ export const BusinessInfoStep = ({ data, onUpdate, onNext }: BusinessInfoStepPro
     if (!formData.phone.trim()) {
       newErrors.phone = 'Phone is required';
     }
-    if (!formData.address.trim()) {
-      newErrors.address = 'Address is required';
+    if (!formData.country) {
+      newErrors.country = 'Country is required';
     }
-    if (!formData.city.trim()) {
-      newErrors.city = 'City is required';
+    
+    // Only validate address fields if country is Jamaica
+    if (formData.country === 'Jamaica') {
+      if (!formData.address.trim()) {
+        newErrors.address = 'Address is required';
+      }
+      if (!formData.city.trim()) {
+        newErrors.city = 'City/Town is required';
+      }
+      if (!formData.state.trim()) {
+        newErrors.state = 'Parish is required';
+      }
     }
-    if (!formData.state.trim()) {
-      newErrors.state = 'State is required';
-    }
-    if (!formData.zipCode.trim()) {
-      newErrors.zipCode = 'Zip code is required';
-    }
+    
     if (!formData.businessType) {
       newErrors.businessType = 'Business type is required';
     }
@@ -99,6 +146,10 @@ export const BusinessInfoStep = ({ data, onUpdate, onNext }: BusinessInfoStepPro
       onNext();
     }
   };
+
+  const isJamaica = formData.country === 'Jamaica';
+  const isCountrySelected = formData.country !== '';
+  const isUnsupportedCountry = isCountrySelected && !isJamaica;
 
   return (
     <Box>
@@ -152,53 +203,94 @@ export const BusinessInfoStep = ({ data, onUpdate, onNext }: BusinessInfoStepPro
             onChange={handleChange('phone')}
             error={!!errors.phone}
             helperText={errors.phone}
+            placeholder="e.g., (876) 555-1234"
             required
           />
         </Grid>
+
+        {/* Country Selection */}
         <Grid item xs={12}>
           <TextField
             fullWidth
-            label="Business Address"
-            value={formData.address}
-            onChange={handleChange('address')}
-            error={!!errors.address}
-            helperText={errors.address}
+            select
+            label="Country"
+            value={formData.country}
+            onChange={handleChange('country')}
+            error={!!errors.country}
+            helperText={errors.country || 'Select your business location'}
             required
-          />
+          >
+            {countries.map((country) => (
+              <MenuItem key={country} value={country}>
+                {country}
+              </MenuItem>
+            ))}
+          </TextField>
         </Grid>
-        <Grid item xs={12} md={4}>
-          <TextField
-            fullWidth
-            label="City"
-            value={formData.city}
-            onChange={handleChange('city')}
-            error={!!errors.city}
-            helperText={errors.city}
-            required
-          />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <TextField
-            fullWidth
-            label="State"
-            value={formData.state}
-            onChange={handleChange('state')}
-            error={!!errors.state}
-            helperText={errors.state}
-            required
-          />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <TextField
-            fullWidth
-            label="Zip Code"
-            value={formData.zipCode}
-            onChange={handleChange('zipCode')}
-            error={!!errors.zipCode}
-            helperText={errors.zipCode}
-            required
-          />
-        </Grid>
+
+        {/* Show message if country not supported */}
+        {isUnsupportedCountry && (
+          <Grid item xs={12}>
+            <Alert severity="warning">
+              <Typography variant="body2">
+                <strong>We're currently not operating in {formData.country}.</strong>
+              </Typography>
+              <Typography variant="body2" sx={{ mt: 1 }}>
+                Chair Share is currently only available in Jamaica. We're working hard to expand to other countries soon! 
+                Please check back later or select Jamaica if you operate there.
+              </Typography>
+            </Alert>
+          </Grid>
+        )}
+
+        {/* Address fields - Only show if Jamaica is selected */}
+        {isJamaica && (
+          <>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Business Address"
+                value={formData.address}
+                onChange={handleChange('address')}
+                error={!!errors.address}
+                helperText={errors.address || 'Street address, building name, etc.'}
+                placeholder="e.g., 123 Main Street"
+                required
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <TextField
+                fullWidth
+                label="City/Town"
+                value={formData.city}
+                onChange={handleChange('city')}
+                error={!!errors.city}
+                helperText={errors.city}
+                placeholder="e.g., Montego Bay"
+                required
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <TextField
+                fullWidth
+                select
+                label="Parish"
+                value={formData.state}
+                onChange={handleChange('state')}
+                error={!!errors.state}
+                helperText={errors.state}
+                required
+              >
+                {jamaicaParishes.map((parish) => (
+                  <MenuItem key={parish} value={parish}>
+                    {parish}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </Grid>
+          </>
+        )}
+
         <Grid item xs={12}>
           <TextField
             fullWidth
@@ -233,7 +325,11 @@ export const BusinessInfoStep = ({ data, onUpdate, onNext }: BusinessInfoStepPro
       </Grid>
 
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 3 }}>
-        <Button variant="contained" onClick={handleNext}>
+        <Button 
+          variant="contained" 
+          onClick={handleNext}
+          disabled={isUnsupportedCountry}
+        >
           Next
         </Button>
       </Box>

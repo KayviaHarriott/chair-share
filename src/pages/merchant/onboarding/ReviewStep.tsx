@@ -69,12 +69,18 @@ export const ReviewStep = ({ data, onBack, onSubmit }: ReviewStepProps) => {
             </Typography>
             <Typography variant="body1">{data.phone}</Typography>
           </Grid>
+          <Grid item xs={12} sm={6}>
+            <Typography variant="caption" color="text.secondary">
+              Country
+            </Typography>
+            <Typography variant="body1">{data.country}</Typography>
+          </Grid>
           <Grid item xs={12}>
             <Typography variant="caption" color="text.secondary">
               Address
             </Typography>
             <Typography variant="body1">
-              {data.address}, {data.city}, {data.state} {data.zipCode}
+              {data.address}, {data.city}, {data.state}
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6}>

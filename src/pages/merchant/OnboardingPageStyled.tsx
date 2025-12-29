@@ -27,6 +27,7 @@ export const OnboardingPage = () => {
     ownerName: '',
     email: '',
     phone: '',
+    country: '',
     address: '',
     city: '',
     state: '',
