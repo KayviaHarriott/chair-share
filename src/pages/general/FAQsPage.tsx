@@ -267,7 +267,7 @@ export const FAQsPage = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <div className="bg-gradient-to-r from-amber-600 to-orange-600 text-white">
-        <div className="max-w-7xl mx-auto px-6 py-12">
+        <div className="max-w-[1200px] mx-auto px-6 py-12">
           {/* Breadcrumbs */}
           <div className="flex items-center gap-2 text-sm text-amber-100 mb-6">
             <Link to="/" className="hover:text-white transition-colors">
@@ -300,7 +300,7 @@ export const FAQsPage = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-[1200px] mx-auto px-6 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Categories Sidebar */}
           <div className="lg:col-span-1">

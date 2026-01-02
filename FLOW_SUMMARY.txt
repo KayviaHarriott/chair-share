@@ -1,0 +1,134 @@
+═══════════════════════════════════════════════════════════════
+                   CHAIR SHARE - USER FLOW
+═══════════════════════════════════════════════════════════════
+
+📱 HOMEPAGE (NavBar visible)
+   │
+   ├─► "Get Started" Button
+   │      │
+   │      ▼
+   │   🔐 CLIENT SIGN UP PAGE (/register)
+   │      - NO NavBar/Footer
+   │      - Google OAuth prominent
+   │      - Email signup form
+   │      - Image carousel (desktop)
+   │      │
+   │      ├─► Sign up as client → Dashboard
+   │      │
+   │      └─► "Become a Merchant" button
+   │             │
+   │             ▼
+   │          👔 MERCHANT ONBOARDING (/merchant/onboarding)
+   │             - NO NavBar/Footer
+   │             - Custom progress bar
+   │             - 5 steps
+   │             │
+   │             └─► Submit → ✅ SUCCESS SCREEN
+   │                           "Under Review"
+   │                           "1-2 business days"
+   │                           Contact info
+   │
+   └─► NavBar "Become a Merchant"
+          │
+          ▼
+       👔 MERCHANT ONBOARDING (direct)
+
+
+═══════════════════════════════════════════════════════════════
+                    MERCHANT ONBOARDING STEPS
+═══════════════════════════════════════════════════════════════
+
+Step 1: 📝 BUSINESS INFO
+   - Business name, owner
+   - Email, phone
+   - Address (street, city, state, zip)
+   - Business type
+   - Description
+
+Step 2: 💰 SERVICES & PRICING
+   - Add/edit/delete services
+   - Name, category, description
+   - Price, duration
+   - Multiple services allowed
+
+Step 3: 🕐 WORKING HOURS
+   - Set hours for each day
+   - Open/close times
+   - Toggle days on/off
+   - Copy to all days option
+
+Step 4: 📸 PORTFOLIO (optional)
+   - Upload up to 6 images
+   - 5MB limit per image
+   - Add captions
+   - JPG, PNG, WebP
+
+Step 5: ✅ REVIEW & SUBMIT
+   - Review all information
+   - Edit any step
+   - Submit application
+
+
+═══════════════════════════════════════════════════════════════
+                      SUCCESS SCREEN
+═══════════════════════════════════════════════════════════════
+
+   ✓ Application Submitted!
+   
+   What happens next?
+   ✓ Review in 1-2 business days
+   ✓ Email notification when approved
+   ✓ Team may contact for info
+   
+   Questions? support@chairshare.com
+   
+   [Back to Home] [Sign In]
+
+
+═══════════════════════════════════════════════════════════════
+                     DESIGN FEATURES
+═══════════════════════════════════════════════════════════════
+
+✨ COLOR SCHEME
+   Primary: Amber/Orange (#F67600, #BF4E30)
+   Gradients: from-amber-500 to-[#BF4E30]
+   Hover: from-amber-600 to-[#A0432A]
+
+✨ NAVBAR/FOOTER HIDDEN ON:
+   - /register (Client sign up)
+   - /merchant/onboarding (Merchant onboarding)
+   - /updates (Updates page)
+
+✨ RESPONSIVE
+   - Mobile-friendly forms
+   - Adaptive layouts
+   - Image carousel hides on mobile
+   - Progress bar adapts
+
+✨ VISUAL ELEMENTS
+   - Progress bar with checkmarks
+   - Numbered step circles
+   - Success icon animations
+   - Smooth transitions
+
+
+═══════════════════════════════════════════════════════════════
+                      ROUTING MAP
+═══════════════════════════════════════════════════════════════
+
+/                          → Homepage (with NavBar)
+/register                  → Client Sign Up (NO NavBar)
+/login                     → Login (with NavBar)
+/merchant/onboarding       → Merchant Onboarding (NO NavBar)
+/merchant/profile          → Merchant Profile (with NavBar)
+/merchant/dashboard        → Merchant Dashboard (with NavBar)
+
+NavBar Links:
+- "Get Started" → /register
+- "Become a Merchant" → /merchant/onboarding
+- "Sign In" → /login
+
+
+═══════════════════════════════════════════════════════════════
+                   🎉 ALL FEATURES COMPLETE!
+═══════════════════════════════════════════════════════════════

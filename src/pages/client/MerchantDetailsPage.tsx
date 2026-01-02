@@ -44,13 +44,23 @@ const TEMP_MERCHANT_DATA = {
   bio: "Specializing in protective styles and natural hair care for over 10 years. Your hair is my passion!",
   availableSlots: {
     // Format: "YYYY-MM-DD": ["HH:MM", ...]
-    "2024-12-20": ["09:00", "10:00", "11:00", "14:00", "15:00"],
-    "2024-12-21": ["09:00", "10:00", "13:00", "14:00", "15:00", "16:00"],
-    "2024-12-22": ["10:00", "11:00", "14:00", "15:00"],
-    "2024-12-23": ["09:00", "11:00", "13:00", "15:00"],
-    "2024-12-24": ["09:00", "10:00", "11:00"],
-    "2024-12-27": ["09:00", "10:00", "11:00", "13:00", "14:00", "15:00"],
-    "2024-12-28": ["09:00", "10:00", "13:00", "14:00"],
+    // Updated to current dates (Dec 2025 - Jan 2026)
+    "2025-12-30": ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00"],
+    "2025-12-31": ["09:00", "10:00", "13:00", "14:00", "15:00", "16:00"],
+    "2026-01-02": ["10:00", "11:00", "14:00", "15:00"],
+    "2026-01-03": ["09:00", "11:00", "13:00", "15:00", "16:00"],
+    "2026-01-05": ["09:00", "10:00", "11:00", "13:00", "14:00"],
+    "2026-01-06": ["09:00", "10:00", "11:00", "13:00", "14:00", "15:00"],
+    "2026-01-07": ["09:00", "10:00", "13:00", "14:00", "15:00"],
+    "2026-01-08": ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00"],
+    "2026-01-09": ["10:00", "11:00", "14:00", "15:00"],
+    "2026-01-10": ["09:00", "11:00", "13:00", "15:00", "16:00"],
+    "2026-01-12": ["09:00", "10:00", "13:00", "14:00", "15:00", "16:00"],
+    "2026-01-13": ["09:00", "11:00", "13:00", "15:00"],
+    "2026-01-14": ["09:00", "10:00", "11:00", "13:00", "14:00", "15:00"],
+    "2026-01-15": ["09:00", "10:00", "13:00", "14:00"],
+    "2026-01-16": ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00"],
+    "2026-01-17": ["10:00", "11:00", "14:00", "15:00"],
   },
   services: [
     {
@@ -274,6 +284,8 @@ export const MerchantDetailsPage = () => {
   const [expandedService, setExpandedService] = useState<number | null>(null);
   const [currentWeekStart, setCurrentWeekStart] = useState(new Date());
   const [portfolioScrollIndex, setPortfolioScrollIndex] = useState(0);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [bookingConfirmationData, setBookingConfirmationData] = useState<any>(null);
 
   const merchant = TEMP_MERCHANT_DATA;
   const currentServices = merchant.services.find(
@@ -321,17 +333,28 @@ export const MerchantDetailsPage = () => {
       alert("Please select a date and time slot!");
       return;
     }
-    console.log("Booking submitted:", {
+    
+    // Store booking data for confirmation modal
+    const bookingData = {
       merchantId,
+      merchantName: merchant.name,
       service: selectedService,
       addOns: selectedAddOns,
       total: calculateTotal(),
+      deposit: Math.round(calculateTotal() * merchant.depositPreference.percentage / 100),
       date: selectedDate,
       time: selectedTime,
       notes: bookingNotes,
-    });
-    alert("Booking request submitted! (This is temporary - API integration pending)");
+    };
+    
+    console.log("Booking submitted:", bookingData);
+    
+    // Close booking modal and show confirmation
     setShowBookingModal(false);
+    setBookingConfirmationData(bookingData);
+    setShowConfirmationModal(true);
+    
+    // Reset form
     setSelectedService(null);
     setSelectedAddOns([]);
     setSelectedDate("");
@@ -436,7 +459,7 @@ const getAvailableSlots = (date: Date): string[] => {
           />
         </div>
         
-        <div className="relative max-w-7xl mx-auto px-4 pt-4 pb-6">
+        <div className="relative max-w-[1200px] mx-auto px-4 pt-4 pb-6">
           {/* Breadcrumbs */}
           <nav className="flex items-center gap-2 text-sm mb-4">
             <Link to="/" className="flex items-center text-gray-600 hover:text-amber-600 transition-colors">
@@ -774,7 +797,7 @@ const getAvailableSlots = (date: Date): string[] => {
 
       {/* Message Modal */}
       {showMessageModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-[10000]">
           <div className="bg-white rounded-xl shadow-2xl max-w-lg w-full">
             <div className="p-6">
               <div className="flex justify-between items-center mb-4">
@@ -828,7 +851,7 @@ const getAvailableSlots = (date: Date): string[] => {
       {/* Lightbox Modal */}
       {lightboxOpen && (
         <div 
-          className="fixed inset-0 bg-black/95 flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black/95 flex items-center justify-center z-[10000]"
           onClick={() => setLightboxOpen(false)}
         >
           <button
@@ -876,7 +899,7 @@ const getAvailableSlots = (date: Date): string[] => {
 
       {/* Booking Modal with Calendar - (Same as before, no changes needed) */}
       {showBookingModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50 overflow-y-auto">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-[10000] overflow-y-auto">
           <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full my-8">
             <div className="p-6">
               <div className="flex justify-between items-center mb-6">
@@ -1063,6 +1086,136 @@ const getAvailableSlots = (date: Date): string[] => {
                   </button>
                 </div>
               </form>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Booking Confirmation Modal */}
+      {showConfirmationModal && bookingConfirmationData && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-[10000]">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full overflow-hidden">
+            {/* Desktop: Horizontal Layout | Mobile: Vertical Layout */}
+            <div className="flex flex-col md:flex-row">
+              {/* Left Side - Success Header (Desktop) / Top (Mobile) */}
+              <div className="bg-gradient-to-br from-green-500 to-emerald-600 p-8 md:p-10 text-center md:w-2/5 flex flex-col items-center justify-center">
+                <div className="mx-auto w-20 h-20 bg-white rounded-full flex items-center justify-center mb-6">
+                  <CheckCircleRounded className="text-green-500" style={{ fontSize: 56 }} />
+                </div>
+                <h2 className="text-3xl font-bold text-white mb-3">
+                  Appointment Requested!
+                </h2>
+                <p className="text-green-50 text-base">
+                  Your appointment request has been sent to the merchant
+                </p>
+                
+                {/* Merchant Info */}
+                <div className="mt-8 pt-6 border-t border-green-400/30 w-full">
+                  <div className="flex items-center gap-3 justify-center">
+                    <img
+                      src={merchant.avatar}
+                      alt={merchant.name}
+                      className="w-14 h-14 rounded-full object-cover border-2 border-white shadow-lg"
+                    />
+                    <div className="text-left">
+                      <p className="font-semibold text-white text-lg">{bookingConfirmationData.merchantName}</p>
+                      <p className="text-sm text-green-50">{merchant.location.address}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Side - Booking Details (Desktop) / Bottom (Mobile) */}
+              <div className="md:w-3/5 flex flex-col">
+                <div className="p-6 md:p-8 space-y-5 flex-1 overflow-y-auto max-h-[70vh]">
+                  {/* Service Details */}
+                  <div>
+                    <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Service</p>
+                    <p className="text-lg font-bold text-gray-900">{bookingConfirmationData.service.name}</p>
+                    <p className="text-sm text-gray-600 mt-1">{bookingConfirmationData.service.duration}</p>
+                    
+                    {bookingConfirmationData.addOns.length > 0 && (
+                      <div className="mt-3 pt-3 border-t border-gray-200">
+                        <p className="text-xs font-medium text-gray-500 mb-2">Add-ons:</p>
+                        <ul className="space-y-1.5">
+                          {bookingConfirmationData.addOns.map((addOn: any, idx: number) => (
+                            <li key={idx} className="text-sm text-gray-700 flex justify-between">
+                              <span>{addOn.name}</span>
+                              <span className="text-gray-600 font-medium">+${addOn.price.toLocaleString()}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Date & Time */}
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Date</p>
+                      <p className="font-semibold text-gray-900">
+                        {new Date(bookingConfirmationData.date).toLocaleDateString("en-US", {
+                          weekday: "short",
+                          month: "short",
+                          day: "numeric",
+                          year: "numeric"
+                        })}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Time</p>
+                      <p className="font-semibold text-gray-900">{formatTime(bookingConfirmationData.time)}</p>
+                    </div>
+                  </div>
+
+                  {/* Notes */}
+                  {bookingConfirmationData.notes && (
+                    <div>
+                      <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Notes</p>
+                      <p className="text-sm text-gray-700 bg-gray-50 p-3 rounded-lg leading-relaxed">
+                        {bookingConfirmationData.notes}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Pricing */}
+                  <div className="pt-4 border-t-2 border-gray-200">
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-gray-700 font-medium">Service Total</span>
+                      <span className="text-xl font-bold text-gray-900">${bookingConfirmationData.total.toLocaleString()}</span>
+                    </div>
+                    {merchant.depositPreference.required && (
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-gray-600">
+                          Deposit Required ({merchant.depositPreference.percentage}%)
+                        </span>
+                        <span className="text-lg font-bold text-amber-600">
+                          ${bookingConfirmationData.deposit.toLocaleString()}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Next Steps */}
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <p className="text-sm font-semibold text-blue-900 mb-2.5">📋 Next Steps:</p>
+                    <ul className="text-sm text-blue-800 space-y-1.5">
+                      <li>• The merchant will review your request</li>
+                      <li>• You'll receive a confirmation email shortly</li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Actions */}
+                <div className="p-6 bg-gray-50 border-t border-gray-200">
+                  <button
+                    onClick={() => setShowConfirmationModal(false)}
+                    className="w-full px-6 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-lg font-semibold hover:from-amber-600 hover:to-amber-700 transition-all shadow-md"
+                  >
+                    Done
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

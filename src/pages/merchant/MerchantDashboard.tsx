@@ -15,6 +15,7 @@ import {
   EditRounded,
   DeleteRounded,
   SendRounded,
+  SaveRounded,
 } from "@mui/icons-material";
 
 // Temporary merchant data
@@ -211,6 +212,7 @@ export const MerchantDashboard = () => {
   const [showMessageModal, setShowMessageModal] = useState(false);
   const [replyText, setReplyText] = useState("");
   const [editMode, setEditMode] = useState(false);
+  const [editWorkingHoursMode, setEditWorkingHoursMode] = useState(false);
   const [profileData, setProfileData] = useState(MERCHANT_DATA);
   const [bankAccounts, setBankAccounts] = useState(BANK_ACCOUNTS_DATA);
   const [showAddBankModal, setShowAddBankModal] = useState(false);
@@ -222,6 +224,45 @@ export const MerchantDashboard = () => {
     accountNumber: "",
     accountType: "Savings",
   });
+  
+  // Services state
+  const [services, setServices] = useState([
+    {
+      id: 1,
+      name: "Knotless Braids",
+      category: "Braids",
+      price: 10000,
+      duration: "5-6 hours",
+      description: "Pain-free knotless technique, any length"
+    },
+    {
+      id: 2,
+      name: "Box Braids",
+      category: "Braids",
+      price: 8000,
+      duration: "4-5 hours",
+      description: "Classic box braids, any length"
+    }
+  ]);
+  const [showAddServiceForm, setShowAddServiceForm] = useState(false);
+  const [newService, setNewService] = useState({
+    name: "",
+    category: "",
+    price: "",
+    duration: "",
+    description: ""
+  });
+  
+  // Working hours state
+  const [workingHours, setWorkingHours] = useState([
+    { day: "Monday", isOpen: true, openTime: "09:00", closeTime: "18:00" },
+    { day: "Tuesday", isOpen: true, openTime: "09:00", closeTime: "18:00" },
+    { day: "Wednesday", isOpen: true, openTime: "09:00", closeTime: "18:00" },
+    { day: "Thursday", isOpen: true, openTime: "09:00", closeTime: "18:00" },
+    { day: "Friday", isOpen: true, openTime: "09:00", closeTime: "18:00" },
+    { day: "Saturday", isOpen: true, openTime: "10:00", closeTime: "16:00" },
+    { day: "Sunday", isOpen: false, openTime: "09:00", closeTime: "18:00" },
+  ]);
 
   const handleAppointmentAction = (appointment: any, action: "confirm" | "reject") => {
     console.log(`${action} appointment:`, appointment);
@@ -243,6 +284,30 @@ export const MerchantDashboard = () => {
     console.log("Profile updated:", profileData);
     alert("Profile updated! (API integration pending)");
     setEditMode(false);
+  };
+  
+  const handleWorkingHoursToggle = (index: number) => {
+    const updated = [...workingHours];
+    updated[index].isOpen = !updated[index].isOpen;
+    setWorkingHours(updated);
+  };
+  
+  const handleWorkingHoursTimeChange = (index: number, field: 'openTime' | 'closeTime', value: string) => {
+    const updated = [...workingHours];
+    updated[index][field] = value;
+    setWorkingHours(updated);
+  };
+  
+  const handleCopyToAllDays = () => {
+    const monday = workingHours[0];
+    const updated = workingHours.map(day => ({
+      ...day,
+      isOpen: monday.isOpen,
+      openTime: monday.openTime,
+      closeTime: monday.closeTime
+    }));
+    setWorkingHours(updated);
+    alert("Monday's hours copied to all days!");
   };
 
   const getStatusColor = (status: string) => {
@@ -272,7 +337,7 @@ export const MerchantDashboard = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Top Navigation Bar */}
       <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-4 py-4">
+        <div className="max-w-[1200px] mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <img
@@ -298,7 +363,7 @@ export const MerchantDashboard = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-6">
+      <div className="max-w-[1200px] mx-auto px-4 py-6">
         {/* Tab Navigation */}
         <div className="bg-white rounded-lg shadow-sm p-2 mb-6 flex gap-2 overflow-x-auto">
           <button
@@ -828,6 +893,110 @@ export const MerchantDashboard = () => {
               </div>
             </div>
 
+            {/* Working Hours & Availability */}
+            <div className="bg-white rounded-xl shadow-sm p-6">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-bold text-gray-900">
+                  Working Hours & Availability
+                </h2>
+                {!editWorkingHoursMode ? (
+                  <button
+                    onClick={() => setEditWorkingHoursMode(true)}
+                    className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-lg hover:from-amber-600 hover:to-amber-700 transition-all shadow-md"
+                  >
+                    <EditRounded fontSize="small" />
+                    Edit Working Hours
+                  </button>
+                ) : (
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => setEditWorkingHoursMode(false)}
+                      className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={() => {
+                        handleSaveProfile();
+                        setEditWorkingHoursMode(false);
+                      }}
+                      className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-lg hover:from-amber-600 hover:to-amber-700 transition-all shadow-md"
+                    >
+                      <SaveRounded fontSize="small" />
+                      Save Changes
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              <div className="space-y-3">
+                {workingHours.map((schedule, idx) => (
+                  <div key={idx} className="flex items-center gap-4 p-4 border border-gray-200 rounded-lg hover:border-amber-300 transition-colors">
+                    <div className="w-32">
+                      <p className="font-medium text-gray-900">{schedule.day}</p>
+                    </div>
+                    
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() => editWorkingHoursMode && handleWorkingHoursToggle(idx)}
+                        disabled={!editWorkingHoursMode}
+                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 ${
+                          schedule.isOpen ? 'bg-amber-500' : 'bg-gray-300'
+                        } ${!editWorkingHoursMode ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'}`}
+                      >
+                        <span
+                          className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform duration-200 ${
+                            schedule.isOpen ? 'translate-x-6' : 'translate-x-1'
+                          }`}
+                        />
+                      </button>
+                      <span className="text-sm text-gray-600 font-medium">
+                        {schedule.isOpen ? "Open" : "Closed"}
+                      </span>
+                    </div>
+
+                    {schedule.isOpen && (
+                      <div className="flex items-center gap-3 flex-1">
+                        <div className="flex items-center gap-2">
+                          <label className="text-sm text-gray-600">From:</label>
+                          <input
+                            type="time"
+                            value={schedule.openTime}
+                            onChange={(e) => handleWorkingHoursTimeChange(idx, 'openTime', e.target.value)}
+                            disabled={!editWorkingHoursMode}
+                            className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent disabled:bg-gray-50 text-sm"
+                          />
+                        </div>
+                        <span className="text-gray-400">-</span>
+                        <div className="flex items-center gap-2">
+                          <label className="text-sm text-gray-600">To:</label>
+                          <input
+                            type="time"
+                            value={schedule.closeTime}
+                            onChange={(e) => handleWorkingHoursTimeChange(idx, 'closeTime', e.target.value)}
+                            disabled={!editWorkingHoursMode}
+                            className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent disabled:bg-gray-50 text-sm"
+                          />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {editWorkingHoursMode && (
+                <div className="mt-4 flex justify-end">
+                  <button 
+                    onClick={handleCopyToAllDays}
+                    className="px-4 py-2 text-amber-600 hover:bg-amber-50 rounded-lg transition-colors text-sm font-medium"
+                  >
+                    Copy Monday to All Days
+                  </button>
+                </div>
+              )}
+            </div>
+
             {/* Portfolio Management */}
             <div className="bg-white rounded-xl shadow-sm p-6">
               <div className="flex items-center justify-between mb-6">
@@ -840,42 +1009,225 @@ export const MerchantDashboard = () => {
                 </button>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+                {[
+                  { url: "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&h=400&fit=crop", caption: "Box Braids Style" },
+                  { url: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&h=400&fit=crop", caption: "Natural Hair Care" },
+                  { url: "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=400&h=400&fit=crop", caption: "Protective Styles" },
+                  { url: "https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=400&h=400&fit=crop", caption: "Knotless Braids" },
+                  { url: "https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?w=400&h=400&fit=crop", caption: "Hair Styling" },
+                  { url: "https://images.unsplash.com/photo-1595475884562-073c30d45670?w=400&h=400&fit=crop", caption: "Loc Maintenance" },
+                ].map((item, i) => (
                   <div key={i} className="relative group">
                     <div className="aspect-square bg-gray-200 rounded-lg overflow-hidden">
                       <img
-                        src={`https://images.unsplash.com/photo-${1522337360788 + i * 1000}-8b13dee7a37e?w=400`}
-                        alt={`Portfolio ${i}`}
+                        src={item.url}
+                        alt={item.caption}
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center gap-2">
-                      <button className="p-2 bg-white rounded-full hover:bg-gray-100">
-                        <EditRounded fontSize="small" className="text-gray-700" />
-                      </button>
-                      <button className="p-2 bg-white rounded-full hover:bg-gray-100">
-                        <DeleteRounded fontSize="small" className="text-red-600" />
-                      </button>
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex flex-col items-center justify-center gap-2">
+                      <p className="text-white text-sm font-medium px-2 text-center">{item.caption}</p>
+                      <div className="flex gap-2">
+                        <button className="p-2 bg-white rounded-full hover:bg-gray-100">
+                          <EditRounded fontSize="small" className="text-gray-700" />
+                        </button>
+                        <button className="p-2 bg-white rounded-full hover:bg-gray-100">
+                          <DeleteRounded fontSize="small" className="text-red-600" />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Services Management Placeholder */}
+            {/* Services Management */}
             <div className="bg-white rounded-xl shadow-sm p-6">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-bold text-gray-900">
                   Services & Pricing
                 </h2>
-                <button className="flex items-center gap-2 px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition-colors">
-                  Add Service
+                <button 
+                  onClick={() => setShowAddServiceForm(!showAddServiceForm)}
+                  className="flex items-center gap-2 px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition-colors"
+                >
+                  {showAddServiceForm ? "Cancel" : "Add Service"}
                 </button>
               </div>
-              <p className="text-gray-600">
-                Manage your services, pricing, and add-ons here. (API integration
-                pending)
-              </p>
+
+              {/* Add Service Form */}
+              {showAddServiceForm && (
+                <div className="mb-6 p-6 bg-gray-50 rounded-lg border-2 border-amber-200">
+                  <h3 className="font-semibold text-gray-900 mb-4">Add New Service</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Service Name*
+                      </label>
+                      <input
+                        type="text"
+                        value={newService.name}
+                        onChange={(e) => setNewService({ ...newService, name: e.target.value })}
+                        placeholder="e.g., Knotless Braids"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Category*
+                      </label>
+                      <select
+                        value={newService.category}
+                        onChange={(e) => setNewService({ ...newService, category: e.target.value })}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                      >
+                        <option value="">Select Category</option>
+                        <option value="Braids">Braids</option>
+                        <option value="Natural Hair">Natural Hair</option>
+                        <option value="Weaves/Wigs">Weaves/Wigs</option>
+                        <option value="Locs">Locs</option>
+                        <option value="Treatments">Treatments</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Price (JMD)*
+                      </label>
+                      <input
+                        type="number"
+                        value={newService.price}
+                        onChange={(e) => setNewService({ ...newService, price: e.target.value })}
+                        placeholder="e.g., 10000"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Duration*
+                      </label>
+                      <input
+                        type="text"
+                        value={newService.duration}
+                        onChange={(e) => setNewService({ ...newService, duration: e.target.value })}
+                        placeholder="e.g., 5-6 hours"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                      />
+                    </div>
+                    <div className="md:col-span-2">
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Description
+                      </label>
+                      <textarea
+                        value={newService.description}
+                        onChange={(e) => setNewService({ ...newService, description: e.target.value })}
+                        placeholder="Describe your service..."
+                        rows={3}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent resize-none"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex justify-end gap-2 mt-4">
+                    <button
+                      onClick={() => {
+                        setShowAddServiceForm(false);
+                        setNewService({ name: "", category: "", price: "", duration: "", description: "" });
+                      }}
+                      className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={() => {
+                        if (newService.name && newService.category && newService.price && newService.duration) {
+                          setServices([...services, { ...newService, id: services.length + 1, price: parseInt(newService.price) }]);
+                          setNewService({ name: "", category: "", price: "", duration: "", description: "" });
+                          setShowAddServiceForm(false);
+                          alert("Service added successfully!");
+                        } else {
+                          alert("Please fill in all required fields");
+                        }
+                      }}
+                      className="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition-colors"
+                    >
+                      Add Service
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* Services List */}
+              <div className="space-y-3">
+                {services.length > 0 ? (
+                  services.map((service) => (
+                    <div
+                      key={service.id}
+                      className="border border-gray-200 rounded-lg p-4 hover:border-amber-300 transition-all"
+                    >
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-3 mb-2">
+                            <h3 className="font-bold text-gray-900 text-lg">
+                              {service.name}
+                            </h3>
+                            <span className="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded-full font-medium">
+                              {service.category}
+                            </span>
+                          </div>
+                          {service.description && (
+                            <p className="text-sm text-gray-600 mb-3">
+                              {service.description}
+                            </p>
+                          )}
+                          <div className="flex items-center gap-6 text-sm">
+                            <div className="flex items-center gap-2">
+                              <AttachMoneyRounded fontSize="small" className="text-green-600" />
+                              <span className="font-bold text-green-600">
+                                ${service.price.toLocaleString()} JMD
+                              </span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <AccessTimeRounded fontSize="small" className="text-gray-600" />
+                              <span className="text-gray-700">
+                                {service.duration}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex gap-2">
+                          <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors">
+                            <EditRounded fontSize="small" />
+                          </button>
+                          <button
+                            onClick={() => {
+                              if (window.confirm("Are you sure you want to delete this service?")) {
+                                setServices(services.filter((s) => s.id !== service.id));
+                                alert("Service deleted!");
+                              }
+                            }}
+                            className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                          >
+                            <DeleteRounded fontSize="small" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="text-center py-12 border-2 border-dashed border-gray-300 rounded-lg">
+                    <AttachMoneyRounded
+                      className="text-gray-400 mx-auto mb-3"
+                      style={{ fontSize: 48 }}
+                    />
+                    <p className="text-gray-600 mb-4">No services added yet</p>
+                    <button
+                      onClick={() => setShowAddServiceForm(true)}
+                      className="px-6 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition-colors"
+                    >
+                      Add Your First Service
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Bank Account Management */}
@@ -988,7 +1340,7 @@ export const MerchantDashboard = () => {
 
       {/* Appointment Detail Modal */}
       {showAppointmentModal && selectedAppointment && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-[10000]">
           <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6">
               <div className="flex justify-between items-center mb-6">
@@ -1139,7 +1491,7 @@ export const MerchantDashboard = () => {
 
       {/* Message Modal */}
       {showMessageModal && selectedMessage && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-[10000]">
           <div className="bg-white rounded-xl shadow-2xl max-w-lg w-full">
             <div className="p-6">
               <div className="flex justify-between items-center mb-6">
@@ -1213,7 +1565,7 @@ export const MerchantDashboard = () => {
 
       {/* Add Bank Account Modal */}
       {showAddBankModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-[10000]">
           <div className="bg-white rounded-xl shadow-2xl max-w-lg w-full">
             <div className="p-6">
               <div className="flex justify-between items-center mb-6">
@@ -1379,7 +1731,7 @@ export const MerchantDashboard = () => {
 
       {/* Edit Bank Account Modal */}
       {showEditBankModal && selectedBank && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-[10000]">
           <div className="bg-white rounded-xl shadow-2xl max-w-lg w-full">
             <div className="p-6">
               <div className="flex justify-between items-center mb-6">
